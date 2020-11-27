@@ -127,7 +127,7 @@ Rectangle {
             fillMode: Image.PreserveAspectFit
             mipmap: true
             smooth: true
-            source: "/assets/PDRL_Logo_Medium.svg"
+            source: "/assets/Logo.png"
         }
         MouseArea {
             x:image.x
@@ -424,7 +424,7 @@ Rectangle {
                 }
                 onClicked: {
                     drawer.close()
-                    aeroGCSInfoPopup.open()
+
                    // appExitMessagebox.show()
                     // Qt.quit()
                 }

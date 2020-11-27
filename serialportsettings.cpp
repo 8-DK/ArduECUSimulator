@@ -22,7 +22,7 @@ SerialPortSettings::SerialPortSettings(QObject *parent) :
 void SerialPortSettings::connectToDatabase()
 {
     m_db = QSqlDatabase::addDatabase( "QSQLITE" );
-    m_db.setDatabaseName("gcs31.db");
+    m_db.setDatabaseName("PersistDatabase.db");
     if( !m_db.open() )
     {
         qDebug( "Failed to connect database" );
@@ -116,7 +116,7 @@ void SerialPortSettings::closeDatabase()
         //QSqlDatabase m_db = QSqlDatabase::database();
         m_db.close();
         //QSqlDatabase::removeDatabase("QSQLITE");
-        m_db.removeDatabase("gcs31.db");
+        m_db.removeDatabase("PersistDatabase.db");
         qDebug() << "Database closed";
     }
 

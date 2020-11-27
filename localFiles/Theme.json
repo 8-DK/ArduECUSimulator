@@ -1,6 +1,6 @@
 [
     {
-      "AeroGCSTheme": {
+      "Theme": {
         "openSansRegular" : "Fonts/Open_Sans_Regular.ttf",
         "montserratRegular" : "Fonts/Montserrat-Regular.ttf",
         "robotoRegular" : "Fonts/Roboto-Regular.ttf",

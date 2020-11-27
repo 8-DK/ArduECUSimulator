@@ -27,7 +27,7 @@ unix:!symbian {
 }
 
 win32 {
-    RC_ICONS +=  assets\aerogcs_icon.ico
+    RC_ICONS +=  assets\sim_icon.ico
 equals(QT_MINOR_VERSION, 12) {
    MSVC_PATH  = "C:/Qt/Qt5.12.0/5.12.0/mingw73_64"
 } else {

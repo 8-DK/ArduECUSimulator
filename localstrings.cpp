@@ -3,7 +3,7 @@
 LocalStrings::LocalStrings(QObject *parent) : QObject(parent)
 {
     this->readLocalStringFile();
-    this->readGCSThemeFile();
+    this->readThemeFile();
 }
 LocalStrings* LocalStrings::m_instance;
 
@@ -63,16 +63,15 @@ QString LocalStrings::getLocalTextValue(QString textID)
     return  nullptr;
 }
 
-void LocalStrings::readGCSThemeFile()
+void LocalStrings::readThemeFile()
 {
     QByteArray val;
-    QString fileName = ":/localFiles/AeroGCSTheme.json";
+    QString fileName = ":/localFiles/Theme.json";
     if(QFile::exists(fileName))
     {
         QFile file(fileName);
         file.open(QIODevice::ReadOnly | QIODevice::Text);
-        val = file.readAll();
-        qDebug() << "Reading from aerogcs file";
+        val = file.readAll();        
         file.close();
 
         QJsonParseError jspe{};
@@ -86,7 +85,7 @@ void LocalStrings::readGCSThemeFile()
     }
     else
     {
-        qDebug() << " AeroGCS Theme file not exits" << endl;
+        qDebug() << " Theme file not exits" << endl;
     }
 }
 
@@ -98,7 +97,7 @@ QString LocalStrings::getThemeData(QString themeID)
         if(i!=1 && jsonThemeArray.size()>=1)
         {
            QJsonObject temp =  jsonThemeArray.at(i).toObject();
-            QString x = temp.value("AeroGCSTheme").toObject().value(themeID).toString();
+            QString x = temp.value("Theme").toObject().value(themeID).toString();
             if(x == nullptr)
             {
                 return  nullptr;

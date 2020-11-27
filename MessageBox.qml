@@ -20,7 +20,7 @@ Dialog{
     height: StyleGlobalConsts.windowHeight() * 0.2
     property string messageDetails
 
-    property string messageTitle: "AeroGCS"
+    property string messageTitle: "ArduECUSim"
     property string messageDescription: ''
     signal clickedMenu();
     signal okButtonClickSignal();

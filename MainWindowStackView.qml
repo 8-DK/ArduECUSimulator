@@ -12,7 +12,7 @@ import StyleGlobalConstsLib 1.0
 
 ApplicationWindow {
     id: mainWindowWithStackView
-    title: "AeroGCS_v1.1_21_01_2020"
+    title: "ArduECUSimulator v1.0"
     width: StyleGlobalConsts.windowWidth()
     height: StyleGlobalConsts.windowHeight()
     visible: true

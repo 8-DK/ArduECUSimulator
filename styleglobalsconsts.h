@@ -33,8 +33,8 @@ public:
         TINY_2 = 9,
         TINY_3 = 8,
         TINY_4 = 6
-       } NewAeroGCS_Fonts;
-    Q_ENUM(NewAeroGCS_Fonts)
+       } New_Fonts;
+    Q_ENUM(New_Fonts)
 
     Q_INVOKABLE int windowHeight();
     Q_INVOKABLE int windowWidth();

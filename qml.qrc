@@ -5,12 +5,11 @@
         <file>NavBar.qml</file>
         <file>assets/menu.png</file>
         <file>assets/splash_Screen.png</file>
-        <file>assets/aerogcs_icon.ico</file>
         <file>MessageBox.qml</file>
         <file>ProgressBarCustom.qml</file>
-        <file>localFiles/AeroGCSTheme.json</file>
+        <file>localFiles/Theme.json</file>
         <file>localFiles/LocalStrings.json</file>
-        <file>assets/PDRL_Logo.png</file>
+        <file>assets/Logo.png</file>
         <file>Fonts/Montserrat-Regular.ttf</file>
         <file>Fonts/Open_Sans_Bold.ttf</file>
         <file>Fonts/Open_Sans_Bold_Italic.ttf</file>
@@ -19,7 +18,7 @@
         <file>Fonts/RedHatDisplay-Regular.ttf</file>
         <file>Fonts/Roboto-Regular.ttf</file>
         <file>assets/bell.png</file>
-        <file>assets/PDRL_Logo_Medium.svg</file>
+        <file>assets/Logo_Medium.svg</file>
         <file>MainGridview.qml</file>
         <file>CustomeWidget/Dial/background.png</file>
         <file>CustomeWidget/Dial/CustomeDial.qml</file>
@@ -34,5 +33,6 @@
         <file>CustomeWidget/Switch/CustomSwitch.qml</file>
         <file>CustomeWidget/Header/CustomHeader.qml</file>
         <file>CustomeWidget/LargeToggle/LargeToggleSwitch.qml</file>
+        <file>assets/sim_icon.ico</file>
     </qresource>
 </RCC>

@@ -1,0 +1,24 @@
+[
+    {
+      "AeroGCSTheme": {
+        "openSansRegular" : "Fonts/Open_Sans_Regular.ttf",
+        "montserratRegular" : "Fonts/Montserrat-Regular.ttf",
+        "robotoRegular" : "Fonts/Roboto-Regular.ttf",
+        "redHatRegular" : "Fonts/RedHatDisplay-Regular.ttf",
+        "buttonDefaultColor" : "#48B0E5",
+        "buttonOnClickedColor" : "#48B0E5",
+        "buttonOnReleasedColor" : "#FFFFFF",
+        "buttonDefaultBorderColor" : "#48B0E5",
+        "buttonBackgroundColor" : "#FFFFFF",
+        "buttonDefaultTextColor" : "#FFFFFF",
+        "buttonOnClickedTextColor" : "#FFFFFF",
+        "buttonOnReleasedTextColor" : "#48B0E5",
+        "updateButtonWidth" : "185",
+        "updateButtonHeight" : "40",
+        "updateButtonRadius" : "25",
+        "updateButtonFontPixelsize" : "18",
+        "updateButtonLetterSpacing" : "0.5",
+        "updateButtonFontWeight" : "DemiBold"
+        }
+    }
+]

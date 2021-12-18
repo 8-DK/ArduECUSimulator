@@ -166,10 +166,10 @@ Item {
                 repeat: true
                 interval: 1000
                 onTriggered: {
-                        slider.value = StyleGlobalConsts.getRandomeInt(slider.minVal,slider.maxVal)
+//                        slider.value = StyleGlobalConsts.getRandomeInt(slider.minVal,slider.maxVal)
+                    slider.setValue(StyleGlobalConsts.getRandomeInt(slider.minVal,slider.maxVal))
                 }
             }
-
             SegementDisplay
             {
                 id : segmentVal

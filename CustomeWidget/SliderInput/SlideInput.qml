@@ -17,7 +17,7 @@ Rectangle {
     property int digit: 6
     property string unit: ""
     property alias value: valSlider.value
-    property var randomeChk: true
+    property bool randomeChk: true
     property real stepVal: 1
     property real maxVal: 5
     property real minVal: 0
@@ -27,6 +27,26 @@ Rectangle {
     FontLoader {
         id:sevenSegmentFont
         source:'qrc:/Fonts/Seven_Segment.ttf'
+    }
+
+    function validateInputs()
+    {
+        if(minVal  > textInput.text)
+        {
+            valSlider.value = minVal
+            textInput.text = minVal
+        }
+        else if(maxVal  < textInput.text)
+        {
+            valSlider.value = maxVal
+            textInput.text = maxVal
+        }
+    }
+
+    function setValue(val)
+    {
+        valSlider.value = val
+        textInput.text = valSlider.value
     }
 
     Rectangle{
@@ -63,6 +83,12 @@ Rectangle {
                 anchors.right: parent.right
                 anchors.rightMargin: parent.width*0.1
                 font.pixelSize: 12
+                validator: RegExpValidator { regExp: /^[0-9]{1,}([,.][0-9]{1,2})?$/ }
+
+                onTextEdited: {
+                    valSlider.value = parseInt(textInput.text)
+                    validateInputs()
+                }
             }
         }
 
@@ -78,12 +104,15 @@ Rectangle {
                 to: maxVal
                 from: minVal
                 stepSize: stepVal
-                value: textInput.text
+                //value: textInput.text
                 width: parent.width*0.8
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 0
+                anchors.bottomMargin: 0                                
+                onMoved: {
+                     textInput.text = valSlider.value
+                }
 
                 background: Rectangle {
                     x: valSlider.leftPadding

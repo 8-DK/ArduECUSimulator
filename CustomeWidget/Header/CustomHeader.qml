@@ -39,20 +39,10 @@ Rectangle {
         id : bgRect
         width: parent.width
         height: parent.height
+        color: "#b2c4de"
         radius: custHeaeder.radius
         border.width: 1
         border.color: "grey"
-        gradient: Gradient {
-            GradientStop {
-                position: 0
-                color: "#f5f7fa"
-            }
-
-            GradientStop {
-                position: 1
-                color: "#c3cfe2"
-            }
-        }
         clip: true
         Rectangle {
             id: rectangle1

@@ -3,7 +3,6 @@
 LocalStrings::LocalStrings(QObject *parent) : QObject(parent)
 {
     this->readLocalStringFile();
-    this->readThemeFile();
 }
 LocalStrings* LocalStrings::m_instance;
 
@@ -50,54 +49,6 @@ QString LocalStrings::getLocalTextValue(QString textID)
         {
            QJsonObject temp =  jsonArray.at(i).toObject();
             QString x = temp.value("StringData").toObject().value(textID).toString();
-            if(x == nullptr)
-            {
-                return  nullptr;
-            }
-            else
-            {
-                return x;
-            }
-        }
-    }
-    return  nullptr;
-}
-
-void LocalStrings::readThemeFile()
-{
-    QByteArray val;
-    QString fileName = ":/localFiles/Theme.json";
-    if(QFile::exists(fileName))
-    {
-        QFile file(fileName);
-        file.open(QIODevice::ReadOnly | QIODevice::Text);
-        val = file.readAll();        
-        file.close();
-
-        QJsonParseError jspe{};
-        const QJsonDocument doc = QJsonDocument::fromJson(val, &jspe);
-        if (doc.isNull())
-        {
-          qWarning() << "Error loading JSON:" << jspe.errorString() << "@" << jspe.offset;
-        }
-        jsonThemeArray = doc.array();
-
-    }
-    else
-    {
-        qDebug() << " Theme file not exits" << endl;
-    }
-}
-
-QString LocalStrings::getThemeData(QString themeID)
-{
-
-    for (int i=0; i < jsonThemeArray.size(); i++)
-    {
-        if(i!=1 && jsonThemeArray.size()>=1)
-        {
-           QJsonObject temp =  jsonThemeArray.at(i).toObject();
-            QString x = temp.value("Theme").toObject().value(themeID).toString();
             if(x == nullptr)
             {
                 return  nullptr;

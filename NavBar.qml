@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.2
 import LocalStringsLib 1.0
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 
 Rectangle {
     id:root
@@ -115,7 +115,7 @@ Rectangle {
         visible: true
         width: mainWindowWithStackView.width
         height: mainWindowWithStackView.height * 0.065//0.09
-        color : StyleGlobalConsts.whiteColor()
+        color : GStyle.whiteColor()
         anchors.top: mainWindowWithStackView.top
         Image {
             id: image
@@ -143,10 +143,10 @@ Rectangle {
 
         Image {
             id: image1
-            width: StyleGlobalConsts.windowWidth() * 0.0141 //navBar.width * 0.015
-            height: StyleGlobalConsts.windowHeight() * 0.025 //navBar.height * 0.5
+            width: GStyle.windowWidth() * 0.0141 //navBar.width * 0.015
+            height: GStyle.windowHeight() * 0.025 //navBar.height * 0.5
             anchors.right: navBar.right
-            anchors.rightMargin: StyleGlobalConsts.windowWidth() * 0.053//navBar.width * 0.03
+            anchors.rightMargin: GStyle.windowWidth() * 0.053//navBar.width * 0.03
             anchors.verticalCenter: navBar.verticalCenter
             fillMode: Image.PreserveAspectFit
             source: "assets/menu.png"
@@ -166,8 +166,8 @@ Rectangle {
 
         Image {
             id: image2
-            width: StyleGlobalConsts.windowWidth() * 0.02
-            height: StyleGlobalConsts.windowWidth() * 0.02
+            width: GStyle.windowWidth() * 0.02
+            height: GStyle.windowWidth() * 0.02
             anchors.right: image1.right
             anchors.rightMargin: navBar.width * 0.034
             anchors.verticalCenter: parent.verticalCenter
@@ -192,7 +192,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             text: root.header
             font.weight: "DemiBold"
-            font.pixelSize: StyleGlobalConsts.getNavbarHeadingPixelSize()
+            font.pixelSize: GStyle.getNavbarHeadingPixelSize()
             font.family: openSansNormal.name
         }
     }
@@ -200,11 +200,11 @@ Rectangle {
     DropShadow {
         id: dropShadow
         anchors.fill: navBar
-        verticalOffset: StyleGlobalConsts.getDropshadowVerticalOffset()
-        horizontalOffset: StyleGlobalConsts.getDropshadowHorizontalOffset()
-        radius: StyleGlobalConsts.getDropshadowRadius()
-        samples: StyleGlobalConsts.getDropshadowSamples()
-        color: StyleGlobalConsts.getDropshadowColor()
+        verticalOffset: GStyle.getDropshadowVerticalOffset()
+        horizontalOffset: GStyle.getDropshadowHorizontalOffset()
+        radius: GStyle.getDropshadowRadius()
+        samples: GStyle.getDropshadowSamples()
+        color: GStyle.getDropshadowColor()
         source: navBar
     }
 
@@ -216,7 +216,7 @@ Rectangle {
         background: Rectangle{
             id: drawerRect
             border.width: 1
-            border.color: StyleGlobalConsts.borderColor()//"blue"
+            border.color: GStyle.borderColor()//"blue"
 
             Button{
                 id: homeButton
@@ -236,7 +236,7 @@ Rectangle {
                     anchors.verticalCenter: homeButton.verticalCenter
                     text: "Home"
                     font.family: openSansNormal.name
-                    font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                    font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
                 onClicked:
@@ -265,7 +265,7 @@ Rectangle {
                     anchors.verticalCenter: configurationButton.verticalCenter
                     text: "RPA Configuration"
                     font.family: openSansNormal.name
-                    font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                    font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
                 onClicked:{
@@ -299,7 +299,7 @@ Rectangle {
                     anchors.verticalCenter: logButton.verticalCenter
                     text: "RPA Logs"
                     font.family: openSansNormal.name
-                    font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                    font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
                 onClicked: {
@@ -329,7 +329,7 @@ Rectangle {
                     anchors.verticalCenter: systemSettingsButton.verticalCenter
                     text: "User Setting"
                     font.family: openSansNormal.name
-                    font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                    font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
                 onClicked: {
@@ -355,7 +355,7 @@ Rectangle {
                                 anchors.verticalCenter: disconnectButton.verticalCenter
                                 text:  LocalStrings.getLocalTextValue("disconnect")
                                 font.family: openSansNormal.name
-                                font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                                font.pixelSize: GStyle.getButtonPixelSize()
                                 font.weight: "Normal"
                             }
                             onClicked: {
@@ -392,7 +392,7 @@ Rectangle {
                     anchors.verticalCenter: syncButton.verticalCenter
                     text: "Cloud Sync"
                     font.family: openSansNormal.name
-                    font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                    font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
                 onClicked: {
@@ -419,7 +419,7 @@ Rectangle {
                     anchors.verticalCenter: aboutButton.verticalCenter
                     text: LocalStrings.getLocalTextValue("about")
                     font.family: openSansNormal.name
-                    font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                    font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
                 onClicked: {
@@ -448,7 +448,7 @@ Rectangle {
                     anchors.verticalCenter: exitButton.verticalCenter
                     text:  LocalStrings.getLocalTextValue("exit")
                     font.family: openSansNormal.name
-                    font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                    font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
                 onClicked: {

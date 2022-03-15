@@ -5,125 +5,125 @@
 #include <random>
 #include "QDateTime"
 
-StyleGlobalConsts::StyleGlobalConsts(QObject *parent) : QObject(parent)
+GStyle::GStyle(QObject *parent) : QObject(parent)
 {
-
+    readThemeFile("default");
 }
 
-StyleGlobalConsts* StyleGlobalConsts::m_instance;
+GStyle* GStyle::m_instance;
 
-StyleGlobalConsts* StyleGlobalConsts::getInstance()
+GStyle* GStyle::getInstance()
 {
-    if (StyleGlobalConsts::m_instance == nullptr)
+    if (GStyle::m_instance == nullptr)
     {
-        StyleGlobalConsts::m_instance = new StyleGlobalConsts(nullptr);
+        GStyle::m_instance = new GStyle(nullptr);
     }
-    return StyleGlobalConsts::m_instance;
+    return GStyle::m_instance;
 }
 
-int StyleGlobalConsts::windowWidth()
+int GStyle::windowWidth()
 {
     m_windowWidth = QApplication::desktop()->width();
     return m_windowWidth;
 }
 
-int StyleGlobalConsts::windowHeight()
+int GStyle::windowHeight()
 {
     m_windowHeight = QApplication::desktop()->height();
     return m_windowHeight;
 }
 
-double StyleGlobalConsts::getRectWidth()
+double GStyle::getRectWidth()
 {
     m_rectWidth = m_windowWidth * 0.483;
     return m_rectWidth;
 }
 
-double StyleGlobalConsts::getRectHeight()
+double GStyle::getRectHeight()
 {
     m_rectHeight = m_windowHeight * 0.725;
     return m_rectHeight;
 }
 
-double StyleGlobalConsts::getVehicleDetailsRectWidth()
+double GStyle::getVehicleDetailsRectWidth()
 {
     m_vehicleDetailsRectWidth = m_rectWidth * 0.4;
     return m_vehicleDetailsRectWidth;
 }
 
-double StyleGlobalConsts::getVehicleDetailsRectHeight()
+double GStyle::getVehicleDetailsRectHeight()
 {
     m_vehicleDetailsRectHeight = m_rectHeight * 0.8;
     return m_vehicleDetailsRectHeight;
 }
 
-double StyleGlobalConsts::getSwitchWidth()
+double GStyle::getSwitchWidth()
 {
     m_switchWidth = m_windowWidth * 0.03;
     return m_switchWidth;
 }
 
-double StyleGlobalConsts::getSwitchHeight()
+double GStyle::getSwitchHeight()
 {
     m_switchHeight = m_windowHeight * 0.028;
     return m_switchHeight;
 }
 
-double StyleGlobalConsts::getSwitchRadius()
+double GStyle::getSwitchRadius()
 {
     m_switchRadius = m_windowHeight * 0.028;
     return m_switchRadius;
 }
 
-double StyleGlobalConsts::defaultButtonWidth()
+double GStyle::defaultButtonWidth()
 {
     m_defaultButtonWidth = m_windowWidth * 0.1;
     return m_defaultButtonWidth;
 }
 
-double StyleGlobalConsts::defaultButtonHeight()
+double GStyle::defaultButtonHeight()
 {
     m_defaultButtonHeight = m_windowHeight * 0.05;
     return m_defaultButtonHeight;
 }
 
-double StyleGlobalConsts::defaultButtonRadius()
+double GStyle::defaultButtonRadius()
 {
     m_defaultButtonRadius = m_windowHeight * 0.05;;
     return m_defaultButtonRadius;
 }
 
-double StyleGlobalConsts::updateButtonWidth()
+double GStyle::updateButtonWidth()
 {
     m_updateButtonWidth = m_windowWidth * 0.145;
     return m_updateButtonWidth;
 }
 
-double StyleGlobalConsts::updateButtonHeight()
+double GStyle::updateButtonHeight()
 {
     m_updateButtonHeight = m_windowHeight * 0.05;
     return m_updateButtonHeight;
 }
 
-double StyleGlobalConsts::rpaSettingsTextEditWidth()
+double GStyle::rpaSettingsTextEditWidth()
 {
     m_rpaSettingsTextEditWidth = m_windowWidth * 0.262;
     return m_rpaSettingsTextEditWidth;
 }
 
-double StyleGlobalConsts::rpaSettingsTextEditHeight()
+double GStyle::rpaSettingsTextEditHeight()
 {
     m_rpaSettingsTextEditHeight = m_windowHeight * 0.07;
     return m_rpaSettingsTextEditHeight;
 }
 
-double StyleGlobalConsts::rpaSettingsTextEditRadius()
+double GStyle::rpaSettingsTextEditRadius()
 {
     m_rpaSettingsTextEditRadius = m_rectHeight * 0.01;
     return m_rpaSettingsTextEditRadius;
 }
 
-int StyleGlobalConsts::getMessageBoxTextPixelSize()
+int GStyle::getMessageBoxTextPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -161,7 +161,7 @@ int StyleGlobalConsts::getMessageBoxTextPixelSize()
     return m_messageBoxTextPixelSize;
 }
 
-int StyleGlobalConsts::getNavbarHeadingPixelSize()
+int GStyle::getNavbarHeadingPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -198,7 +198,7 @@ int StyleGlobalConsts::getNavbarHeadingPixelSize()
     return m_navbarHeadingPixelSize;
 }
 
-int StyleGlobalConsts::getTextEditPixelSize()
+int GStyle::getTextEditPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -235,7 +235,7 @@ int StyleGlobalConsts::getTextEditPixelSize()
     return m_textEditPixelSize;
 }
 
-int StyleGlobalConsts::getButtonPixelSize()
+int GStyle::getButtonPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -273,7 +273,7 @@ int StyleGlobalConsts::getButtonPixelSize()
     return m_ButtonPixelSize;
 }
 
-int StyleGlobalConsts::getTextEditLabelPixelSize()
+int GStyle::getTextEditLabelPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -319,7 +319,7 @@ int StyleGlobalConsts::getTextEditLabelPixelSize()
     return m_textEditLabelPixelSize;
 }
 
-int StyleGlobalConsts::getRPASettingsLabelPixelSize()
+int GStyle::getRPASettingsLabelPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -357,7 +357,7 @@ int StyleGlobalConsts::getRPASettingsLabelPixelSize()
     return m_rpaSettingsLabelPixelSize;
 }
 
-int StyleGlobalConsts::getSmallLabelPixelSize()
+int GStyle::getSmallLabelPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -403,7 +403,7 @@ int StyleGlobalConsts::getSmallLabelPixelSize()
     return m_smallLabelPixelSize;
 }
 
-int StyleGlobalConsts::getConnectedLabelPixelSize()
+int GStyle::getConnectedLabelPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -441,7 +441,7 @@ int StyleGlobalConsts::getConnectedLabelPixelSize()
     return m_connectedLabelPixelSize;
 }
 
-int StyleGlobalConsts::getMinMaxLabelPixelSize()
+int GStyle::getMinMaxLabelPixelSize()
 {
     if(m_windowWidth >= 2000)
     {
@@ -479,7 +479,7 @@ int StyleGlobalConsts::getMinMaxLabelPixelSize()
     return m_minMaxLabelPixelSize;
 }
 
-int StyleGlobalConsts::getMainLabelPixelSixe()
+int GStyle::getMainLabelPixelSixe()
 {
     if(m_windowWidth >= 2000)
     {
@@ -517,7 +517,7 @@ int StyleGlobalConsts::getMainLabelPixelSixe()
     return m_mainLabelPixelSize;
 }
 
-int StyleGlobalConsts::getCameraScrollViewHeight()
+int GStyle::getCameraScrollViewHeight()
 {
     if(m_windowHeight == 1080)
     {
@@ -554,7 +554,7 @@ int StyleGlobalConsts::getCameraScrollViewHeight()
     return m_cameraScrollViewHeight;
 }
 
-int StyleGlobalConsts::getSerialParamScrollViewHeight()
+int GStyle::getSerialParamScrollViewHeight()
 {
     if(m_windowHeight == 1080)
     {
@@ -591,7 +591,7 @@ int StyleGlobalConsts::getSerialParamScrollViewHeight()
     return m_serialParamScrollViewHeight;
 }
 
-int StyleGlobalConsts::getBatteryFailsafeScrollViewHeight()
+int GStyle::getBatteryFailsafeScrollViewHeight()
 {
     if(m_windowHeight == 1080)
     {
@@ -628,7 +628,7 @@ int StyleGlobalConsts::getBatteryFailsafeScrollViewHeight()
     return m_batteryFailsafeScrollViewHeight;
 }
 
-int StyleGlobalConsts::getReturnToLaunchScrollViewHeight()
+int GStyle::getReturnToLaunchScrollViewHeight()
 {
     if(m_windowHeight == 1080)
     {
@@ -665,7 +665,7 @@ int StyleGlobalConsts::getReturnToLaunchScrollViewHeight()
     return m_returnToLaunchScrollViewHeight;
 }
 
-int StyleGlobalConsts::getGeofenceScrollViewHeight()
+int GStyle::getGeofenceScrollViewHeight()
 {
     if(m_windowHeight == 1080)
     {
@@ -702,7 +702,7 @@ int StyleGlobalConsts::getGeofenceScrollViewHeight()
     return m_geofenceScrollViewHeight;
 }
 
-int StyleGlobalConsts::getFailsafeTriggerScrollViewHeight()
+int GStyle::getFailsafeTriggerScrollViewHeight()
 {
     if(m_windowHeight == 1080)
     {
@@ -739,7 +739,7 @@ int StyleGlobalConsts::getFailsafeTriggerScrollViewHeight()
     return m_failsafeTriggerScrollViewHeight;
 }
 
-int StyleGlobalConsts::getArmingChecksScrollViewHeight()
+int GStyle::getArmingChecksScrollViewHeight()
 {
     if(m_windowHeight == 1080)
     {
@@ -776,7 +776,7 @@ int StyleGlobalConsts::getArmingChecksScrollViewHeight()
     return m_armingChecksScrollViewHeight;
 }
 
-QString StyleGlobalConsts::padzero(double val,int zeroCount)
+QString GStyle::padzero(double val,int zeroCount)
 {
     char buff[500]= {'0'};
     //memset(buff,'0',sizeof(buff));
@@ -791,16 +791,69 @@ QString StyleGlobalConsts::padzero(double val,int zeroCount)
     return QString(buff);
 }
 
-int StyleGlobalConsts::getRandomeInt(int min,int max){
+int GStyle::getRandomeInt(int min,int max){
     unsigned int ms = static_cast<unsigned>(QDateTime::currentMSecsSinceEpoch());
     std::mt19937 gen(ms);
     std::uniform_int_distribution<> uid(min, max);
     return uid(gen);
 }
 
-double StyleGlobalConsts::getRandomeFloat(double min,double max){
+double GStyle::getRandomeFloat(double min,double max){
     float random = ((float) rand()) / (float) max;
     float diff = max - min;
     float r = random * diff;
     return (double)(min + r);
 }
+
+QString GStyle::gP(QString textID)
+{
+    QString pallete = jsonCurrentThemeData.value(textID).toString();
+    return pallete;
+}
+
+void GStyle::readThemeFile(QString loadDefaultTheme)
+{
+    QByteArray val;
+    QString fileName = ":/localFiles/Theme.json";
+    if(QFile::exists(fileName))
+    {
+        QFile file(fileName);
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        val = file.readAll();
+        file.close();
+
+        QJsonParseError jspe{};
+        const QJsonDocument doc = QJsonDocument::fromJson(val, &jspe);
+        if (doc.isNull())
+        {
+          qWarning() << "Error loading JSON:" << jspe.errorString() << "@" << jspe.offset;
+        }
+        jsonThemeArray = doc.array();
+        getThemeData(loadDefaultTheme);
+    }
+    else
+    {
+        qDebug() << " Theme file not exits" << endl;
+    }
+}
+
+QString GStyle::getThemeData(QString m_themeID)
+{
+
+    for (int i=0; i < jsonThemeArray.size(); i++)
+    {
+        if(i!=1 && jsonThemeArray.size()>=1)
+        {
+           QJsonObject temp =  jsonThemeArray.at(i).toObject();
+            QString themId = temp.value("Theme").toObject().value("themeID").toString();
+            if(themId == m_themeID)
+            {
+               jsonCurrentThemeData = temp.value("Theme").toObject();
+               qDebug().noquote() << "Current theme : " << themId << ", Data : "<<jsonCurrentThemeData;
+               return themId;
+            }
+        }
+    }
+    return  "";
+}
+

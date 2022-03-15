@@ -18,14 +18,11 @@ class LocalStrings : public QObject
 
 private:
     QJsonArray jsonArray;
-    QJsonArray jsonThemeArray;
     static LocalStrings *m_instance;public:
 public:
     explicit LocalStrings(QObject *parent = nullptr);
     Q_INVOKABLE void readLocalStringFile();
     Q_INVOKABLE QString getLocalTextValue(QString textID);
-    Q_INVOKABLE void readThemeFile();
-    Q_INVOKABLE QString getThemeData(QString themeID);
     static LocalStrings *getInstance();
     static QObject* getInstance(QQmlEngine *engine, QJSEngine *scriptEngine){Q_UNUSED(engine);Q_UNUSED(scriptEngine);return getInstance();}
 

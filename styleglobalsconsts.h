@@ -7,13 +7,23 @@
 #include <QQuickItem>
 #include <QQmlProperty>
 #include <QQuickItem>
+#include <qjsonarray.h>
+#include <qjsonobject.h>
+#include <qjsonvalue.h>
+#include <qjsondocument.h>
+#include <qfileinfo.h>
+#include <qdir.h>
 
-class StyleGlobalConsts : public QObject{
-Q_OBJECT
+class GStyle : public QObject{
+    Q_OBJECT
+
+    QJsonArray jsonThemeArray;
+    QJsonObject jsonCurrentThemeData;
+
 public:
-    explicit StyleGlobalConsts(QObject *parent = nullptr);
+    explicit GStyle(QObject *parent = nullptr);
 
-    static StyleGlobalConsts *getInstance();
+    static GStyle *getInstance();
     static QObject* getInstance(QQmlEngine *engine, QJSEngine *scriptEngine){Q_UNUSED(engine);Q_UNUSED(scriptEngine);return getInstance();}
 
     typedef  enum{
@@ -33,9 +43,13 @@ public:
         TINY_2 = 9,
         TINY_3 = 8,
         TINY_4 = 6
-       } New_Fonts;
+    } New_Fonts;
     Q_ENUM(New_Fonts)
 
+    void readThemeFile(QString loadDefaultTheme = "default");
+    QString getThemeData(QString themeID);
+
+public slots:
     Q_INVOKABLE int windowHeight();
     Q_INVOKABLE int windowWidth();
     Q_INVOKABLE double getRectWidth();
@@ -100,8 +114,11 @@ public:
     Q_INVOKABLE   int getRandomeInt(int min,int max);
     Q_INVOKABLE   double getRandomeFloat(double min,double max);
 
+    //Theme palette
+    Q_INVOKABLE QString gP(QString textID);
+
 private:
-    static StyleGlobalConsts *m_instance;
+    static GStyle *m_instance;
     int m_windowWidth;
     int m_windowHeight;
 
@@ -164,6 +181,8 @@ private:
     QString m_mainThemeColor = "#00c99e";
     QString m_mainThemeActiveColor = "#006f4e";
     QString m_disableColor = "#d3d3d3";
+
+    QString themePrimaryColor = "#E9ECF3";
 };
 
 #endif // STYLE_H

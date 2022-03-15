@@ -11,14 +11,14 @@ import SerialPortLib 1.0
 import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 
 Item {
     id:mainWindowSerialPort
     objectName: qsTr("MyserialPortWnd")
     visible: true
-    width: StyleGlobalConsts.windowWidth()
-    height: StyleGlobalConsts.windowHeight()
+    width: GStyle.windowWidth()
+    height: GStyle.windowHeight()
     signal sendPushNewProject()
     property var connectionTargetMessage: null
     property int  dataBit : 8;
@@ -43,10 +43,10 @@ Item {
     Keys.onReleased: {
         if(event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
         {
-            connectButtonRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-            disconnectButtonRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-            connectButtonText.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-            disconnectButtonText.color = StyleGlobalConsts.blueColor()//"#48B0E5"
+            connectButtonRect.color =  GStyle.blueColor()//"#48B0E5"
+            disconnectButtonRect.color = GStyle.whiteColor()//"#FFFFFF"
+            connectButtonText.color = GStyle.whiteColor()//"#FFFFFF"
+            disconnectButtonText.color = GStyle.blueColor()//"#48B0E5"
             var tempxy;
             if(parity  == 1)
             {
@@ -251,17 +251,17 @@ Item {
             opacity: 0.8
             model: CommLinkSettings.getSerialPort()
             //            onFocusChanged:{
-            //                serialPortSelectorBgRect.border.color = StyleGlobalConsts.blueColor()
-            //                serialPortText.color = StyleGlobalConsts.blueColor()
-            //                baudRateSelectorBgRect.border.color = StyleGlobalConsts.borderColor()
-            //                flowControlSelectorBgRect.border.color = StyleGlobalConsts.borderColor()
+            //                serialPortSelectorBgRect.border.color = GStyle.blueColor()
+            //                serialPortText.color = GStyle.blueColor()
+            //                baudRateSelectorBgRect.border.color = GStyle.borderColor()
+            //                flowControlSelectorBgRect.border.color = GStyle.borderColor()
             //            }
 
             background: Rectangle {
                 id: serialPortSelectorBgRect
-                radius: StyleGlobalConsts.rpaSettingsTextEditRadius()
-                color: StyleGlobalConsts.whiteColor()//"white"
-                border.color: StyleGlobalConsts.borderColor()
+                radius: GStyle.rpaSettingsTextEditRadius()
+                color: GStyle.whiteColor()//"white"
+                border.color: GStyle.borderColor()
                 border.width: 0.7
             }
         }
@@ -280,10 +280,10 @@ Item {
                 text: "Serial Port"
                 font.family: openSansRegular.name
                 font.pixelSize: getFontSize("H5")//16
-                color: StyleGlobalConsts.borderColor()
+                color: GStyle.borderColor()
             }
             background: Rectangle{
-                color: StyleGlobalConsts.whiteColor()//"white"
+                color: GStyle.whiteColor()//"white"
                 //border.width: 1
             }
         }
@@ -306,9 +306,9 @@ Item {
 
             background: Rectangle {
                 id: baudRateSelectorBgRect
-                radius: StyleGlobalConsts.rpaSettingsTextEditRadius()
-                color: StyleGlobalConsts.whiteColor()//"white"
-                border.color: StyleGlobalConsts.borderColor()//"#184BFF"
+                radius: GStyle.rpaSettingsTextEditRadius()
+                color: GStyle.whiteColor()//"white"
+                border.color: GStyle.borderColor()//"#184BFF"
                 border.width: 0.7
             }
         }
@@ -327,10 +327,10 @@ Item {
                 text: "Baud Rate"
                 font.family: openSansRegular.name
                 font.pixelSize: getFontSize("H5")//16
-                color: StyleGlobalConsts.borderColor()
+                color: GStyle.borderColor()
             }
             background: Rectangle{
-                color: StyleGlobalConsts.whiteColor()//"white"
+                color: GStyle.whiteColor()//"white"
                 //border.width: 1
             }
         }
@@ -363,7 +363,7 @@ Item {
                     font.family: robotoRegular.name
                     font.weight: "DemiBold"
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.blackColor()
+                    color: GStyle.blackColor()
                     opacity: 0.6
                 }
             }
@@ -379,9 +379,9 @@ Item {
                 anchors.leftMargin: dataBitRect.width * 0.05
                 background: Rectangle {
                     id: dataBitsOption1BgRect
-                    color: StyleGlobalConsts.whiteColor()//"white"
+                    color: GStyle.whiteColor()//"white"
                     border.width: 0.5
-                    border.color: StyleGlobalConsts.borderColor()//"#B0ADAB"
+                    border.color: GStyle.borderColor()//"#B0ADAB"
                 }
                 Text{
                     id: dataBitsOption1Text
@@ -390,19 +390,19 @@ Item {
                     font.family: openSansNormal.name
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.darkGrayColor()
+                    color: GStyle.darkGrayColor()
                 }
                 onClicked: {
                     dataBit = 6;
-                    dataBitsOption1BgRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                    dataBitsOption1BgRect.border.color = StyleGlobalConsts.blueColor()
-                    dataBitsOption1Text.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.border.color = StyleGlobalConsts.borderColor()
-                    dataBitsOption2Text.color =  StyleGlobalConsts.darkGrayColor()//"#706E6B"
-                    dataBitsOption3BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption3BgRect.border.color = StyleGlobalConsts.borderColor()
-                    dataBitsOption3Text.color = StyleGlobalConsts.darkGrayColor()//"#706E6B"
+                    dataBitsOption1BgRect.color =  GStyle.blueColor()//"#48B0E5"
+                    dataBitsOption1BgRect.border.color = GStyle.blueColor()
+                    dataBitsOption1Text.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption2BgRect.border.color = GStyle.borderColor()
+                    dataBitsOption2Text.color =  GStyle.darkGrayColor()//"#706E6B"
+                    dataBitsOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption3BgRect.border.color = GStyle.borderColor()
+                    dataBitsOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
                 }
             }
 
@@ -415,9 +415,9 @@ Item {
                 anchors.leftMargin: dataBitRect.width * 0.05
                 background: Rectangle {
                     id: dataBitsOption2BgRect
-                    color: StyleGlobalConsts.whiteColor()//"white"
+                    color: GStyle.whiteColor()//"white"
                     border.width: 0.5
-                    border.color: StyleGlobalConsts.borderColor()//"#B0ADAB"
+                    border.color: GStyle.borderColor()//"#B0ADAB"
                 }
                 Text{
                     id: dataBitsOption2Text
@@ -426,19 +426,19 @@ Item {
                     font.family: openSansNormal.name
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.darkGrayColor()
+                    color: GStyle.darkGrayColor()
                 }
                 onClicked: {
                     dataBit = 7;
-                    dataBitsOption1BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption1BgRect.border.color = StyleGlobalConsts.borderColor()
-                    dataBitsOption1Text.color = StyleGlobalConsts.darkGrayColor()//"#706E6B"
-                    dataBitsOption2BgRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                    dataBitsOption2BgRect.border.color = StyleGlobalConsts.blueColor()
-                    dataBitsOption2Text.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption3BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption3Text.color = StyleGlobalConsts.darkGrayColor()//"#706E6B"
-                    dataBitsOption3BgRect.border.color = StyleGlobalConsts.borderColor()
+                    dataBitsOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption1BgRect.border.color = GStyle.borderColor()
+                    dataBitsOption1Text.color = GStyle.darkGrayColor()//"#706E6B"
+                    dataBitsOption2BgRect.color =  GStyle.blueColor()//"#48B0E5"
+                    dataBitsOption2BgRect.border.color = GStyle.blueColor()
+                    dataBitsOption2Text.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
+                    dataBitsOption3BgRect.border.color = GStyle.borderColor()
                 }
             }
 
@@ -453,8 +453,8 @@ Item {
                     id: dataBitsOption3BgRect
                     //color: "white"
                     border.width: 0.5
-                    border.color: StyleGlobalConsts.blueColor()
-                    color :  StyleGlobalConsts.blueColor()//"#48B0E5"
+                    border.color: GStyle.blueColor()
+                    color :  GStyle.blueColor()//"#48B0E5"
                 }
                 Text{
                     id: dataBitsOption3Text
@@ -463,19 +463,19 @@ Item {
                     font.family: openSansNormal.name
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.whiteColor()
+                    color: GStyle.whiteColor()
                 }
                 onClicked: {
                     dataBit = 8;
-                    dataBitsOption1BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption1BgRect.border.color = StyleGlobalConsts.borderColor()
-                    dataBitsOption1Text.color = StyleGlobalConsts.darkGrayColor()//"#706E6B"
-                    dataBitsOption3BgRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                    dataBitsOption3BgRect.border.color = StyleGlobalConsts.blueColor()
-                    dataBitsOption3Text.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.border.color = StyleGlobalConsts.borderColor()
-                    dataBitsOption2Text.color =  StyleGlobalConsts.darkGrayColor()//"#706E6B"
+                    dataBitsOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption1BgRect.border.color = GStyle.borderColor()
+                    dataBitsOption1Text.color = GStyle.darkGrayColor()//"#706E6B"
+                    dataBitsOption3BgRect.color =  GStyle.blueColor()//"#48B0E5"
+                    dataBitsOption3BgRect.border.color = GStyle.blueColor()
+                    dataBitsOption3Text.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    dataBitsOption2BgRect.border.color = GStyle.borderColor()
+                    dataBitsOption2Text.color =  GStyle.darkGrayColor()//"#706E6B"
                 }
             }
         }
@@ -507,7 +507,7 @@ Item {
                     font.weight: "DemiBold"
                     font.family: robotoRegular.name
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.blackColor()//"#000000"
+                    color: GStyle.blackColor()//"#000000"
                     opacity: 0.6
                 }
             }
@@ -521,9 +521,9 @@ Item {
                 anchors.leftMargin: parityRect.width * 0.05
                 background: Rectangle {
                     id: parityOption1BgRect
-                    color: StyleGlobalConsts.blueColor()
+                    color: GStyle.blueColor()
                     border.width: 0.5
-                    border.color: StyleGlobalConsts.blueColor()
+                    border.color: GStyle.blueColor()
                 }
                 Text{
                     id: parityOption1Text
@@ -532,19 +532,19 @@ Item {
                     font.family: openSansNormal.name
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.whiteColor()
+                    color: GStyle.whiteColor()
                 }
                 onClicked: {
                     parity = 1
-                    parityOption1BgRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                    parityOption1BgRect.border.color = StyleGlobalConsts.blueColor()
-                    parityOption1Text.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption2BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption2BgRect.border.color = StyleGlobalConsts.borderColor()
-                    parityOption2Text.color =  StyleGlobalConsts.darkGrayColor()//"#706E6B"
-                    parityOption3BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption3BgRect.border.color = StyleGlobalConsts.borderColor()
-                    parityOption3Text.color = StyleGlobalConsts.darkGrayColor()//"#706E6B"
+                    parityOption1BgRect.color =  GStyle.blueColor()//"#48B0E5"
+                    parityOption1BgRect.border.color = GStyle.blueColor()
+                    parityOption1Text.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption2BgRect.border.color = GStyle.borderColor()
+                    parityOption2Text.color =  GStyle.darkGrayColor()//"#706E6B"
+                    parityOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption3BgRect.border.color = GStyle.borderColor()
+                    parityOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
                 }
             }
 
@@ -558,9 +558,9 @@ Item {
                 background: Rectangle {
                     id: parityOption2BgRect
                     //color: "white"
-                    color :  StyleGlobalConsts.whiteColor()
+                    color :  GStyle.whiteColor()
                     border.width: 0.5
-                    border.color: StyleGlobalConsts.borderColor()//"#B0ADAB"
+                    border.color: GStyle.borderColor()//"#B0ADAB"
                 }
                 Text{
                     id: parityOption2Text
@@ -569,19 +569,19 @@ Item {
                     font.family: openSansNormal.name
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.darkGrayColor()
+                    color: GStyle.darkGrayColor()
                 }
                 onClicked: {
                     parity = 2
-                    parityOption2BgRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                    parityOption2BgRect.border.color = StyleGlobalConsts.blueColor()
-                    parityOption2Text.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.border.color = StyleGlobalConsts.borderColor()
-                    parityOption1Text.color =  StyleGlobalConsts.darkGrayColor()//"#706E6B"
-                    parityOption3BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption3BgRect.border.color = StyleGlobalConsts.borderColor()
-                    parityOption3Text.color = StyleGlobalConsts.darkGrayColor()//"#706E6B"
+                    parityOption2BgRect.color =  GStyle.blueColor()//"#48B0E5"
+                    parityOption2BgRect.border.color = GStyle.blueColor()
+                    parityOption2Text.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption1BgRect.border.color = GStyle.borderColor()
+                    parityOption1Text.color =  GStyle.darkGrayColor()//"#706E6B"
+                    parityOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption3BgRect.border.color = GStyle.borderColor()
+                    parityOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
                 }
 
             }
@@ -595,9 +595,9 @@ Item {
                 anchors.leftMargin: parityRect.width * 0.05
                 background: Rectangle {
                     id: parityOption3BgRect
-                    color: StyleGlobalConsts.whiteColor()//"white"
+                    color: GStyle.whiteColor()//"white"
                     border.width: 0.5
-                    border.color: StyleGlobalConsts.borderColor()//"#B0ADAB"
+                    border.color: GStyle.borderColor()//"#B0ADAB"
                 }
                 Text{
                     id: parityOption3Text
@@ -606,19 +606,19 @@ Item {
                     font.family: openSansNormal.name
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
-                    color: StyleGlobalConsts.darkGrayColor()
+                    color: GStyle.darkGrayColor()
                 }
                 onClicked: {
                     parity = 3
-                    parityOption3BgRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                    parityOption3BgRect.border.color = StyleGlobalConsts.blueColor()
-                    parityOption3Text.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.border.color = StyleGlobalConsts.borderColor()
-                    parityOption1Text.color =  StyleGlobalConsts.darkGrayColor()//"#706E6B"
-                    parityOption2BgRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                    parityOption2BgRect.border.color = StyleGlobalConsts.borderColor()
-                    parityOption2Text.color = StyleGlobalConsts.darkGrayColor()//"#706E6B"
+                    parityOption3BgRect.color =  GStyle.blueColor()//"#48B0E5"
+                    parityOption3BgRect.border.color = GStyle.blueColor()
+                    parityOption3Text.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption1BgRect.border.color = GStyle.borderColor()
+                    parityOption1Text.color =  GStyle.darkGrayColor()//"#706E6B"
+                    parityOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
+                    parityOption2BgRect.border.color = GStyle.borderColor()
+                    parityOption2Text.color = GStyle.darkGrayColor()//"#706E6B"
                 }
             }
         }
@@ -639,9 +639,9 @@ Item {
 
             background: Rectangle {
                 id: flowControlSelectorBgRect
-                radius: StyleGlobalConsts.rpaSettingsTextEditRadius()
-                color: StyleGlobalConsts.whiteColor()//"white"
-                border.color: StyleGlobalConsts.borderColor()//"#184BFF"
+                radius: GStyle.rpaSettingsTextEditRadius()
+                color: GStyle.whiteColor()//"white"
+                border.color: GStyle.borderColor()//"#184BFF"
                 border.width: 0.7
             }
             model: ["None", "RTS/CTS", "XON/XOFF"]
@@ -661,10 +661,10 @@ Item {
                 text: "Flow Control"
                 font.family: openSansRegular.name
                 font.pixelSize: getFontSize("H5")//16
-                color: StyleGlobalConsts.borderColor()
+                color: GStyle.borderColor()
             }
             background: Rectangle{
-                color: StyleGlobalConsts.whiteColor()//"white"
+                color: GStyle.whiteColor()//"white"
             }
         }
 
@@ -673,7 +673,7 @@ Item {
             id : connectButton
             width: getStdButtonWidth()
             height: getStdButtonHeight()
-            radius: StyleGlobalConsts.defaultButtonRadius()
+            radius: GStyle.defaultButtonRadius()
             anchors.right: mainCommsettingsRect.right
             anchors.rightMargin: mainCommsettingsRect.width * 0.1
             anchors.bottom: mainCommsettingsRect.bottom
@@ -683,15 +683,15 @@ Item {
             background: Rectangle{
                 id: connectButtonRect
                 radius: connectButton.radius
-                color: StyleGlobalConsts.blueColor()//"#48B0E5"
-                border.color: StyleGlobalConsts.blueColor()//"#48B0E5"
+                color: GStyle.blueColor()//"#48B0E5"
+                border.color: GStyle.blueColor()//"#48B0E5"
                 border.width: 1
             }
             onClicked: {
-                connectButtonRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                disconnectButtonRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                connectButtonText.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                disconnectButtonText.color = StyleGlobalConsts.blueColor()//"#48B0E5"
+                connectButtonRect.color =  GStyle.blueColor()//"#48B0E5"
+                disconnectButtonRect.color = GStyle.whiteColor()//"#FFFFFF"
+                connectButtonText.color = GStyle.whiteColor()//"#FFFFFF"
+                disconnectButtonText.color = GStyle.blueColor()//"#48B0E5"
                 var tempxy;
                 if(parity  == 1)
                 {
@@ -737,11 +737,11 @@ Item {
                 text: qsTr("Connect")
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                font.pixelSize: GStyle.getButtonPixelSize()
                 font.family: openSansRegular.name
 
                 font.weight: "DemiBold"
-                color: StyleGlobalConsts.whiteColor()//"white"
+                color: GStyle.whiteColor()//"white"
                 height: connectButton.height
                 width: connectButton.width
                 anchors.left: connectButton.left
@@ -754,7 +754,7 @@ Item {
             id : disconnectButton
             width: getStdButtonWidth()
             height: getStdButtonHeight()
-            radius: StyleGlobalConsts.defaultButtonRadius()
+            radius: GStyle.defaultButtonRadius()
             anchors.left: mainCommsettingsRect.left
             anchors.leftMargin: mainCommsettingsRect.width * 0.1
             anchors.bottom: mainCommsettingsRect.bottom
@@ -764,15 +764,15 @@ Item {
             background: Rectangle{
                 id: disconnectButtonRect
                 radius: disconnectButton.radius
-                color: StyleGlobalConsts.whiteColor()//"white"
-                border.color: StyleGlobalConsts.blueColor()//"#48B0E5"
+                color: GStyle.whiteColor()//"white"
+                border.color: GStyle.blueColor()//"#48B0E5"
                 border.width: 1
             }
             onClicked: {
-                disconnectButtonRect.color =  StyleGlobalConsts.blueColor()//"#48B0E5"
-                connectButtonRect.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                disconnectButtonText.color = StyleGlobalConsts.whiteColor()//"#FFFFFF"
-                connectButtonText.color = StyleGlobalConsts.blueColor()//"#48B0E5"
+                disconnectButtonRect.color =  GStyle.blueColor()//"#48B0E5"
+                connectButtonRect.color = GStyle.whiteColor()//"#FFFFFF"
+                disconnectButtonText.color = GStyle.whiteColor()//"#FFFFFF"
+                connectButtonText.color = GStyle.blueColor()//"#48B0E5"
                 MySerialPort.closeSerialPort(1)
                 //loader.source= "main.qml"
 
@@ -783,10 +783,10 @@ Item {
                 text: qsTr("Disconnect")
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: StyleGlobalConsts.getButtonPixelSize()
+                font.pixelSize: GStyle.getButtonPixelSize()
                 font.family: openSansRegular.name
                 font.weight: "DemiBold"
-                color: StyleGlobalConsts.blueColor()//"#48B0E5"
+                color: GStyle.blueColor()//"#48B0E5"
                 height: disconnectButton.height
                 width: disconnectButton.width
             }
@@ -799,8 +799,8 @@ Item {
     DropShadow{
         id: dropShadow1
         anchors.fill: mainCommsettingsRect
-        samples: 25//StyleGlobalConsts.getDropshadowSamples()
-        color: StyleGlobalConsts.getDropshadowColor()
+        samples: 25//GStyle.getDropshadowSamples()
+        color: GStyle.getDropshadowColor()
         spread: 0.5
         source: mainCommsettingsRect
     }

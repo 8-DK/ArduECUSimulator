@@ -1,6 +1,7 @@
 [
     {
       "Theme": {
+        "themeID" : "default",
         "openSansRegular" : "Fonts/Open_Sans_Regular.ttf",
         "montserratRegular" : "Fonts/Montserrat-Regular.ttf",
         "robotoRegular" : "Fonts/Roboto-Regular.ttf",
@@ -18,7 +19,9 @@
         "updateButtonRadius" : "25",
         "updateButtonFontPixelsize" : "18",
         "updateButtonLetterSpacing" : "0.5",
-        "updateButtonFontWeight" : "DemiBold"
+        "updateButtonFontWeight" : "DemiBold",
+        "colPrime" : "#EDF0F7",
+        "colSec" : "#F7F7F7"
         }
     }
 ]

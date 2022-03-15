@@ -1,6 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 
 Item {
     id : switchCust
@@ -8,8 +8,8 @@ Item {
     property var onTogle : m_onTogle
     property var m_text: ""
 
-    property var activeColor: StyleGlobalConsts.mainThemeActiveColor() //"#21be2b"
-    property var mainColor:  StyleGlobalConsts.mainThemeColor() //"#17a81a"
+    property var activeColor: GStyle.mainThemeActiveColor() //"#21be2b"
+    property var mainColor:  GStyle.mainThemeColor() //"#17a81a"
 
     SwitchDelegate {
         id: control

@@ -4,7 +4,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects  1.12
 import QtQuick.Dialogs 1.1
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 import LocalStringsLib 1.0
 
 
@@ -12,8 +12,8 @@ Dialog{
     id: progressbar
     modal: true
     focus: true
-    width: StyleGlobalConsts.windowHeight() * 0.5
-    height: StyleGlobalConsts.windowHeight() * 0.2
+    width: GStyle.windowHeight() * 0.5
+    height: GStyle.windowHeight() * 0.2
     parent: ApplicationWindow.overlay
     closePolicy: Dialog.CloseOnEscape //| Dialog.CloseOnPressOutsideParent
 
@@ -141,7 +141,7 @@ Dialog{
                     velocity: 1200
                 }
             }
-            color: StyleGlobalConsts.blueColor()
+            color: GStyle.blueColor()
 
             Text {
                 id: percentTxt
@@ -158,11 +158,11 @@ Dialog{
                 anchors.verticalCenter: parent.verticalCenter
 
                 font.family: robotoRegular.name
-                font.pixelSize: StyleGlobalConsts.getTextEditLabelPixelSize()//14
+                font.pixelSize: GStyle.getTextEditLabelPixelSize()//14
                 font.letterSpacing: 1
 
                 wrapMode: Text.WordWrap
-                color: StyleGlobalConsts.blackColor()//"Black"
+                color: GStyle.blackColor()//"Black"
             }
         }
 
@@ -173,14 +173,14 @@ Dialog{
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         font.family: robotoRegular.name
-        font.pixelSize: StyleGlobalConsts.getMessageBoxTextPixelSize()
+        font.pixelSize: GStyle.getMessageBoxTextPixelSize()
         font.letterSpacing: 1
         anchors.top: progerssRect.top
         anchors.topMargin: progerssRect.height * 0.2
         anchors.horizontalCenter: progerssRect.horizontalCenter
         Layout.fillWidth: true
         wrapMode: Text.WordWrap
-        color: StyleGlobalConsts.blackColor()//"Black"
+        color: GStyle.blackColor()//"Black"
     }
 
     RoundButton{
@@ -191,18 +191,18 @@ Dialog{
         anchors.rightMargin: progressbar.width * 0.05
         anchors.bottom: parent.bottom
         anchors.bottomMargin: progressbar.height * 0.05
-        radius: StyleGlobalConsts.defaultButtonRadius()
+        radius: GStyle.defaultButtonRadius()
         palette {
-            button: StyleGlobalConsts.blueColor()
+            button: GStyle.blueColor()
         }
         Text{
             id: primaryButtonText
             anchors.centerIn: primaryButton
             text:  primaryButtonTextValue
             font.family: openSansRegular.name
-            font.pixelSize: StyleGlobalConsts.getTextEditLabelPixelSize()//14
+            font.pixelSize: GStyle.getTextEditLabelPixelSize()//14
             font.weight: "Bold"
-            color: StyleGlobalConsts.whiteColor()//"#FFFFFF"
+            color: GStyle.whiteColor()//"#FFFFFF"
             font.letterSpacing: 0.5
         }
         onClicked: {

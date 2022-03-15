@@ -60,7 +60,7 @@ import QtQuick 2.2
 import QtQuick.Dialogs 1.1
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 import "CustomeWidget/Dial"
 import "CustomeWidget/SegmentDisplay"
 import "CustomeWidget/SliderInput"
@@ -71,8 +71,8 @@ Item {
     id:mainGridViewWndw
     objectName: qsTr("MainGridViewWndw")
     visible: true
-    width: mainWindowWithStackView.width //StyleGlobalConsts.windowWidth()
-    height: mainWindowWithStackView.height //StyleGlobalConsts.windowHeight()
+    width: mainWindowWithStackView.width //GStyle.windowWidth()
+    height: mainWindowWithStackView.height //GStyle.windowHeight()
     signal sendPushNewProject()
     property var connectionTargetMessage: null
     property int  dataBit : 8;
@@ -80,7 +80,7 @@ Item {
     property var nextScreen;
     property int screen;
 
-    property var dialVal : 0;
+    property int dialVal : 0;
 
     onFocusChanged: {
         if(focus)
@@ -123,7 +123,7 @@ Item {
     Component{
         id:custDia
         Rectangle{
-            radius: StyleGlobalConsts.getCardRadius()
+            radius: GStyle.getCardRadius()
             clip: true
 
             Timer{
@@ -132,7 +132,7 @@ Item {
                 repeat: true
                 interval: 1000
                 onTriggered: {
-                        slider.value = StyleGlobalConsts.getRandomeInt(slider.minVal,slider.maxVal)
+                        slider.value = GStyle.getRandomeInt(slider.minVal,slider.maxVal)
                 }
             }
 
@@ -157,7 +157,7 @@ Item {
     Component{
         id:segDisp
         Rectangle{
-            radius: StyleGlobalConsts.getCardRadius()
+            radius: GStyle.getCardRadius()
             clip: true
 
             Timer{
@@ -166,8 +166,8 @@ Item {
                 repeat: true
                 interval: 1000
                 onTriggered: {
-//                        slider.value = StyleGlobalConsts.getRandomeInt(slider.minVal,slider.maxVal)
-                    slider.setValue(StyleGlobalConsts.getRandomeInt(slider.minVal,slider.maxVal))
+//                        slider.value = GStyle.getRandomeInt(slider.minVal,slider.maxVal)
+                    slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
                 }
             }
             SegementDisplay
@@ -189,7 +189,7 @@ Item {
     Component{
         id:slidInp
         Rectangle{
-            radius: StyleGlobalConsts.getCardRadius()
+            radius: GStyle.getCardRadius()
             clip: true
             SlideInput{
                 id:slider
@@ -209,7 +209,7 @@ Item {
         anchors.leftMargin: 100
         width: parent.width
         height: parent.height-navBar.height
-        color: "#b3ccde"
+        color: GStyle.gP("colPrime")
 
         GridView {
             id: rootGrid
@@ -218,6 +218,7 @@ Item {
             width: parent.width
             height: parent.height
             cellHeight:300 //630x300
+            snapMode : GridView.SnapToRow
             cellWidth: {
                 if( ( mainGridViewWndw.width/3) < rootGrid.cellHeight )
                     if( (mainGridViewWndw.width/2)<rootGrid.cellHeight)
@@ -242,27 +243,27 @@ Item {
                     ListElement { color: "blue"; type : 0}
                     ListElement { color: "green" ; type : 1 }
                     ListElement { color: "red" ; type : 2 }
-//                    ListElement { color: "yellow" ; type : 2 }
-//                    ListElement { color: "orange" ; type : 1 }
-//                    ListElement { color: "purple" ; type : 0 }
-//                    ListElement { color: "cyan" ; type : 0 }
-//                    ListElement { color: "magenta" ; type : 0 }
-//                    ListElement { color: "chartreuse" ; type : 1 }
-//                    ListElement { color: "aquamarine" ; type : 2 }
-//                    ListElement { color: "indigo" ; type : 0 }
-//                    ListElement { color: "black" ; type : 1 }
-//                    ListElement { color: "lightsteelblue" ; type : 2 }
-//                    ListElement { color: "violet" ; type : 0 }
-//                    ListElement { color: "grey" ; type : 0 }
-//                    ListElement { color: "springgreen" ; type : 0 }
-//                    ListElement { color: "salmon" ; type : 1 }
-//                    ListElement { color: "blanchedalmond" ; type : 0 }
-//                    ListElement { color: "forestgreen" ; type : 0 }
-//                    ListElement { color: "pink" ; type : 0 }
-//                    ListElement { color: "navy" ; type : 2 }
-//                    ListElement { color: "goldenrod" ; type : 0 }
-//                    ListElement { color: "crimson" ; type : 0 }
-//                    ListElement { color: "teal" ; type : 0 }
+                    ListElement { color: "yellow" ; type : 2 }
+                    ListElement { color: "orange" ; type : 1 }
+                    ListElement { color: "purple" ; type : 0 }
+                    ListElement { color: "cyan" ; type : 0 }
+                    ListElement { color: "magenta" ; type : 0 }
+                    ListElement { color: "chartreuse" ; type : 1 }
+                    ListElement { color: "aquamarine" ; type : 2 }
+                    ListElement { color: "indigo" ; type : 0 }
+                    ListElement { color: "black" ; type : 1 }
+                    ListElement { color: "lightsteelblue" ; type : 2 }
+                    ListElement { color: "violet" ; type : 0 }
+                    ListElement { color: "grey" ; type : 0 }
+                    ListElement { color: "springgreen" ; type : 0 }
+                    ListElement { color: "salmon" ; type : 1 }
+                    ListElement { color: "blanchedalmond" ; type : 0 }
+                    ListElement { color: "forestgreen" ; type : 0 }
+                    ListElement { color: "pink" ; type : 0 }
+                    ListElement { color: "navy" ; type : 2 }
+                    ListElement { color: "goldenrod" ; type : 0 }
+                    ListElement { color: "crimson" ; type : 0 }
+                    ListElement { color: "teal" ; type : 0 }
                 }
                 //! [1]
                 delegate: DropArea {
@@ -280,9 +281,9 @@ Item {
                     Rectangle {
                         id: icon
                         property int visualIndex: 0
-                        width: delegateRoot.width//*0.98
-                        height: delegateRoot.height//*0.95
-                        radius: StyleGlobalConsts.getCardRadius()
+                        width: delegateRoot.width*0.98
+                        height: delegateRoot.height*0.95
+                        radius: GStyle.getCardRadius()
                         anchors {
                             horizontalCenter: parent.horizontalCenter;
                             verticalCenter: parent.verticalCenter
@@ -313,7 +314,7 @@ Item {
 
                         CustomHeader{
                             id: header
-                            radius :StyleGlobalConsts.getCardRadius()
+                            radius :GStyle.getCardRadius()
                         }
 
                         DragHandler {

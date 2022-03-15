@@ -8,13 +8,13 @@ import SerialPortLib 1.0
 import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 
 ApplicationWindow {
     id: mainWindowWithStackView
     title: "ArduECUSimulator v1.0"
-    width: StyleGlobalConsts.windowWidth()
-    height: StyleGlobalConsts.windowHeight()
+    width: GStyle.windowWidth()
+    height: GStyle.windowHeight()
     visible: true
     signal sendPush()
     //flags: Qt.Window | Qt.FramelessWindowHint // | Qt.WindowCloseButtonHint | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.FramelessWindowHint
@@ -24,7 +24,7 @@ ApplicationWindow {
         id: subscriptionAlert
         messageDetails :  LocalStrings.getLocalTextValue("ok")
         messageDescription: ""
-        height: StyleGlobalConsts.windowHeight() * 0.21
+        height: GStyle.windowHeight() * 0.21
         onOkButtonClickSignal: {
             subscriptionAlert.close()
         }

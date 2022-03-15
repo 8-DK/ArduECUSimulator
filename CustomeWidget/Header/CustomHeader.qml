@@ -1,7 +1,7 @@
 //import QtQuick 2.0
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 import QtGraphicalEffects 1.12
 //import QtQuick.Controls 1.4
 import "../Switch"
@@ -14,7 +14,7 @@ Rectangle {
     color: "#00000000"
     property int digit: 6
     property string headerText: "Card Title"
-    property var enabled: true
+    property bool enabled: true
     //property alias radius: bgRect.radius
 
     FontLoader {
@@ -39,10 +39,10 @@ Rectangle {
         id : bgRect
         width: parent.width
         height: parent.height
-        color: "#b2c4de"
+        color: GStyle.gP("colSec")
         radius: custHeaeder.radius
-        border.width: 1
-        border.color: "grey"
+//        border.width: 1
+//        border.color: "grey"
         clip: true
         Rectangle {
             id: rectangle1
@@ -72,7 +72,7 @@ Rectangle {
                     radius:6
                     spread: 0
                     samples: 25
-                    color: StyleGlobalConsts.getDropshadowColor()
+                    color: GStyle.getDropshadowColor()
                     transparentBorder: false
                 }
             }

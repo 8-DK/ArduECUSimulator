@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 
 Item {
     id : segmetDisplay
@@ -70,7 +70,7 @@ Item {
 
         Text {
             id: element
-            text: value//StyleGlobalConsts.getFloat(value,digit)
+            text: value//GStyle.getFloat(value,digit)
             anchors.fill: parent
             verticalAlignment: Text.AlignVCenter
             transformOrigin: Item.Center
@@ -78,7 +78,7 @@ Item {
             font.pixelSize: parent.width/digit
             font.bold: true
             font.family: sevenSegmentFont.name
-            color: StyleGlobalConsts.mainThemeActiveColor()
+            color: GStyle.mainThemeActiveColor()
         }
 
     }

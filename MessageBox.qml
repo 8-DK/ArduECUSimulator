@@ -8,7 +8,7 @@ import QtQuick.VirtualKeyboard 2.0
 import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
-import StyleGlobalConstsLib 1.0
+import GStyleLib 1.0
 
 Dialog{
     id: root
@@ -16,8 +16,8 @@ Dialog{
     focus: true
     parent: ApplicationWindow.overlay
     closePolicy: Dialog.CloseOnEscape
-    width: StyleGlobalConsts.windowWidth() * 0.28
-    height: StyleGlobalConsts.windowHeight() * 0.2
+    width: GStyle.windowWidth() * 0.28
+    height: GStyle.windowHeight() * 0.2
     property string messageDetails
 
     property string messageTitle: "ArduECUSim"
@@ -30,10 +30,10 @@ Dialog{
     onFocusChanged: {
         if(focus)
         {
-            okButtonBgRect.color = StyleGlobalConsts.blueColor()
-            okButtonText.color = StyleGlobalConsts.whiteColor()
-            cancelButtonBgRect.color = StyleGlobalConsts.whiteColor()
-            cancelButtonText.color = StyleGlobalConsts.blueColor()
+            okButtonBgRect.color = GStyle.blueColor()
+            okButtonText.color = GStyle.whiteColor()
+            cancelButtonBgRect.color = GStyle.whiteColor()
+            cancelButtonText.color = GStyle.blueColor()
             okButton.focus = true
         }
     }
@@ -78,14 +78,14 @@ Dialog{
                 height: messageTitleRect.height
                 verticalAlignment: Text.AlignVCenter
                 font.family: robotoRegular.name
-                font.pixelSize: StyleGlobalConsts.getMessageBoxTextPixelSize()
+                font.pixelSize: GStyle.getMessageBoxTextPixelSize()
                 font.letterSpacing: 1
                 anchors.left: messageTitleRect.left
                 anchors.leftMargin: messageTitleRect.height * 0.3
                 Layout.fillWidth: true
                 wrapMode: Text.WordWrap
                 font.weight: "DemiBold"
-                color: StyleGlobalConsts.blackColor()
+                color: GStyle.blackColor()
             }
         }
 
@@ -94,7 +94,7 @@ Dialog{
             width: root.width - (root.width * 0.1)
             height: 1.5
             radius: 2
-            color: StyleGlobalConsts.blueColor()
+            color: GStyle.blueColor()
             anchors.top: messageTitleRect.bottom
             anchors.topMargin: 5
             anchors.horizontalCenter: parent.horizontalCenter
@@ -118,9 +118,9 @@ Dialog{
                 anchors.left: messageDescLabel.left
                 anchors.top: messageDescLabel.top
                 anchors.topMargin: parent.height * 0.1
-                font.pixelSize: StyleGlobalConsts.getMessageBoxTextPixelSize()
+                font.pixelSize: GStyle.getMessageBoxTextPixelSize()
                 wrapMode: Text.Wrap
-                color: StyleGlobalConsts.blackColor()
+                color: GStyle.blackColor()
             }
         }
 
@@ -132,7 +132,7 @@ Dialog{
             anchors.rightMargin: messageBoxRectangle.width * 0.05
             anchors.bottom: parent.bottom
             anchors.bottomMargin: messageBoxRectangle.height * 0.1
-            radius: StyleGlobalConsts.defaultButtonRadius()
+            radius: GStyle.defaultButtonRadius()
             focus: true
             activeFocusOnTab: false
             Text{
@@ -140,17 +140,17 @@ Dialog{
                 anchors.centerIn: okButton
                 text: LocalStrings.getLocalTextValue("ok")
                 font.family: openSansRegular.name
-                font.pixelSize: StyleGlobalConsts.getTextEditLabelPixelSize()
+                font.pixelSize: GStyle.getTextEditLabelPixelSize()
                 font.weight: "DemiBold"
-                color: StyleGlobalConsts.whiteColor()
+                color: GStyle.whiteColor()
                 font.letterSpacing: 0.5
             }
             onClicked: {
                 root.okButtonClickSignal()
-                okButtonBgRect.color = StyleGlobalConsts.blueColor()
-                okButtonText.color = StyleGlobalConsts.whiteColor()
-                cancelButtonBgRect.color = StyleGlobalConsts.whiteColor()
-                cancelButtonText.color = StyleGlobalConsts.blueColor()
+                okButtonBgRect.color = GStyle.blueColor()
+                okButtonText.color = GStyle.whiteColor()
+                cancelButtonBgRect.color = GStyle.whiteColor()
+                cancelButtonText.color = GStyle.blueColor()
             }
             Keys.onReleased: {
                 if(event.key === Qt.Key_Return ||event.key === Qt.Key_Enter )
@@ -164,9 +164,9 @@ Dialog{
                 width: parent.width
                 height: parent.height
                 radius: parent.radius
-                color: StyleGlobalConsts.blueColor()
+                color: GStyle.blueColor()
                 border.width: 1
-                border.color: StyleGlobalConsts.blueColor()
+                border.color: GStyle.blueColor()
             }
         }
 
@@ -179,33 +179,33 @@ Dialog{
             anchors.leftMargin: messageBoxRectangle.width * 0.05
             anchors.bottom: parent.bottom
             anchors.bottomMargin: messageBoxRectangle.height * 0.1
-            radius: StyleGlobalConsts.defaultButtonRadius()
+            radius: GStyle.defaultButtonRadius()
             activeFocusOnTab: false
             Text{
                 id: cancelButtonText
                 anchors.centerIn: cancelButton
                 text:LocalStrings.getLocalTextValue("cancel")
                 font.family: openSansRegular.name
-                font.pixelSize: StyleGlobalConsts.getTextEditLabelPixelSize()//14
+                font.pixelSize: GStyle.getTextEditLabelPixelSize()//14
                 font.weight: "Bold"
-                color: StyleGlobalConsts.blueColor()
+                color: GStyle.blueColor()
                 font.letterSpacing: 0.5
             }
             onClicked: {
                 root.cancelButtonClickSignal()
-                cancelButtonBgRect.color = StyleGlobalConsts.blueColor()
-                cancelButtonText.color = StyleGlobalConsts.whiteColor()
-                okButtonBgRect.color = StyleGlobalConsts.whiteColor()
-                okButtonText.color = StyleGlobalConsts.blueColor()
+                cancelButtonBgRect.color = GStyle.blueColor()
+                cancelButtonText.color = GStyle.whiteColor()
+                okButtonBgRect.color = GStyle.whiteColor()
+                okButtonText.color = GStyle.blueColor()
             }
             background: Rectangle{
                 id: cancelButtonBgRect
                 width: parent.width
                 height: parent.height
                 radius: parent.radius
-                color: StyleGlobalConsts.whiteColor()
+                color: GStyle.whiteColor()
                 border.width: 1
-                border.color: StyleGlobalConsts.blueColor()
+                border.color: GStyle.blueColor()
             }
         }
     }

@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     m_MainWindowGlobalContext = MainWindowGlobalContext::getInstance();
 
     qmlRegisterSingletonType<LocalStrings>("LocalStringsLib", 1, 0, "LocalStrings",&LocalStrings::getInstance);
-    qmlRegisterSingletonType<StyleGlobalConsts>("StyleGlobalConstsLib", 1, 0, "StyleGlobalConsts",&StyleGlobalConsts::getInstance);
+    qmlRegisterSingletonType<GStyle>("GStyleLib", 1, 0, "GStyle",&GStyle::getInstance);
     qmlRegisterType<SerialPortSettings>("SerialPortSettingsLib", 1, 0, "SerialPortSettings");
     qmlRegisterSingletonType<CommLinkSettings>("CommLinkSettingsLib", 1, 0, "CommLinkSettings",&CommLinkSettings::getInstance);
     qmlRegisterSingletonType<MySerialPort>("SerialPortLib", 1, 0, "MySerialPort",&MySerialPort::getInstance);

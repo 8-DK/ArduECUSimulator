@@ -54,6 +54,7 @@ SOURCES += \
     main.cpp \
     mainwindowglobalcontext.cpp \
     myserialport.cpp \
+    pidencoderdecoder.cpp \
     serialportsettings.cpp \
     styleglobalsconsts.cpp
 
@@ -62,6 +63,7 @@ HEADERS += \
     localstrings.h \
     mainwindowglobalcontext.h \
     myserialport.h \
+    pidencoderdecoder.h \
     serialportsettings.h \
     styleglobalsconsts.h
 

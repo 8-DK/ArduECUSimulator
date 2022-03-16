@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<SerialPortSettings>("SerialPortSettingsLib", 1, 0, "SerialPortSettings");
     qmlRegisterSingletonType<CommLinkSettings>("CommLinkSettingsLib", 1, 0, "CommLinkSettings",&CommLinkSettings::getInstance);
     qmlRegisterSingletonType<MySerialPort>("SerialPortLib", 1, 0, "MySerialPort",&MySerialPort::getInstance);
+    qmlRegisterSingletonType<PIDEncoderDecoder>("PIDEncoderDecoderLib", 1, 0, "PIDEncoderDecoder",&PIDEncoderDecoder::getInstance);
 
     QApplication app(argc,argv);
     m_MainWindowGlobalContext->appInit(&app);
@@ -34,7 +35,7 @@ int main(int argc, char *argv[])
 
     QSplashScreen splash(pixmapForSplash, Qt::WindowStaysOnTopHint);
     splash.setEnabled(false); //Prevent user from closing the splash
-    splash.show();
+//    splash.show();
     //    splash.showMessage(QObject::tr("Initiating your program now..."),Qt::AlignLeft | Qt::AlignTop, Qt::black);  //This line represents the alignment of text, color and position
     //QTimer::singleShot(5000 , &splash, &QWidget::close); // keep displayed for 5 seconds
     // app.processEvents();

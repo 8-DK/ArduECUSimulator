@@ -19,6 +19,7 @@
 #include "serialportsettings.h"
 #include "styleglobalsconsts.h"
 #include "localstrings.h"
+#include "pidencoderdecoder.h"
 
 
 

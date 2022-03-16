@@ -34,5 +34,7 @@
         <file>CustomeWidget/Header/CustomHeader.qml</file>
         <file>CustomeWidget/LargeToggle/LargeToggleSwitch.qml</file>
         <file>assets/sim_icon.ico</file>
+        <file>localFiles/PIDList.json</file>
+        <file>CustomeWidget/CardView/CardView.qml</file>
     </qresource>
 </RCC>

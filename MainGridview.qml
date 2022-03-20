@@ -91,25 +91,6 @@ Item {
     {
 
     }
-    Item {
-        id : fontL
-        FontLoader {
-            id:openSansNormal
-            source:'Fonts/Open_Sans_Regular.ttf'
-        }
-        FontLoader {
-            id:openSansRegular
-            source:'Fonts/Open_Sans_Regular.ttf'
-        }
-        FontLoader{
-            id: montserratRegular
-            source: "qrc:/Fonts/Montserrat-Regular.ttf"
-        }
-        FontLoader{
-            id: robotoRegular
-            source: "qrc:/Fonts/Roboto-Regular.ttf"
-        }
-    }
 
     NavBar {
         id:navBar
@@ -155,6 +136,7 @@ Item {
             //! [0]
             model: CardView{
                 id :cardView
+                model:PIDList
             }
         }
     }

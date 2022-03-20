@@ -16,6 +16,7 @@ import "../SegmentDisplay"
 import "../SliderInput"
 import "../Switch"
 import "../Header"
+import "../BitMapView"
 
 DelegateModel {
     //! [0]
@@ -101,32 +102,25 @@ DelegateModel {
             }
         }
     }
+
+    Component{
+        id:custBitMap
+        Rectangle{
+            radius: GStyle.getCardRadius()
+            clip: true
+
+            BitMapView
+            {
+                id: dial
+                anchors.centerIn: parent
+                height: parent.height*0.7
+                dataFieldChecked: 255
+            }
+        }
+    }
     model: ListModel {
         id: colorModel
         ListElement { color: "blue"; type : 0}
-        ListElement { color: "green" ; type : 1 }
-        ListElement { color: "red" ; type : 2 }
-        ListElement { color: "yellow" ; type : 2 }
-        ListElement { color: "orange" ; type : 1 }
-        ListElement { color: "purple" ; type : 0 }
-        ListElement { color: "cyan" ; type : 0 }
-        ListElement { color: "magenta" ; type : 0 }
-        ListElement { color: "chartreuse" ; type : 1 }
-        ListElement { color: "aquamarine" ; type : 2 }
-        ListElement { color: "indigo" ; type : 0 }
-        ListElement { color: "black" ; type : 1 }
-        ListElement { color: "lightsteelblue" ; type : 2 }
-        ListElement { color: "violet" ; type : 0 }
-        ListElement { color: "grey" ; type : 0 }
-        ListElement { color: "springgreen" ; type : 0 }
-        ListElement { color: "salmon" ; type : 1 }
-        ListElement { color: "blanchedalmond" ; type : 0 }
-        ListElement { color: "forestgreen" ; type : 0 }
-        ListElement { color: "pink" ; type : 0 }
-        ListElement { color: "navy" ; type : 2 }
-        ListElement { color: "goldenrod" ; type : 0 }
-        ListElement { color: "crimson" ; type : 0 }
-        ListElement { color: "teal" ; type : 0 }
     }
     //! [1]
     delegate: DropArea {
@@ -161,23 +155,29 @@ DelegateModel {
                     position: 1
                     color: "#ffffff"
                 }
-            }
-            //color: model.color
+            }            
             Loader {
                 anchors.fill: parent
                 sourceComponent: {
-                    if(model.type === 0)
+                    console.log(pidName)
+                    if(widgetType === 0)
                         return custDia
-                    if(model.type === 1)
+                    else if(widgetType === 1)
                         return segDisp
-                    if(model.type === 2)
+                    else if(widgetType === 2)
                         return slidInp
+                    else if(widgetType === 3)
+                        return custBitMap
+                    else
+                        return slidInp
+
                 }
             }
 
             CustomHeader{
                 id: header
                 radius :GStyle.getCardRadius()
+                headerText: pidName
             }
 
             DragHandler {

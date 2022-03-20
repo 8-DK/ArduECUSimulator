@@ -5,6 +5,7 @@ int main(int argc, char *argv[])
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "0");
     QCoreApplication::addLibraryPath(".");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     MainWindowGlobalContext *m_MainWindowGlobalContext;
 
     m_MainWindowGlobalContext = MainWindowGlobalContext::getInstance();
@@ -14,7 +15,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<SerialPortSettings>("SerialPortSettingsLib", 1, 0, "SerialPortSettings");
     qmlRegisterSingletonType<CommLinkSettings>("CommLinkSettingsLib", 1, 0, "CommLinkSettings",&CommLinkSettings::getInstance);
     qmlRegisterSingletonType<MySerialPort>("SerialPortLib", 1, 0, "MySerialPort",&MySerialPort::getInstance);
-    qmlRegisterSingletonType<PIDEncoderDecoder>("PIDEncoderDecoderLib", 1, 0, "PIDEncoderDecoder",&PIDEncoderDecoder::getInstance);
+    qmlRegisterSingletonType<PIDEncoderDecoder>("PIDEncoderDecoderLib", 1, 0, "PIDEncoderDecoder",&PIDEncoderDecoder::getInstance);    
 
     QApplication app(argc,argv);
     m_MainWindowGlobalContext->appInit(&app);
@@ -39,9 +40,10 @@ int main(int argc, char *argv[])
     //    splash.showMessage(QObject::tr("Initiating your program now..."),Qt::AlignLeft | Qt::AlignTop, Qt::black);  //This line represents the alignment of text, color and position
     //QTimer::singleShot(5000 , &splash, &QWidget::close); // keep displayed for 5 seconds
     // app.processEvents();
-
     QQmlApplicationEngine engine;
     m_MainWindowGlobalContext->engineStart(&engine);
+
+    engine.rootContext()->setContextProperty("PIDList", &PIDEncoderDecoder::getInstance()->pIDInfoModel);
 
 #ifdef QT_DEBUG
     engine.rootContext()->setContextProperty("debug_mode", true);

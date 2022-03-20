@@ -805,6 +805,47 @@ double GStyle::getRandomeFloat(double min,double max){
     return (double)(min + r);
 }
 
+bool GStyle::isBitSet(double num,int bitNum)
+{
+    uint64_t numU64 = (uint64_t)num;
+    return (bool)(numU64 & (1<<bitNum));
+}
+
+double GStyle::clearBitSet(double num,int bitNum)
+{
+    uint64_t numU64 = (uint64_t)num;
+    return (double)(numU64 & ~(1<<bitNum));
+}
+
+double GStyle::setBitSet(double num,int bitNum)
+{
+    uint64_t numU64 = (uint64_t)num;
+    qDebug() << "setBitSet : "<<numU64<<" Bit:"<<bitNum<<" After bit shift : "<<(double)(numU64 | (1<<bitNum));
+    return (double)(numU64 | (1<<bitNum));
+}
+
+double GStyle::toggleBit(double num,int bitNum)
+{
+    uint64_t numU64 = (uint64_t)num;
+    qDebug() << "setBitSet : "<<numU64<<" Bit:"<<bitNum<<" After bit toggleBit : "<<(double)(numU64 ^ (1<<bitNum));
+    return (int)(numU64 ^ (1<<bitNum));
+}
+
+QString GStyle::numToHexStr(double num)
+{
+    QString strNum = QString("0x%1").arg((ulong)num, 8, 16, QLatin1Char( '0' ));
+    qDebug() << strNum;
+    return strNum;
+}
+
+double GStyle::hexstrToNum(QString numStr)
+{
+    bool ok;
+    double hex = numStr.toULong(&ok, 16);
+    return hex;
+}
+
+
 QString GStyle::gP(QString textID)
 {
     QString pallete = jsonCurrentThemeData.value(textID).toString();

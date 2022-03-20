@@ -113,6 +113,12 @@ public slots:
     Q_INVOKABLE   QString padzero(double val,int zeroCount);
     Q_INVOKABLE   int getRandomeInt(int min,int max);
     Q_INVOKABLE   double getRandomeFloat(double min,double max);
+    Q_INVOKABLE   bool isBitSet(double num,int bitNum);
+    Q_INVOKABLE   double clearBitSet(double num,int bitNum);
+    Q_INVOKABLE   double setBitSet(double num,int bitNum);
+    Q_INVOKABLE   double toggleBit(double num,int bitNum);
+    Q_INVOKABLE   QString numToHexStr(double num);
+    Q_INVOKABLE double hexstrToNum(QString numStr);
 
     //Theme palette
     Q_INVOKABLE QString gP(QString textID);

@@ -49,12 +49,13 @@ QString LocalStrings::getLocalTextValue(QString textID)
         {
            QJsonObject temp =  jsonArray.at(i).toObject();
             QString x = temp.value("StringData").toObject().value(textID).toString();
+//            qDebug()<< "Key "<<textID <<", Value : "<<x;
             if(x == nullptr)
-            {
+            {                
                 return  nullptr;
             }
             else
-            {
+            {                
                 return x;
             }
         }

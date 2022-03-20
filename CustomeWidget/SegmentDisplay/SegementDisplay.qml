@@ -77,7 +77,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: parent.width/digit
             font.bold: true
-            font.family: sevenSegmentFont.name
+            font.family: fontLdr.sevenSegment// sevenSegmentFont.name
             color: GStyle.mainThemeActiveColor()
         }
 

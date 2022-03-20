@@ -34,5 +34,23 @@
         <file>CustomeWidget/Header/CustomHeader.qml</file>
         <file>CustomeWidget/LargeToggle/LargeToggleSwitch.qml</file>
         <file>assets/sim_icon.ico</file>
+        <file>localFiles/PIDList.json</file>
+        <file>CustomeWidget/CardView/CardView.qml</file>
+        <file>CustomeWidget/BitMapView/BitMapView.qml</file>
+        <file>Fonts/Nunito/Nunito-Black.ttf</file>
+        <file>Fonts/Nunito/Nunito-BlackItalic.ttf</file>
+        <file>Fonts/Nunito/Nunito-Bold.ttf</file>
+        <file>Fonts/Nunito/Nunito-BoldItalic.ttf</file>
+        <file>Fonts/Nunito/Nunito-ExtraBold.ttf</file>
+        <file>Fonts/Nunito/Nunito-ExtraBoldItalic.ttf</file>
+        <file>Fonts/Nunito/Nunito-ExtraLight.ttf</file>
+        <file>Fonts/Nunito/Nunito-ExtraLightItalic.ttf</file>
+        <file>Fonts/Nunito/Nunito-Italic.ttf</file>
+        <file>Fonts/Nunito/Nunito-Light.ttf</file>
+        <file>Fonts/Nunito/Nunito-LightItalic.ttf</file>
+        <file>Fonts/Nunito/Nunito-Regular.ttf</file>
+        <file>Fonts/Nunito/Nunito-SemiBold.ttf</file>
+        <file>Fonts/Nunito/Nunito-SemiBoldItalic.ttf</file>
+        <file>FontHelper.qml</file>
     </qresource>
 </RCC>

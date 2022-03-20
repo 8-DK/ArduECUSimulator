@@ -1,0 +1,59 @@
+{
+        "OBD2PID": [{
+                        "Service": 1,
+                        "PID_Dec": 0,
+                        "DataCount": 4,
+                        "PIDName": "PIDs supported",
+                        "Description": "PIDs supported [01 - 20]",
+                        "Unit" : "NA",
+                        "Min": 0,
+                        "Max": 0,
+                        "isEnabled": 1,
+                        "sendRandome": 0,
+                        "AllowToChange": 0,
+                        "WidgetType": 0
+                },
+                {
+                        "Service": 1,
+                        "PID_Dec": 1,
+                        "DataCount": 4,
+                        "PIDName": "DTCs cleared",
+                        "Description": "Monitor status since DTCs cleared. (Includes malfunction indicator lamp (MIL), status and number of DTCs, components tests, DTC readiness checks)",
+                        "Unit" : "NA",
+                        "Min": 0,
+                        "Max": 0,
+                        "isEnabled": 1,
+                        "sendRandome": 0,
+                        "AllowToChange": 0,
+                        "WidgetType": 1
+                },
+                {
+                        "Service": 1,
+                        "PID_Dec": 12,
+                        "DataCount": 2,
+                        "PIDName": "Engine speed",
+                        "Description": "Engine speed",
+                        "Unit" : "NA",
+                        "Min": 0,
+                        "Max": 16383,
+                        "isEnabled": 1,
+                        "sendRandome": 0,
+                        "AllowToChange": 0,
+                        "WidgetType": 2
+                },
+                {
+                        "Service": 1,
+                        "PID_Dec": 0,
+                        "DataCount": "4",
+                        "PIDName": "Vehicle speed",
+                        "Description": "Vehicle speed",
+                        "Unit" : "NA",
+                        "Min": 0,
+                        "Max": 255,
+                        "isEnabled": 1,
+                        "sendRandome": 0,
+                        "AllowToChange": 0,
+                        "WidgetType": 3
+                }
+        ]
+}

@@ -56,15 +56,14 @@ Rectangle {
 
         Rectangle{
             id: rectangle
-            color: "#00000000"
-            anchors.right: parent.right
+            color: "#00000000"            
+            height: parent.height*0.5
             anchors.bottom: rectangle1.top
-            anchors.top: parent.top
+            anchors.right: parent.right
             anchors.left: parent.left
             CustomSwitch{
                 id: randomeCheckBox
-                width: parent.width*0.5
-                anchors.right: textInput.left
+                width: parent.width*0.5                
                 m_text: qsTr("Randome")
                 visible: randomeChk
                 anchors.left: parent.left
@@ -72,14 +71,13 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
             }
 
-            TextInput {
+            TextField {
                 id: textInput
-                width: parent.width*0.5
+                width: parent.width*0.2
                 text: valSlider.value
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignRight
-                anchors.bottom: parent.bottom
-                anchors.top: parent.top
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: parent.width*0.1
                 font.pixelSize: 12
@@ -88,6 +86,12 @@ Rectangle {
                 onTextEdited: {
                     valSlider.value = parseInt(textInput.text)
                     validateInputs()
+                }
+                background: Rectangle {
+                    implicitWidth: textInput.width
+                    implicitHeight: textInput.height
+                    color: textInput.enabled ? "#cad9c3" : "#afb5ac"
+                    border.color: textInput.enabled ? "#21be2b" : "transparent"
                 }
             }
         }

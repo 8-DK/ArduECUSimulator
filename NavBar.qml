@@ -22,21 +22,6 @@ Rectangle {
         source:'Fonts/Open_Sans_Regular.ttf'
     }
 
-    FontLoader {
-        id:openSansNormal
-        source:'Fonts/Open_Sans_Regular.ttf'
-    }
-
-    FontLoader {
-        id: montserratRegular
-        source:'Fonts/Montserrat-Regular.ttf'
-    }
-
-    FontLoader {
-        id: robotoRegular
-        source:'Fonts/Roboto-Regular.ttf'
-    }
-
     MessageBox{
         id: messageBox
         messageDescription: LocalStrings.getLocalTextValue("serialPortMessage")
@@ -151,7 +136,11 @@ Rectangle {
             fillMode: Image.PreserveAspectFit
             source: "assets/menu.png"
         }
-
+        ColorOverlay {
+            anchors.fill: bug
+            source: bug
+            color: "#80800000"
+        }
         MouseArea {
             x:image1.x
             y:image1.y
@@ -193,7 +182,7 @@ Rectangle {
             text: root.header
             font.weight: "DemiBold"
             font.pixelSize: GStyle.getNavbarHeadingPixelSize()
-            font.family: openSansNormal.name
+            font.family: fontLdr.openSansRegular
         }
     }
 
@@ -235,7 +224,7 @@ Rectangle {
                     id: homeButtonText
                     anchors.verticalCenter: homeButton.verticalCenter
                     text: "Home"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
@@ -264,7 +253,7 @@ Rectangle {
                     id: configurationButtonText
                     anchors.verticalCenter: configurationButton.verticalCenter
                     text: "RPA Configuration"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
@@ -298,7 +287,7 @@ Rectangle {
                     id: logButtonText
                     anchors.verticalCenter: logButton.verticalCenter
                     text: "RPA Logs"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
@@ -328,7 +317,7 @@ Rectangle {
                     id: systemSettingsButtonText
                     anchors.verticalCenter: systemSettingsButton.verticalCenter
                     text: "User Setting"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
@@ -354,7 +343,7 @@ Rectangle {
                                 id: disconnectButtonText
                                 anchors.verticalCenter: disconnectButton.verticalCenter
                                 text:  LocalStrings.getLocalTextValue("disconnect")
-                                font.family: openSansNormal.name
+                                font.family: fontLdr.openSansRegular
                                 font.pixelSize: GStyle.getButtonPixelSize()
                                 font.weight: "Normal"
                             }
@@ -391,7 +380,7 @@ Rectangle {
                     id: syncText
                     anchors.verticalCenter: syncButton.verticalCenter
                     text: "Cloud Sync"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
@@ -418,7 +407,7 @@ Rectangle {
                     id: aboutButtonText
                     anchors.verticalCenter: aboutButton.verticalCenter
                     text: LocalStrings.getLocalTextValue("about")
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }
@@ -447,7 +436,7 @@ Rectangle {
                     id: exitButtonText
                     anchors.verticalCenter: exitButton.verticalCenter
                     text:  LocalStrings.getLocalTextValue("exit")
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.pixelSize: GStyle.getButtonPixelSize()
                     font.weight: "Normal"
                 }

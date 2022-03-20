@@ -19,6 +19,7 @@ ApplicationWindow {
     signal sendPush()
     //flags: Qt.Window | Qt.FramelessWindowHint // | Qt.WindowCloseButtonHint | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.FramelessWindowHint
     //    visibility: Window.FullScreen
+    property alias fontLdr: fontLdr
 
     MessageBox{
         id: subscriptionAlert
@@ -28,6 +29,10 @@ ApplicationWindow {
         onOkButtonClickSignal: {
             subscriptionAlert.close()
         }
+    }
+
+    FontHelper{
+        id : fontLdr
     }
 
     Rectangle{
@@ -86,7 +91,6 @@ ApplicationWindow {
     {
         return mainStackView.height * 0.05
     }
-
 
     function getFontSize(fontType)
     {

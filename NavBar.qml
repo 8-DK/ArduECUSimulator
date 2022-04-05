@@ -17,9 +17,9 @@ Rectangle {
     signal clickedMenu();
     property string header: ''
 
-    FontLoader {
-        id:openSansRegular
-        source:'Fonts/Open_Sans_Regular.ttf'
+    function updateNavTitle(title)
+    {
+        root.header = title
     }
 
     MessageBox{
@@ -137,8 +137,8 @@ Rectangle {
             source: "assets/menu.png"
         }
         ColorOverlay {
-            anchors.fill: bug
-            source: bug
+            anchors.fill: image1
+            source: image1
             color: "#80800000"
         }
         MouseArea {

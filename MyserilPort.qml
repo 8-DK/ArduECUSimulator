@@ -205,12 +205,12 @@ Item {
     }
 
     NavBar {
-        id:navBar
+        id:navBarRect
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.top: parent.top
-        header: LocalStrings.getLocalTextValue("navbarSerialPortTitle")
-        onClickedMenu: print('Button onClicked')
+        width: navBar.width
+        height: navBar.height
     }
 
     /*-------------------------- Communication Link Settings ---------------------------*/
@@ -219,8 +219,8 @@ Item {
         width: parent.width * 0.5
         height: parent.height * 0.7
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: navBar.bottom
-        anchors.topMargin: navBar.height
+        anchors.top: navBarRect.bottom
+        anchors.topMargin: navBarRect.height
         Rectangle {
             id : commLinkLabelRect
             visible: true

@@ -52,5 +52,8 @@
         <file>Fonts/Nunito/Nunito-SemiBold.ttf</file>
         <file>Fonts/Nunito/Nunito-SemiBoldItalic.ttf</file>
         <file>FontHelper.qml</file>
+        <file>CustomeWidget/Dial2/CustomeDial2.qml</file>
+        <file>localFiles/pidList.csv</file>
+        <file>CustomeWidget/Knob/Knob.qml</file>
     </qresource>
 </RCC>

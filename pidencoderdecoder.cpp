@@ -2,7 +2,8 @@
 
 PIDEncoderDecoder::PIDEncoderDecoder(QObject *parent) : QObject(parent)
 {
-    parsePIDJsonLookUpFile();
+//    parsePIDJsonLookUpFile();
+    parsePIDCSVLookUpFile();
 }
 PIDEncoderDecoder* PIDEncoderDecoder::m_instance;
 
@@ -79,3 +80,49 @@ void PIDEncoderDecoder::parsePIDJsonLookUpFile()
                              );
     }
 }
+
+
+void PIDEncoderDecoder::parsePIDCSVLookUpFile()
+{
+    if(!QFile::exists("pidList.csv"))
+    {
+       QFile::copy(":/localFiles/pidList.csv","pidList.csv");
+    }
+
+    QFile file("pidList.csv");
+    file.open(QIODevice::ReadWrite | QIODevice::Text);
+    file.setPermissions(QFileDevice::ReadOther | QFileDevice::WriteOther);
+
+    QList<QStringList> pidStringList;
+    while (!file.atEnd()) {
+        QByteArray line = file.readLine();
+        pidStringList.append(QString(line).split(','));
+    }
+
+    qDebug() <<"Headers : " << pidStringList[0];
+
+    for(int i = 1 ; i < pidStringList.count(); i++)
+    {
+        qDebug() << pidStringList[i];
+        QStringList l =  pidStringList[i];
+//   0           1         2        3            4          5      6      7         8              9            10               11              12
+//("Service", "PIDs", "PID_Dec", "DataCount", "PIDName", "Min", "Max", "Units", "Description", "isEnabled", "sendRanadome", "AllowToChange", "WidgetType\n")
+//("1",       "0",        "0",      "4",  "PIDs supported","", "",      "",     "Bit encoded [A7..D0] == [PID $01..PID $20]?See below", "1", "0", "1", "1\n")
+       pIDInfoModel.addAsset(l[0].toInt(),
+                             l[2].toInt(),
+                             l[3].toInt(),
+                             l[4],
+                             l[8],
+                             l[7],
+                             l[5].toInt(),
+                             l[6].toInt(),
+                             l[9].toInt(),
+                             l[10].toInt(),
+                             l[11].toInt(),
+                             l[12].toInt()
+                             );
+    }
+
+
+}
+

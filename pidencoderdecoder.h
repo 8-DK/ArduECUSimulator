@@ -74,6 +74,16 @@ public:
         WidgetTypeRole,
     };
 
+    enum WidgetTypes {
+        Dial0To120,
+        BitField,
+        SevenSeg,
+        Slider,
+        ToggleSwitch,
+    }WidgetTypes;
+
+
+
     explicit PIDInfoModel(QObject *parent = nullptr) : QAbstractListModel(parent){}
 
     QHash<int, QByteArray> roleNames() const {
@@ -158,8 +168,10 @@ public:
     static QObject* getInstance(QQmlEngine *engine, QJSEngine *scriptEngine){Q_UNUSED(engine);Q_UNUSED(scriptEngine);return getInstance();}
 
     void parsePIDJsonLookUpFile();
+    void parsePIDCSVLookUpFile();
 public slots:
     Q_INVOKABLE QJsonArray getPIDList();
+
 signals:
 
 };

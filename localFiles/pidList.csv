@@ -1,163 +1,163 @@
-Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendRanadome,AllowToChange,WidgetType
-1,0,0,4,PIDs supported [01 - 20],,,,Bit encoded [A7..D0] == [PID $01..PID $20] See below,1,0,1,1
-1,1,1,4,Status since DTCs cleared,,,,Bit encoded. See below,1,0,1,1
-1,2,2,2,Freeze DTC,,,,,1,0,1,1
-1,3,3,2,Fuel system status,,,,Bit encoded. See below,1,0,1,1
-1,4,4,1,Calculated engine load,0,100,%,{\displaystyle {\tfrac {100}{255}}A} (or {\displaystyle {\tfrac {A}{2.55}}}),1,0,1,1
-1,5,5,1,Engine coolant temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1
-1,6,6,1,Short term fuel trim—Bank 1,-100,99.2,%,{\displaystyle {\frac {100}{128}}A-100},1,0,1,1
-1,7,7,1,Long term fuel trim—Bank 1,-100,99.2,%,,1,0,1,1
-1,8,8,1,Short term fuel trim—Bank 2,-100,99.2,%,(or {\displaystyle {\tfrac {A}{1.28}}-100},1,0,1,1
-1,9,9,1,Long term fuel trim—Bank 2,-100,99.2,%, ),1,0,1,1
-1,0A,10,1,Fuel pressure,0,765,kPa,{\displaystyle 3A},1,0,1,1
-1,0B,11,1,IMAP,0,255,kPa,{\displaystyle A},1,0,1,1
-1,0C,12,2,Engine speed,0,"16,383.75",rpm,{\displaystyle {\frac {256A+B}{4}}},1,0,1,1
-1,0D,13,1,Vehicle speed,0,255,km/h,{\displaystyle A},1,0,1,1
-1,0E,14,1,Timing advance,-64,63.5,° before TDC,{\displaystyle {\frac {A}{2}}-64},1,0,1,1
-1,0F,15,1,Intake air temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1
-1,10,16,2,MAF,0,655.35,grams/sec,{\displaystyle {\frac {256A+B}{100}}},1,0,1,1
-1,11,17,1,Throttle position,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,12,18,1,Air status,,,,Bit encoded. See below,1,0,1,1
-1,14,20,2,Oxygen Sensor 1,-100,99.2,%,{\displaystyle {\frac {A}{200}}},1,0,1,1
-1,15,21,2,Oxygen Sensor 2,-100,99.2,%,{\displaystyle {\frac {100}{128}}B-100},1,0,1,1
-1,16,22,2,Oxygen Sensor 3,-100,99.2,%,"(if B==$FF, sensor is not used in trim calculation)",1,0,1,1
-1,19,25,2,Oxygen Sensor 6,-100,99.2,%,,1,0,1,1
-1,1A,26,2,Oxygen Sensor 7,-100,99.2,%,,1,0,1,1
-1,1B,27,2,Oxygen Sensor 8,-100,99.2,%,,1,0,1,1
-1,1C,28,1,OBD standards,1,250,,enumerated. See below,1,0,1,1
-1,1D,29,1,Oxygen sensors present (in 4 banks),,,,"Similar to PID 13, but [A0..A7] == [B1S1, B1S2, B2S1, B2S2, B3S1, B3S2, B4S1, B4S2]",1,0,1,1
-1,1E,30,1,Auxiliary input status,,,,A0 == Power Take Off (PTO) status (1 == active),1,0,1,1
-1,1F,31,2,Run time since engine start,0,"65,535",seconds,{\displaystyle 256A+B},1,0,1,1
-1,20,32,4,PIDs supported [21 - 40],,,,Bit encoded [A7..D0] == [PID $21..PID $40] See below,1,0,1,1
-1,21,33,2,Dist with MIL on,0,"65,535",km,{\displaystyle 256A+B},1,0,1,1
-1,22,34,2,Fuel Rail Pressure,0,5177.265,kPa,{\displaystyle 0.079(256A+B)},1,0,1,1
-1,23,35,2,Fuel Rail Gauge Pressure,0,"6,55,350",kPa,{\displaystyle 10(256A+B)},1,0,1,1
-1,24,36,4,Oxygen Sensor 1,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,25,37,4,Oxygen Sensor 2,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1
-1,26,38,4,Oxygen Sensor 3,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1
-1,27,39,4,Oxygen Sensor 4,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1
-1,28,40,4,Oxygen Sensor 5,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1
-1,29,41,4,Oxygen Sensor 6,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1
-1,2A,42,4,Oxygen Sensor 7,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1
-1,2B,43,4,Oxygen Sensor 8,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1
-1,2C,44,1,Commanded EGR,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,2D,45,1,EGR Error,-100,99.2,%,{\displaystyle {\tfrac {100}{128}}A-100},1,0,1,1
-1,2E,46,1,Commanded evaporative purge,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,2F,47,1,Fuel Tank Level Input,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,30,48,1,Warm-ups since codes cleared,0,255,count,{\displaystyle A},1,0,1,1
-1,31,49,2,Distance traveled since codes cleared,0,"65,535",km,{\displaystyle 256A+B},1,0,1,1
-1,35,53,4,Oxygen Sensor 2,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,36,54,4,Oxygen Sensor 3,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,37,55,4,Oxygen Sensor 4,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,38,56,4,Oxygen Sensor 5,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,39,57,4,Oxygen Sensor 6,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,3A,58,4,Oxygen Sensor 7,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,3B,59,4,Oxygen Sensor 8,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1
-1,3C,60,2,"Catalyst Temp B1, S1",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1
-1,3D,61,2,"Catalyst Temp B 2, S 1",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1
-1,3E,62,2,"Catalyst Temp B 1, S 2",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1
-1,3F,63,2,"Catalyst Temp B 2, S 2",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1
-1,40,64,4,PIDs supported [41 - 60],,,,Bit encoded [A7..D0] == [PID $41..PID $60] See below,1,0,1,1
-1,41,65,4,Monitor status this drive cycle,,,,Bit encoded. See below,1,0,1,1
-1,42,66,2,Control module voltage,0,65.535,V,{\displaystyle {\frac {256A+B}{1000}}},1,0,1,1
-1,43,67,2,Absolute load value,0,"25,700",%,{\displaystyle {\tfrac {100}{255}}(256A+B)},1,0,1,1
-1,44,68,2,Air-Fuel Equivalence Ratio,0,2,ratio,{\displaystyle {\tfrac {2}{65536}}(256A+B)},1,0,1,1
-1,45,69,1,Relative throttle position,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,46,70,1,Ambient air temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1
-1,47,71,1,Absolute throttle position B,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1
-1,48,72,1,Absolute throttle position C,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1
-1,49,73,1,Accelerator pedal position D,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1
-1,4A,74,1,Accelerator pedal position E,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1
-1,4B,75,1,Accelerator pedal position F,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1
-1,4C,76,1,Commanded throttle actuator,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1
-1,4D,77,2,Time run with MIL on,0,"65,535",minutes,{\displaystyle 256A+B},1,0,1,1
-1,4E,78,2,Time since trouble codes cleared,0,"65,535",minutes,{\displaystyle 256A+B},1,0,1,1
-1,4F,79,4,O sensor data,0,2550,"ratio, V, mA, kPa","{\displaystyle A}, {\displaystyle B}, {\displaystyle C}, {\displaystyle D*10}",1,0,1,1
-1,50,80,4,Max air flow rate,0,2550,g/s,"{\displaystyle A*10}, {\displaystyle B}, {\displaystyle C},and {\displaystyle D} are reserved for future use",1,0,1,1
-1,51,81,1,Fuel Type,,,,From fuel type table see below,1,0,1,1
-1,52,82,1,Ethanol fuel %,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,53,83,2,AESVP,0,327.675,kPa,{\displaystyle {\frac {256A+B}{200}}},1,0,1,1
-1,54,84,2,Evap system vapor pressure,"-32,768","32,767",Pa,{\displaystyle 256A+B}(AB is two's complement signed)[3],1,0,1,1
-1,55,85,2,Short  O sensor trim,-100,99.2,%,{\displaystyle {\frac {100}{128}}A-100},1,0,1,1
-1,56,86,2,Long O sensor trim,-100,99.2,%,{\displaystyle {\frac {100}{128}}B-100},1,0,1,1
-1,57,87,2,Short O sensor trim,-100,99.2,%,,1,0,1,1
-1,58,88,2,Long O sensor trim,-100,99.2,%,,1,0,1,1
-1,59,89,2,Fuel rail absolute pressure,0,"6,55,350",kPa,{\displaystyle 10(256A+B)},1,0,1,1
-1,5A,90,1,Accelerator pedal position,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,5B,91,1,Hyrd Batt life remain,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1
-1,5C,92,1,Engine oil temperature,-40,210,°C,{\displaystyle A-40},1,0,1,1
-1,5D,93,2,Fuel injection timing,-210,301.992,°,{\displaystyle {\frac {256A+B}{128}}-210},1,0,1,1
-1,5E,94,2,Engine fuel rate,0,3212.75,L/h,{\displaystyle {\frac {256A+B}{20}}},1,0,1,1
-1,5F,95,1,Emission req,,,,Bit Encoded,1,0,1,1
-1,60,96,4,PIDs supported [61 - 80],,,,Bit encoded [A7..D0] == [PID $61..PID $80] See below,1,0,1,1
-1,61,97,1,Demand engine percent torque,-125,130,%,{\displaystyle A-125},1,0,1,1
-1,62,98,1,Actual engine - percent torque,-125,130,%,{\displaystyle A-125},1,0,1,1
-1,63,99,2,Engine reference torque,0,"65,535",Nm,{\displaystyle 256A+B},1,0,1,1
-1,64,100,5,Engine percent torque data,-125,130,%,{\displaystyle A-125} Idle,1,0,1,1
-1,65,101,2,Auxiliary input / output supported,,,,Bit Encoded,1,0,1,1
-1,66,102,5,Mass air flow sensor,0,2047.96875,grams/sec,[A0]== Sensor A Supported,1,0,1,1
-1,67,103,3,Engine coolant temperature,-40,215,°C,[A0]== Sensor 1 Supported,1,0,1,1
-1,68,104,3,Intake air temperature sensor,-40,215,°C,[A0]== Sensor 1 Supported,1,0,1,1
-1,69,105,7,Actual EGR,,,,,1,0,1,1
-1,6A,106,5,air flow,,,,,1,0,1,1
-1,6B,107,5,Exhaust gas recirculation Temp,,,,,1,0,1,1
-1,6C,108,5,Throttle position,,,,,1,0,1,1
-1,6D,109,11,Fuel pressure control system,,,,,1,0,1,1
-1,6E,110,9,Injection pressure control system,,,,,1,0,1,1
-1,6F,111,3,Turbo Compre In pressure,,,,,1,0,1,1
-1,70,112,10,Boost pressure control,,,,,1,0,1,1
-1,71,113,6,VGT control,,,,,1,0,1,1
-1,72,114,5,Wastegate control,,,,,1,0,1,1
-1,73,115,5,Exhaust pressure,,,,,1,0,1,1
-1,74,116,5,Turbocharger RPM,,,,,1,0,1,1
-1,75,117,7,Turbocharger temperature,,,,,1,0,1,1
-1,76,118,7,Turbocharger temperature,,,,,1,0,1,1
-1,77,119,5,CACT,,,,,1,0,1,1
-1,78,120,9,EGT Bank 1,,,,Special PID. See below,1,0,1,1
-1,79,121,9,EGT Bank 2,,,,Special PID. See below,1,0,1,1
-1,7A,122,7,DPF differential pressure,,,,,1,0,1,1
-1,7B,123,7,DPF,,,,,1,0,1,1
-1,7C,124,9,DPF temperature,,,°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1
-1,7D,125,1,NOx NTE,,,,,1,0,1,1
-1,7E,126,1,PM NTE,,,,,1,0,1,1
-1,7F,127,13,Engine run time [b],,,seconds,,1,0,1,1
-1,80,128,4,PIDs supported [81 - A0],,,,Bit encoded [A7..D0] == [PID $81..PID $A0] See below,1,0,1,1
-1,81,129,41,Engine run time,,,,,1,0,1,1
-1,82,130,41,Engine run time,,,,,1,0,1,1
-1,83,131,9,NOx sensor,,,,,1,0,1,1
-1,84,132,1,Manifold surface temperature,,,,,1,0,1,1
-1,85,133,10,NOx reagent system,,,,,1,0,1,1
-1,86,134,5,Particulate matter (PM) sensor,,,,,1,0,1,1
-1,87,135,5,Intake manifold absolute pressure,,,,,1,0,1,1
-1,88,136,13,SCR Induce System,,,,,1,0,1,1
-1,89,137,41,Run Time for AECD #11-#15,,,,,1,0,1,1
-1,8A,138,41,Run Time for AECD #16-#20,,,,,1,0,1,1
-1,8B,139,7,Diesel Aftertreatment,,,,,1,0,1,1
-1,8C,140,17,O2 Sensor (Wide Range),,,,,1,0,1,1
-1,8D,141,1,Throttle Position G,0,100,%,,1,0,1,1
-1,8E,142,1,Engine Friction - Percent Torque,-125,130,%,{\displaystyle A-125},1,0,1,1
-1,8F,143,7,PM Sensor Bank 1 & 2,,,,,1,0,1,1
-1,90,144,3,OBD System Information,,,hours,,1,0,1,1
-1,91,145,5,OBD System Information,,,hours,,1,0,1,1
-1,92,146,2,Fuel System Control,,,,,1,0,1,1
-1,93,147,3,OBD Counters support,,,hours,,1,0,1,1
-1,94,148,12,NOx Warning,,,,,1,0,1,1
-1,98,152,9,Exhaust Gas Temp Sensor,,,,,1,0,1,1
-1,99,153,9,Exhaust Gas Temp Sensor,,,,,1,0,1,1
-1,9A,154,6,Hybrid/EV Data,,,,,1,0,1,1
-1,9B,155,4,Diesel Exhaust Fluid Sensor Data,,,,,1,0,1,1
-1,9C,156,17,O2 Sensor Data,,,,,1,0,1,1
-1,9D,157,4,Engine Fuel Rate,,,g/s,,1,0,1,1
-1,9E,158,2,Engine Exhaust Flow Rate,,,kg/h,,1,0,1,1
-1,9F,159,9,Fuel System Percentage Use,,,,,1,0,1,1
-1,A0,160,4,PIDs supported [A1 - C0],,,,Bit encoded [A7..D0] == [PID $A1..PID $C0] See below,1,0,1,1
-1,A1,161,9,NOx Sensor Corrected Data,,,ppm,,1,0,1,1
-1,A2,162,2,Cylinder Fuel Rate,0,2047.96875,mg/stroke,{\displaystyle {\frac {256A+B}{32}}},1,0,1,1
-1,A3,163,9,Evap System Vapor Pressure,,,Pa,,1,0,1,1
-1,A4,164,4,Transmission Actual Gear,0,65.535,ratio,[A1]==Supported,1,0,1,1
-1,A5,165,4,Diesel Exhaust Fluid Dosing,0,127.5,%,[A0]= 1:Supported; 0:Unsupported,1,0,1,1
-1,A6,166,4,Odometer,0,"42,94,96,729.50",km,{\displaystyle {\frac {A(2^{24})+B(2^{16})+C(2^{8})+D}{10}}},1,0,1,1
-1,A7,167,4,,,,,,1,0,1,1
-1,A8,168,4,,,,,,1,0,1,1
-1,A9,169,4,ABS Disable Switch State,,,,[A0]= 1:Supported; 0:Unsupported,1,0,1,1
-1,C0,192,4,PIDs supported [C1 - E0],0x0,65.535,,Bit encoded [A7..D0] == [PID $C1..PID $E0] See below,1,0,1,1
+Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendRanadome,AllowToChange,WidgetType,Value
+1,0,0,4,PIDs supported [01 - 20],,,,Bit encoded [A7..D0] == [PID $01..PID $20] See below,1,0,1,1,255
+1,1,1,4,Status since DTCs cleared,,,,Bit encoded. See below,1,0,1,1,0
+1,2,2,2,Freeze DTC,,,,,1,0,1,1,0
+1,3,3,2,Fuel system status,,,,Bit encoded. See below,1,0,1,1,0
+1,4,4,1,Calculated engine load,0,100,%,{\displaystyle {\tfrac {100}{255}}A} (or {\displaystyle {\tfrac {A}{2.55}}}),1,0,1,1,0
+1,5,5,1,Engine coolant temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1,0
+1,6,6,1,Short term fuel trim—Bank 1,-100,99.2,%,{\displaystyle {\frac {100}{128}}A-100},1,0,1,1,0
+1,7,7,1,Long term fuel trim—Bank 1,-100,99.2,%,,1,0,1,1,0
+1,8,8,1,Short term fuel trim—Bank 2,-100,99.2,%,(or {\displaystyle {\tfrac {A}{1.28}}-100},1,0,1,1,0
+1,9,9,1,Long term fuel trim—Bank 2,-100,99.2,%, ),1,0,1,1,0
+1,0A,10,1,Fuel pressure,0,765,kPa,{\displaystyle 3A},1,0,1,1,0
+1,0B,11,1,IMAP,0,255,kPa,{\displaystyle A},1,0,1,1,0
+1,0C,12,2,Engine speed,0,"16,383.75",rpm,{\displaystyle {\frac {256A+B}{4}}},1,0,1,1,0
+1,0D,13,1,Vehicle speed,0,255,km/h,{\displaystyle A},1,0,1,1,0
+1,0E,14,1,Timing advance,-64,63.5,° before TDC,{\displaystyle {\frac {A}{2}}-64},1,0,1,1,0
+1,0F,15,1,Intake air temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1,0
+1,10,16,2,MAF,0,655.35,grams/sec,{\displaystyle {\frac {256A+B}{100}}},1,0,1,1,0
+1,11,17,1,Throttle position,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,12,18,1,Air status,,,,Bit encoded. See below,1,0,1,1,0
+1,14,20,2,Oxygen Sensor 1,-100,99.2,%,{\displaystyle {\frac {A}{200}}},1,0,1,1,0
+1,15,21,2,Oxygen Sensor 2,-100,99.2,%,{\displaystyle {\frac {100}{128}}B-100},1,0,1,1,0
+1,16,22,2,Oxygen Sensor 3,-100,99.2,%,"(if B==$FF, sensor is not used in trim calculation)",1,0,1,1,0
+1,19,25,2,Oxygen Sensor 6,-100,99.2,%,,1,0,1,1,0
+1,1A,26,2,Oxygen Sensor 7,-100,99.2,%,,1,0,1,1,0
+1,1B,27,2,Oxygen Sensor 8,-100,99.2,%,,1,0,1,1,0
+1,1C,28,1,OBD standards,1,250,,enumerated. See below,1,0,1,1,0
+1,1D,29,1,Oxygen sensors present (in 4 banks),,,,"Similar to PID 13, but [A0..A7] == [B1S1, B1S2, B2S1, B2S2, B3S1, B3S2, B4S1, B4S2]",1,0,1,1,0
+1,1E,30,1,Auxiliary input status,,,,A0 == Power Take Off (PTO) status (1 == active),1,0,1,1,0
+1,1F,31,2,Run time since engine start,0,"65,535",seconds,{\displaystyle 256A+B},1,0,1,1,0
+1,20,32,4,PIDs supported [21 - 40],,,,Bit encoded [A7..D0] == [PID $21..PID $40] See below,1,0,1,1,255
+1,21,33,2,Dist with MIL on,0,"65,535",km,{\displaystyle 256A+B},1,0,1,1,0
+1,22,34,2,Fuel Rail Pressure,0,5177.265,kPa,{\displaystyle 0.079(256A+B)},1,0,1,1,0
+1,23,35,2,Fuel Rail Gauge Pressure,0,"6,55,350",kPa,{\displaystyle 10(256A+B)},1,0,1,1,0
+1,24,36,4,Oxygen Sensor 1,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,25,37,4,Oxygen Sensor 2,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1,0
+1,26,38,4,Oxygen Sensor 3,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1,0
+1,27,39,4,Oxygen Sensor 4,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1,0
+1,28,40,4,Oxygen Sensor 5,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1,0
+1,29,41,4,Oxygen Sensor 6,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1,0
+1,2A,42,4,Oxygen Sensor 7,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1,0
+1,2B,43,4,Oxygen Sensor 8,0,2,ratio,{\displaystyle {\frac {8}{65536}}(256C+D)},1,0,1,1,0
+1,2C,44,1,Commanded EGR,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,2D,45,1,EGR Error,-100,99.2,%,{\displaystyle {\tfrac {100}{128}}A-100},1,0,1,1,0
+1,2E,46,1,Commanded evaporative purge,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,2F,47,1,Fuel Tank Level Input,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,30,48,1,Warm-ups since codes cleared,0,255,count,{\displaystyle A},1,0,1,1,0
+1,31,49,2,Distance traveled since codes cleared,0,"65,535",km,{\displaystyle 256A+B},1,0,1,1,0
+1,35,53,4,Oxygen Sensor 2,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,36,54,4,Oxygen Sensor 3,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,37,55,4,Oxygen Sensor 4,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,38,56,4,Oxygen Sensor 5,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,39,57,4,Oxygen Sensor 6,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,3A,58,4,Oxygen Sensor 7,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,3B,59,4,Oxygen Sensor 8,0,2,ratio,{\displaystyle {\frac {2}{65536}}(256A+B)},1,0,1,1,0
+1,3C,60,2,"Catalyst Temp B1, S1",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
+1,3D,61,2,"Catalyst Temp B 2, S 1",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
+1,3E,62,2,"Catalyst Temp B 1, S 2",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
+1,3F,63,2,"Catalyst Temp B 2, S 2",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
+1,40,64,4,PIDs supported [41 - 60],,,,Bit encoded [A7..D0] == [PID $41..PID $60] See below,1,0,1,1,255
+1,41,65,4,Monitor status this drive cycle,,,,Bit encoded. See below,1,0,1,1,0
+1,42,66,2,Control module voltage,0,65.535,V,{\displaystyle {\frac {256A+B}{1000}}},1,0,1,1,0
+1,43,67,2,Absolute load value,0,"25,700",%,{\displaystyle {\tfrac {100}{255}}(256A+B)},1,0,1,1,0
+1,44,68,2,Air-Fuel Equivalence Ratio,0,2,ratio,{\displaystyle {\tfrac {2}{65536}}(256A+B)},1,0,1,1,0
+1,45,69,1,Relative throttle position,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,46,70,1,Ambient air temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1,0
+1,47,71,1,Absolute throttle position B,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1,0
+1,48,72,1,Absolute throttle position C,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1,0
+1,49,73,1,Accelerator pedal position D,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1,0
+1,4A,74,1,Accelerator pedal position E,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1,0
+1,4B,75,1,Accelerator pedal position F,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1,0
+1,4C,76,1,Commanded throttle actuator,0,100,%,{\displaystyle {\frac {100}{255}}A},1,0,1,1,0
+1,4D,77,2,Time run with MIL on,0,"65,535",minutes,{\displaystyle 256A+B},1,0,1,1,0
+1,4E,78,2,Time since trouble codes cleared,0,"65,535",minutes,{\displaystyle 256A+B},1,0,1,1,0
+1,4F,79,4,O sensor data,0,2550,"ratio, V, mA, kPa","{\displaystyle A}, {\displaystyle B}, {\displaystyle C}, {\displaystyle D*10}",1,0,1,1,0
+1,50,80,4,Max air flow rate,0,2550,g/s,"{\displaystyle A*10}, {\displaystyle B}, {\displaystyle C},and {\displaystyle D} are reserved for future use",1,0,1,1,0
+1,51,81,1,Fuel Type,,,,From fuel type table see below,1,0,1,1,0
+1,52,82,1,Ethanol fuel %,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,53,83,2,AESVP,0,327.675,kPa,{\displaystyle {\frac {256A+B}{200}}},1,0,1,1,0
+1,54,84,2,Evap system vapor pressure,"-32,768","32,767",Pa,{\displaystyle 256A+B}(AB is two's complement signed)[3],1,0,1,1,0
+1,55,85,2,Short  O sensor trim,-100,99.2,%,{\displaystyle {\frac {100}{128}}A-100},1,0,1,1,0
+1,56,86,2,Long O sensor trim,-100,99.2,%,{\displaystyle {\frac {100}{128}}B-100},1,0,1,1,0
+1,57,87,2,Short O sensor trim,-100,99.2,%,,1,0,1,1,0
+1,58,88,2,Long O sensor trim,-100,99.2,%,,1,0,1,1,0
+1,59,89,2,Fuel rail absolute pressure,0,"6,55,350",kPa,{\displaystyle 10(256A+B)},1,0,1,1,0
+1,5A,90,1,Accelerator pedal position,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,5B,91,1,Hyrd Batt life remain,0,100,%,{\displaystyle {\tfrac {100}{255}}A},1,0,1,1,0
+1,5C,92,1,Engine oil temperature,-40,210,°C,{\displaystyle A-40},1,0,1,1,0
+1,5D,93,2,Fuel injection timing,-210,301.992,°,{\displaystyle {\frac {256A+B}{128}}-210},1,0,1,1,0
+1,5E,94,2,Engine fuel rate,0,3212.75,L/h,{\displaystyle {\frac {256A+B}{20}}},1,0,1,1,0
+1,5F,95,1,Emission req,,,,Bit Encoded,1,0,1,1,0
+1,60,96,4,PIDs supported [61 - 80],,,,Bit encoded [A7..D0] == [PID $61..PID $80] See below,1,0,1,1,255
+1,61,97,1,Demand engine percent torque,-125,130,%,{\displaystyle A-125},1,0,1,1,0
+1,62,98,1,Actual engine - percent torque,-125,130,%,{\displaystyle A-125},1,0,1,1,0
+1,63,99,2,Engine reference torque,0,"65,535",Nm,{\displaystyle 256A+B},1,0,1,1,0
+1,64,100,5,Engine percent torque data,-125,130,%,{\displaystyle A-125} Idle,1,0,1,1,0
+1,65,101,2,Auxiliary input / output supported,,,,Bit Encoded,1,0,1,1,0
+1,66,102,5,Mass air flow sensor,0,2047.96875,grams/sec,[A0]== Sensor A Supported,1,0,1,1,0
+1,67,103,3,Engine coolant temperature,-40,215,°C,[A0]== Sensor 1 Supported,1,0,1,1,0
+1,68,104,3,Intake air temperature sensor,-40,215,°C,[A0]== Sensor 1 Supported,1,0,1,1,0
+1,69,105,7,Actual EGR,,,,,1,0,1,1,0
+1,6A,106,5,air flow,,,,,1,0,1,1,0
+1,6B,107,5,Exhaust gas recirculation Temp,,,,,1,0,1,1,0
+1,6C,108,5,Throttle position,,,,,1,0,1,1,0
+1,6D,109,11,Fuel pressure control system,,,,,1,0,1,1,0
+1,6E,110,9,Injection pressure control system,,,,,1,0,1,1,0
+1,6F,111,3,Turbo Compre In pressure,,,,,1,0,1,1,0
+1,70,112,10,Boost pressure control,,,,,1,0,1,1,0
+1,71,113,6,VGT control,,,,,1,0,1,1,0
+1,72,114,5,Wastegate control,,,,,1,0,1,1,0
+1,73,115,5,Exhaust pressure,,,,,1,0,1,1,0
+1,74,116,5,Turbocharger RPM,,,,,1,0,1,1,0
+1,75,117,7,Turbocharger temperature,,,,,1,0,1,1,0
+1,76,118,7,Turbocharger temperature,,,,,1,0,1,1,0
+1,77,119,5,CACT,,,,,1,0,1,1,0
+1,78,120,9,EGT Bank 1,,,,Special PID. See below,1,0,1,1,0
+1,79,121,9,EGT Bank 2,,,,Special PID. See below,1,0,1,1,0
+1,7A,122,7,DPF differential pressure,,,,,1,0,1,1,0
+1,7B,123,7,DPF,,,,,1,0,1,1,0
+1,7C,124,9,DPF temperature,,,°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
+1,7D,125,1,NOx NTE,,,,,1,0,1,1,0
+1,7E,126,1,PM NTE,,,,,1,0,1,1,0
+1,7F,127,13,Engine run time [b],,,seconds,,1,0,1,1,0
+1,80,128,4,PIDs supported [81 - A0],,,,Bit encoded [A7..D0] == [PID $81..PID $A0] See below,1,0,1,1,255
+1,81,129,41,Engine run time,,,,,1,0,1,1,0
+1,82,130,41,Engine run time,,,,,1,0,1,1,0
+1,83,131,9,NOx sensor,,,,,1,0,1,1,0
+1,84,132,1,Manifold surface temperature,,,,,1,0,1,1,0
+1,85,133,10,NOx reagent system,,,,,1,0,1,1,0
+1,86,134,5,Particulate matter (PM) sensor,,,,,1,0,1,1,0
+1,87,135,5,Intake manifold absolute pressure,,,,,1,0,1,1,0
+1,88,136,13,SCR Induce System,,,,,1,0,1,1,0
+1,89,137,41,Run Time for AECD #11-#15,,,,,1,0,1,1,0
+1,8A,138,41,Run Time for AECD #16-#20,,,,,1,0,1,1,0
+1,8B,139,7,Diesel Aftertreatment,,,,,1,0,1,1,0
+1,8C,140,17,O2 Sensor (Wide Range),,,,,1,0,1,1,0
+1,8D,141,1,Throttle Position G,0,100,%,,1,0,1,1,0
+1,8E,142,1,Engine Friction - Percent Torque,-125,130,%,{\displaystyle A-125},1,0,1,1,0
+1,8F,143,7,PM Sensor Bank 1 & 2,,,,,1,0,1,1,0
+1,90,144,3,OBD System Information,,,hours,,1,0,1,1,0
+1,91,145,5,OBD System Information,,,hours,,1,0,1,1,0
+1,92,146,2,Fuel System Control,,,,,1,0,1,1,0
+1,93,147,3,OBD Counters support,,,hours,,1,0,1,1,0
+1,94,148,12,NOx Warning,,,,,1,0,1,1,0
+1,98,152,9,Exhaust Gas Temp Sensor,,,,,1,0,1,1,0
+1,99,153,9,Exhaust Gas Temp Sensor,,,,,1,0,1,1,0
+1,9A,154,6,Hybrid/EV Data,,,,,1,0,1,1,0
+1,9B,155,4,Diesel Exhaust Fluid Sensor Data,,,,,1,0,1,1,0
+1,9C,156,17,O2 Sensor Data,,,,,1,0,1,1,0
+1,9D,157,4,Engine Fuel Rate,,,g/s,,1,0,1,1,0
+1,9E,158,2,Engine Exhaust Flow Rate,,,kg/h,,1,0,1,1,0
+1,9F,159,9,Fuel System Percentage Use,,,,,1,0,1,1,0
+1,A0,160,4,PIDs supported [A1 - C0],,,,Bit encoded [A7..D0] == [PID $A1..PID $C0] See below,1,0,1,1,255
+1,A1,161,9,NOx Sensor Corrected Data,,,ppm,,1,0,1,1,0
+1,A2,162,2,Cylinder Fuel Rate,0,2047.96875,mg/stroke,{\displaystyle {\frac {256A+B}{32}}},1,0,1,1,0
+1,A3,163,9,Evap System Vapor Pressure,,,Pa,,1,0,1,1,0
+1,A4,164,4,Transmission Actual Gear,0,65.535,ratio,[A1]==Supported,1,0,1,1,0
+1,A5,165,4,Diesel Exhaust Fluid Dosing,0,127.5,%,[A0]= 1:Supported; 0:Unsupported,1,0,1,1,0
+1,A6,166,4,Odometer,0,"42,94,96,729.50",km,{\displaystyle {\frac {A(2^{24})+B(2^{16})+C(2^{8})+D}{10}}},1,0,1,1,0
+1,A7,167,4,,,,,,1,0,1,1,0
+1,A8,168,4,,,,,,1,0,1,1,0
+1,A9,169,4,ABS Disable Switch State,,,,[A0]= 1:Supported; 0:Unsupported,1,0,1,1,0
+1,C0,192,4,PIDs supported [C1 - E0],0x0,65.535,,Bit encoded [A7..D0] == [PID $C1..PID $E0] See below,1,0,1,1,0

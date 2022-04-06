@@ -106,23 +106,24 @@ void PIDEncoderDecoder::parsePIDCSVLookUpFile()
         qDebug() << pidStringList[i];
         QStringList l =  pidStringList[i];
 //   0           1         2        3            4          5      6      7         8              9            10               11              12
-//("Service", "PIDs", "PID_Dec", "DataCount", "PIDName", "Min", "Max", "Units", "Description", "isEnabled", "sendRanadome", "AllowToChange", "WidgetType\n")
-//("1",       "0",        "0",      "4",  "PIDs supported","", "",      "",     "Bit encoded [A7..D0] == [PID $01..PID $20]?See below", "1", "0", "1", "1\n")
-       pIDInfoModel.addAsset(l[0].toInt(),
-                             l[2].toInt(),
-                             l[3].toInt(),
-                             l[4],
-                             l[8],
-                             l[7],
-                             l[5].toInt(),
-                             l[6].toInt(),
-                             l[9].toInt(),
-                             l[10].toInt(),
-                             l[11].toInt(),
-                             l[12].toInt()
-                             );
+//("Service", "PIDs", "PID_Dec", "DataCount", "PIDName", "Min", "Max", "Units", "Description", "isEnabled", "sendRanadome", "AllowToChange", "WidgetType  "Value\n")
+//("1",       "0",        "0",      "4",  "PIDs supported","", "",      "",     "Bit encoded [A7..D0] == [PID $01..PID $20]?See below", "1", "0", "1", "1"  "0\n")
+        if(l.count() == 14)
+        {
+           pIDInfoModel.addAsset(l[0].toInt(),
+                                 l[2].toInt(),
+                                 l[3].toInt(),
+                                 l[4],
+                                 l[8],
+                                 l[7],
+                                 l[5].toInt(),
+                                 l[6].toInt(),
+                                 l[9].toInt(),
+                                 l[10].toInt(),
+                                 l[11].toInt(),
+                                 l[12].toInt(),
+                                 l[13].toDouble());
+        }
     }
-
-
 }
 

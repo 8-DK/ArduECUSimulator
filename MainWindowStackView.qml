@@ -56,9 +56,9 @@ ApplicationWindow {
         border.color: "#333333"
         StackView {
             id: mainStackView
-            initialItem: mainDashBoard//mainMyserilPortStackView
+            initialItem: mainDashBoard//mainComHelperStackView
             anchors.fill: parent
-            property MyserilPort mainMyserilPortStackView: MyserilPort{
+            property ComHelper mainComHelperStackView: ComHelper{
                 onSendPushNewProject: {
                     mainStackView.push(mainStackView.mainDashBoard)
                 }

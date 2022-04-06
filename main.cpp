@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
     //qDebug() << " Class Name =" << rootObj->metaObject()->className();
     QQuickWindow *w = qobject_cast<QQuickWindow*>(rootObj);
    // w->setFlags(Qt::Window | Qt::FramelessWindowHint );
+    w->showMaximized();
 
     return app.exec();
 }

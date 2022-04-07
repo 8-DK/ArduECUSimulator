@@ -15,6 +15,7 @@ Item {
     property alias defaultFont: defaultGCSFont.name
     property alias sevenSegment: sevenSegmentFont.name
     property alias openSansRegular: openSansRegular.name
+    property alias robotoRegular: robotoRegular.name
     FontLoader {
         id:defaultGCSFont
         source: LocalStrings.getLocalTextValue("fontDefault")

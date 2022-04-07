@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Window 2.12
-import SerialPortLib 1.0
+import ComHelperLib 1.0
 import QtGraphicalEffects 1.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
@@ -47,8 +47,8 @@ RoundButton{
         width: parent.width
         height: parent.height
         radius: parent.radius
-        color: GStyle.blueColor()
+        color: GStyle.gP("themeDefaultColor")
         border.width: 1
-        border.color: GStyle.blueColor()
+        border.color: GStyle.gP("themeDefaultColor")
     }
 }

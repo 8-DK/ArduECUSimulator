@@ -141,7 +141,7 @@ Dialog{
                     velocity: 1200
                 }
             }
-            color: GStyle.blueColor()
+            color: GStyle.gP("themeDefaultColor")
 
             Text {
                 id: percentTxt
@@ -193,7 +193,7 @@ Dialog{
         anchors.bottomMargin: progressbar.height * 0.05
         radius: GStyle.defaultButtonRadius()
         palette {
-            button: GStyle.blueColor()
+            button: GStyle.gP("themeDefaultColor")
         }
         Text{
             id: primaryButtonText

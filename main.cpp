@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonType<GStyle>("GStyleLib", 1, 0, "GStyle",&GStyle::getInstance);
     qmlRegisterType<SerialPortSettings>("SerialPortSettingsLib", 1, 0, "SerialPortSettings");
     qmlRegisterSingletonType<CommLinkSettings>("CommLinkSettingsLib", 1, 0, "CommLinkSettings",&CommLinkSettings::getInstance);
-    qmlRegisterSingletonType<MySerialPort>("SerialPortLib", 1, 0, "MySerialPort",&MySerialPort::getInstance);
+    qmlRegisterSingletonType<ComHelper>("ComHelperLib", 1, 0, "ComHelper",&ComHelper::getInstance);
     qmlRegisterSingletonType<PIDEncoderDecoder>("PIDEncoderDecoderLib", 1, 0, "PIDEncoderDecoder",&PIDEncoderDecoder::getInstance);    
 
     QApplication app(argc,argv);

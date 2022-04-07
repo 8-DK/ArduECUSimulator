@@ -9,6 +9,7 @@ import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
 import GStyleLib 1.0
+import "CustomeWidget/ButtonRound"
 
 Dialog{
     id: root
@@ -29,11 +30,9 @@ Dialog{
 
     onFocusChanged: {
         if(focus)
-        {
-            okButtonBgRect.color = GStyle.blueColor()
-            okButtonText.color = GStyle.whiteColor()
-            cancelButtonBgRect.color = GStyle.whiteColor()
-            cancelButtonText.color = GStyle.blueColor()
+        {            
+            okButton.color = GStyle.whiteColor()
+            cancelButton.color = GStyle.gP("themeDefaultColor")
             okButton.focus = true
         }
     }
@@ -42,18 +41,6 @@ Dialog{
     {
         color :"transparent"
         radius: 7
-    }
-    FontLoader {
-        id:openSansRegular
-        source:'qrc:/Fonts/Open_Sans_Regular.ttf'
-    }
-    FontLoader {
-        id: montserratRegular
-        source:'qrc:/Fonts/Montserrat-Regular.ttf'
-    }
-    FontLoader {
-        id: robotoRegular
-        source:'qrc:/Fonts/Roboto-Regular.ttf'
     }
 
     property string wrap: Text.WordWrap
@@ -77,7 +64,7 @@ Dialog{
                 width: messageTitleRect.width
                 height: messageTitleRect.height
                 verticalAlignment: Text.AlignVCenter
-                font.family: robotoRegular.name
+                font.family: fontLdr.robotoRegular
                 font.pixelSize: GStyle.getMessageBoxTextPixelSize()
                 font.letterSpacing: 1
                 anchors.left: messageTitleRect.left
@@ -94,7 +81,7 @@ Dialog{
             width: root.width - (root.width * 0.1)
             height: 1.5
             radius: 2
-            color: GStyle.blueColor()
+            color: GStyle.gP("themeDefaultColor")
             anchors.top: messageTitleRect.bottom
             anchors.topMargin: 5
             anchors.horizontalCenter: parent.horizontalCenter
@@ -112,7 +99,7 @@ Dialog{
                 text: ""
                 width: messageDescLabel.width
                 height: messageDescLabel.height
-                font.family: robotoRegular.name
+                font.family: fontLdr.robotoRegular
                 font.letterSpacing: 1
                 font.weight: "Normal"
                 anchors.left: messageDescLabel.left
@@ -124,7 +111,7 @@ Dialog{
             }
         }
 
-        RoundButton{
+        ShineButton{
             id: okButton
             width: messageBoxRectangle.width * 0.25
             height: messageBoxRectangle.height * 0.18
@@ -132,25 +119,12 @@ Dialog{
             anchors.rightMargin: messageBoxRectangle.width * 0.05
             anchors.bottom: parent.bottom
             anchors.bottomMargin: messageBoxRectangle.height * 0.1
-            radius: GStyle.defaultButtonRadius()
-            focus: true
-            activeFocusOnTab: false
-            Text{
-                id: okButtonText
-                anchors.centerIn: okButton
-                text: LocalStrings.getLocalTextValue("ok")
-                font.family: openSansRegular.name
-                font.pixelSize: GStyle.getTextEditLabelPixelSize()
-                font.weight: "DemiBold"
-                color: GStyle.whiteColor()
-                font.letterSpacing: 0.5
-            }
+            text: LocalStrings.getLocalTextValue("ok")
+            color:GStyle.gP("themeDefaultColor")
             onClicked: {
-                root.okButtonClickSignal()
-                okButtonBgRect.color = GStyle.blueColor()
-                okButtonText.color = GStyle.whiteColor()
-                cancelButtonBgRect.color = GStyle.whiteColor()
-                cancelButtonText.color = GStyle.blueColor()
+                root.okButtonClickSignal()                
+                okButton.color = GStyle.whiteColor()
+                cancelButton.color = GStyle.gP("themeDefaultColor")
             }
             Keys.onReleased: {
                 if(event.key === Qt.Key_Return ||event.key === Qt.Key_Enter )
@@ -159,18 +133,9 @@ Dialog{
                     root.okButtonClickSignal()
                 }
             }
-            background: Rectangle{
-                id: okButtonBgRect
-                width: parent.width
-                height: parent.height
-                radius: parent.radius
-                color: GStyle.blueColor()
-                border.width: 1
-                border.color: GStyle.blueColor()
-            }
         }
 
-        RoundButton{
+        ShineButton{
             id: cancelButton
             width: messageBoxRectangle.width * 0.3
             height: messageBoxRectangle.height * 0.18
@@ -179,33 +144,12 @@ Dialog{
             anchors.leftMargin: messageBoxRectangle.width * 0.05
             anchors.bottom: parent.bottom
             anchors.bottomMargin: messageBoxRectangle.height * 0.1
-            radius: GStyle.defaultButtonRadius()
-            activeFocusOnTab: false
-            Text{
-                id: cancelButtonText
-                anchors.centerIn: cancelButton
-                text:LocalStrings.getLocalTextValue("cancel")
-                font.family: openSansRegular.name
-                font.pixelSize: GStyle.getTextEditLabelPixelSize()//14
-                font.weight: "Bold"
-                color: GStyle.blueColor()
-                font.letterSpacing: 0.5
-            }
+            text : LocalStrings.getLocalTextValue("cancel")
+            color:GStyle.gP("themeDefaultColor")
             onClicked: {
-                root.cancelButtonClickSignal()
-                cancelButtonBgRect.color = GStyle.blueColor()
-                cancelButtonText.color = GStyle.whiteColor()
-                okButtonBgRect.color = GStyle.whiteColor()
-                okButtonText.color = GStyle.blueColor()
-            }
-            background: Rectangle{
-                id: cancelButtonBgRect
-                width: parent.width
-                height: parent.height
-                radius: parent.radius
-                color: GStyle.whiteColor()
-                border.width: 1
-                border.color: GStyle.blueColor()
+                root.cancelButtonClickSignal()                
+                cancelButton.color = GStyle.whiteColor()
+                okButton.color = GStyle.gP("themeDefaultColor")
             }
         }
     }
@@ -218,12 +162,18 @@ Dialog{
     function show()
     {
         if(messageDetails === LocalStrings.getLocalTextValue("yes"))
-        {
-            root.visible = true
-            okButtonText.text = LocalStrings.getLocalTextValue("yes")
-            cancelButtonText.text = LocalStrings.getLocalTextValue("no")
+        {            
+            okButton.text = LocalStrings.getLocalTextValue("yes")
+            cancelButton.text = LocalStrings.getLocalTextValue("no")
             cancelButton.visible = true
         }
+        else
+        {
+            okButton.text = LocalStrings.getLocalTextValue("yes")
+            cancelButton.text = LocalStrings.getLocalTextValue("no")
+            cancelButton.visible = false
+        }
+
         root.visible = true
     }
 }

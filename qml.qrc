@@ -45,7 +45,7 @@
         <file>MainGridview.qml</file>
         <file>MainWindowStackView.qml</file>
         <file>MessageBox.qml</file>
-        <file>ComHelper.qml</file>
+        <file>ComLinkview.qml</file>
         <file>NavBar.qml</file>
         <file>ProgressBarCustom.qml</file>
         <file>assets/Logo.png</file>
@@ -80,5 +80,7 @@
         <file>localFiles/Theme.json</file>
         <file>localFiles/pidList.csv</file>
         <file>CustomeWidget/ButtonRound/ButtonRound.qml</file>
+        <file>CustomeWidget/ButtonRound/ShineButton.qml</file>
+        <file>CustomeWidget/ButtonRound/IconButton.qml</file>
     </qresource>
 </RCC>

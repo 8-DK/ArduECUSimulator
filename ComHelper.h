@@ -1,5 +1,5 @@
-#ifndef MYSERIALPORT_H
-#define MYSERIALPORT_H
+#ifndef ComHelper_H
+#define ComHelper_H
 
 #include <QObject>
 #include <QSerialPort>
@@ -13,12 +13,12 @@
 #include <QTimer>
 #include <QTimer>
 
-class MySerialPort : public QObject
+class ComHelper : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(MySerialPort)
+    Q_DISABLE_COPY(ComHelper)
 
-    explicit MySerialPort(QObject *parent = nullptr);
+    explicit ComHelper(QObject *parent = nullptr);
 
 public:
     qint64 m_unixTimeStamp;
@@ -65,8 +65,8 @@ private:
 
 public:
     static QSerialPort *m_serial;
-    static MySerialPort* m_serialPort;
-    static MySerialPort* getInstance();
+    static ComHelper* m_serialPort;
+    static ComHelper* getInstance();
     static QObject* getInstance(QQmlEngine *engine, QJSEngine *scriptEngine){Q_UNUSED(engine);Q_UNUSED(scriptEngine);return getInstance();}
     static QByteArray message;
     void autoConnect();
@@ -81,4 +81,4 @@ public:
     QJsonObject rootJsonObj;
 };
 
-#endif // MYSERIALPORT_H
+#endif // ComHelper_H

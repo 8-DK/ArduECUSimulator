@@ -1,4 +1,4 @@
-#include "myserialport.h"
+#include "ComHelper.h"
 #include <QtSerialPort/QSerialPort>
 #include <QSerialPortInfo>
 #include <QObject>
@@ -10,48 +10,48 @@
 #include <QDateTime>
 #include "mainwindowglobalcontext.h"
 
-QSerialPort * MySerialPort::m_serial;
-MySerialPort* MySerialPort::m_serialPort;
-QByteArray MySerialPort::message;
+QSerialPort * ComHelper::m_serial;
+ComHelper* ComHelper::m_serialPort;
+QByteArray ComHelper::message;
 
 
-MySerialPort* MySerialPort::getInstance()
+ComHelper* ComHelper::getInstance()
 {
-    if (MySerialPort::m_serialPort == nullptr)
+    if (ComHelper::m_serialPort == nullptr)
     {
-        MySerialPort::m_serialPort = new MySerialPort(nullptr);
+        ComHelper::m_serialPort = new ComHelper(nullptr);
 
     }
 
-    return MySerialPort::m_serialPort;
+    return ComHelper::m_serialPort;
 }
 
 
 
-MySerialPort::MySerialPort(QObject *parent) :
+ComHelper::ComHelper(QObject *parent) :
     QObject(parent),
     m_timer(new QTimer)
 {    
     if(m_serial == NULL)
     {
-        MySerialPort::m_serial = new QSerialPort;
+        ComHelper::m_serial = new QSerialPort;
         if(QFile::exists("logfile.json"))
         {
             QFile::remove("logfile.json");
         }
     }
     qDebug() << "--------------------This is my Serial Port Constructor-----------------------------------";
-    MySerialPort::m_serialPort = this;
+    ComHelper::m_serialPort = this;
     m_autoConnectTimer = new QTimer(this);       
 }
 
 
-bool MySerialPort::isSerialPortOpen()
+bool ComHelper::isSerialPortOpen()
 {
     return serialPortIsOpenFlag1;
 }
 
-void MySerialPort::openSerialPort()
+void ComHelper::openSerialPort()
 {
     if(m_serial->isOpen())
     {
@@ -86,7 +86,7 @@ void MySerialPort::openSerialPort()
         emit showMessageBoxToConnectSerialPort();
         emit serialPortConnected("");
         showStatusMessage("Connected");
-        connect(m_serial, &QSerialPort::readyRead, this, &MySerialPort::readData);
+        connect(m_serial, &QSerialPort::readyRead, this, &ComHelper::readData);
     } else
     {
         if(m_autoConnectTimer->isActive())
@@ -108,12 +108,12 @@ void MySerialPort::openSerialPort()
 }
 
 
-QString MySerialPort::getStatusSerialPort()
+QString ComHelper::getStatusSerialPort()
 {
     return serialPortIsOpenFlag;
 }
 
-void MySerialPort::closeSerialPort(int showPopup)
+void ComHelper::closeSerialPort(int showPopup)
 {
     serialPortIsOpenFlag1 = false;
 
@@ -138,12 +138,12 @@ void MySerialPort::closeSerialPort(int showPopup)
 }
 
 
-void MySerialPort::writeData(const QByteArray &data)
+void ComHelper::writeData(const QByteArray &data)
 {
     m_serial->write(data);
 }
 
-void MySerialPort::readData()
+void ComHelper::readData()
 {
     m_message = m_serial->readAll();
     int count = m_message.size();
@@ -168,7 +168,7 @@ void MySerialPort::readData()
 
 }
 
-void MySerialPort::handleError(QSerialPort::SerialPortError error)
+void ComHelper::handleError(QSerialPort::SerialPortError error)
 {
     if (error == QSerialPort::ResourceError) {
         closeSerialPort(1);
@@ -177,7 +177,7 @@ void MySerialPort::handleError(QSerialPort::SerialPortError error)
     }
 }
 
-void MySerialPort::disconnectDevice()
+void ComHelper::disconnectDevice()
 {    
     if(m_serial->error() > 0)
     {
@@ -194,12 +194,12 @@ void MySerialPort::disconnectDevice()
     }
 }
 
-float MySerialPort::updateProgressBarValue()
+float ComHelper::updateProgressBarValue()
 {
     return  m_ProgressBarvalue ;
 }
 
-void MySerialPort::autoConnect()
+void ComHelper::autoConnect()
 {
     m_autoConnectTimer->stop();
     m_autoConnectTimer->setInterval(1000*6);
@@ -207,7 +207,7 @@ void MySerialPort::autoConnect()
     m_autoConnectTimer->start();
 }
 
-void MySerialPort::connectIfNotConnected()
+void ComHelper::connectIfNotConnected()
 {
     if(!m_serial->isOpen())
     {

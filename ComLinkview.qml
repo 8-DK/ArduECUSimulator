@@ -7,7 +7,7 @@ import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
 import QtQuick 2.2
 import QtQuick.Dialogs 1.1
-import SerialPortLib 1.0
+import ComHelperLib 1.0
 import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
@@ -15,7 +15,7 @@ import GStyleLib 1.0
 
 Item {
     id:mainWindowSerialPort
-    objectName: qsTr("MyserialPortWnd")
+    objectName: qsTr("ComHelperWnd")
     visible: true
     width: GStyle.windowWidth()
     height: GStyle.windowHeight()
@@ -29,7 +29,7 @@ Item {
     onFocusChanged: {
         if(focus)
         {
-            mainWindowSerialPort.connectionTargetMessage = MySerialPort
+            mainWindowSerialPort.connectionTargetMessage = ComHelper
             serialUpdateTimer.start()
         }
     }
@@ -43,10 +43,10 @@ Item {
     Keys.onReleased: {
         if(event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
         {
-            connectButtonRect.color =  GStyle.blueColor()//"#48B0E5"
+            connectButtonRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
             disconnectButtonRect.color = GStyle.whiteColor()//"#FFFFFF"
             connectButtonText.color = GStyle.whiteColor()//"#FFFFFF"
-            disconnectButtonText.color = GStyle.blueColor()//"#48B0E5"
+            disconnectButtonText.color = GStyle.gP("themeDefaultColor")//"#48B0E5"
             var tempxy;
             if(parity  == 1)
             {
@@ -79,8 +79,8 @@ Item {
             CommLinkSettings.connectSerialPort(serialPortSelector.currentText.split(' ')[0], baudRateSelector.currentText,
                                                dataBitSelect, tempxy,flowControlSelector.currentText)
 
-            MySerialPort.openSerialPort();
-            if(MySerialPort.isSerialPortOpen())
+            ComHelper.openSerialPort();
+            if(ComHelper.isSerialPortOpen())
             {
                 //                    mainStackView.push(mainStackView.mainNewProjectStackView)
                 //                    loader.source = "NewProject.qml"   //"NewProject.qml"
@@ -123,7 +123,7 @@ Item {
     function comp()
     {
         //        console.log("Progress completed--------------++++++++")
-        MySerialPort.callAfterParameterDownload()
+        ComHelper.callAfterParameterDownload()
         mainStackView.pop()
         progressBar.end()
     }
@@ -131,7 +131,7 @@ Item {
     function update()
     {
         //        console.log("Progress Update--------------++++++++")
-        var progCount = MySerialPort.updateProgressBarValue()
+        var progCount = ComHelper.updateProgressBarValue()
         if(progCount>100)
             serialUpdateTimer.stop()
         return (progCount*100)
@@ -204,23 +204,14 @@ Item {
         source: "qrc:/Fonts/Roboto-Regular.ttf"
     }
 
-    NavBar {
-        id:navBarRect
-        anchors.right: parent.right
-        anchors.left: parent.left
-        anchors.top: parent.top
-        width: navBar.width
-        height: navBar.height
-    }
-
     /*-------------------------- Communication Link Settings ---------------------------*/
     Rectangle {
         id : mainCommsettingsRect
         width: parent.width * 0.5
         height: parent.height * 0.7
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: navBarRect.bottom
-        anchors.topMargin: navBarRect.height
+        anchors.top: parent.top
+        anchors.topMargin: navBar.height
         Rectangle {
             id : commLinkLabelRect
             visible: true
@@ -251,8 +242,8 @@ Item {
             opacity: 0.8
             model: CommLinkSettings.getSerialPort()
             //            onFocusChanged:{
-            //                serialPortSelectorBgRect.border.color = GStyle.blueColor()
-            //                serialPortText.color = GStyle.blueColor()
+            //                serialPortSelectorBgRect.border.color = GStyle.gP("themeDefaultColor")
+            //                serialPortText.color = GStyle.gP("themeDefaultColor")
             //                baudRateSelectorBgRect.border.color = GStyle.borderColor()
             //                flowControlSelectorBgRect.border.color = GStyle.borderColor()
             //            }
@@ -394,8 +385,8 @@ Item {
                 }
                 onClicked: {
                     dataBit = 6;
-                    dataBitsOption1BgRect.color =  GStyle.blueColor()//"#48B0E5"
-                    dataBitsOption1BgRect.border.color = GStyle.blueColor()
+                    dataBitsOption1BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
+                    dataBitsOption1BgRect.border.color = GStyle.gP("themeDefaultColor")
                     dataBitsOption1Text.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption2BgRect.border.color = GStyle.borderColor()
@@ -433,8 +424,8 @@ Item {
                     dataBitsOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption1BgRect.border.color = GStyle.borderColor()
                     dataBitsOption1Text.color = GStyle.darkGrayColor()//"#706E6B"
-                    dataBitsOption2BgRect.color =  GStyle.blueColor()//"#48B0E5"
-                    dataBitsOption2BgRect.border.color = GStyle.blueColor()
+                    dataBitsOption2BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
+                    dataBitsOption2BgRect.border.color = GStyle.gP("themeDefaultColor")
                     dataBitsOption2Text.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
@@ -453,8 +444,8 @@ Item {
                     id: dataBitsOption3BgRect
                     //color: "white"
                     border.width: 0.5
-                    border.color: GStyle.blueColor()
-                    color :  GStyle.blueColor()//"#48B0E5"
+                    border.color: GStyle.gP("themeDefaultColor")
+                    color :  GStyle.gP("themeDefaultColor")//"#48B0E5"
                 }
                 Text{
                     id: dataBitsOption3Text
@@ -470,8 +461,8 @@ Item {
                     dataBitsOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption1BgRect.border.color = GStyle.borderColor()
                     dataBitsOption1Text.color = GStyle.darkGrayColor()//"#706E6B"
-                    dataBitsOption3BgRect.color =  GStyle.blueColor()//"#48B0E5"
-                    dataBitsOption3BgRect.border.color = GStyle.blueColor()
+                    dataBitsOption3BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
+                    dataBitsOption3BgRect.border.color = GStyle.gP("themeDefaultColor")
                     dataBitsOption3Text.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     dataBitsOption2BgRect.border.color = GStyle.borderColor()
@@ -521,9 +512,9 @@ Item {
                 anchors.leftMargin: parityRect.width * 0.05
                 background: Rectangle {
                     id: parityOption1BgRect
-                    color: GStyle.blueColor()
+                    color: GStyle.gP("themeDefaultColor")
                     border.width: 0.5
-                    border.color: GStyle.blueColor()
+                    border.color: GStyle.gP("themeDefaultColor")
                 }
                 Text{
                     id: parityOption1Text
@@ -536,8 +527,8 @@ Item {
                 }
                 onClicked: {
                     parity = 1
-                    parityOption1BgRect.color =  GStyle.blueColor()//"#48B0E5"
-                    parityOption1BgRect.border.color = GStyle.blueColor()
+                    parityOption1BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
+                    parityOption1BgRect.border.color = GStyle.gP("themeDefaultColor")
                     parityOption1Text.color = GStyle.whiteColor()//"#FFFFFF"
                     parityOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     parityOption2BgRect.border.color = GStyle.borderColor()
@@ -573,8 +564,8 @@ Item {
                 }
                 onClicked: {
                     parity = 2
-                    parityOption2BgRect.color =  GStyle.blueColor()//"#48B0E5"
-                    parityOption2BgRect.border.color = GStyle.blueColor()
+                    parityOption2BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
+                    parityOption2BgRect.border.color = GStyle.gP("themeDefaultColor")
                     parityOption2Text.color = GStyle.whiteColor()//"#FFFFFF"
                     parityOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     parityOption1BgRect.border.color = GStyle.borderColor()
@@ -610,8 +601,8 @@ Item {
                 }
                 onClicked: {
                     parity = 3
-                    parityOption3BgRect.color =  GStyle.blueColor()//"#48B0E5"
-                    parityOption3BgRect.border.color = GStyle.blueColor()
+                    parityOption3BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
+                    parityOption3BgRect.border.color = GStyle.gP("themeDefaultColor")
                     parityOption3Text.color = GStyle.whiteColor()//"#FFFFFF"
                     parityOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
                     parityOption1BgRect.border.color = GStyle.borderColor()
@@ -683,15 +674,15 @@ Item {
             background: Rectangle{
                 id: connectButtonRect
                 radius: connectButton.radius
-                color: GStyle.blueColor()//"#48B0E5"
-                border.color: GStyle.blueColor()//"#48B0E5"
+                color: GStyle.gP("themeDefaultColor")//"#48B0E5"
+                border.color: GStyle.gP("themeDefaultColor")//"#48B0E5"
                 border.width: 1
             }
             onClicked: {
-                connectButtonRect.color =  GStyle.blueColor()//"#48B0E5"
+                connectButtonRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
                 disconnectButtonRect.color = GStyle.whiteColor()//"#FFFFFF"
                 connectButtonText.color = GStyle.whiteColor()//"#FFFFFF"
-                disconnectButtonText.color = GStyle.blueColor()//"#48B0E5"
+                disconnectButtonText.color = GStyle.gP("themeDefaultColor")//"#48B0E5"
                 var tempxy;
                 if(parity  == 1)
                 {
@@ -724,8 +715,8 @@ Item {
                 CommLinkSettings.connectSerialPort(serialPortSelector.currentText.split(' ')[0], baudRateSelector.currentText,
                                                    dataBitSelect, tempxy,flowControlSelector.currentText)
 
-                MySerialPort.openSerialPort();
-                if(MySerialPort.isSerialPortOpen())
+                ComHelper.openSerialPort();
+                if(ComHelper.isSerialPortOpen())
                 {
                     //                    mainStackView.push(mainStackView.mainNewProjectStackView)
                     //                    loader.source = "NewProject.qml"   //"NewProject.qml"
@@ -765,15 +756,15 @@ Item {
                 id: disconnectButtonRect
                 radius: disconnectButton.radius
                 color: GStyle.whiteColor()//"white"
-                border.color: GStyle.blueColor()//"#48B0E5"
+                border.color: GStyle.gP("themeDefaultColor")//"#48B0E5"
                 border.width: 1
             }
             onClicked: {
-                disconnectButtonRect.color =  GStyle.blueColor()//"#48B0E5"
+                disconnectButtonRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
                 connectButtonRect.color = GStyle.whiteColor()//"#FFFFFF"
                 disconnectButtonText.color = GStyle.whiteColor()//"#FFFFFF"
-                connectButtonText.color = GStyle.blueColor()//"#48B0E5"
-                MySerialPort.closeSerialPort(1)
+                connectButtonText.color = GStyle.gP("themeDefaultColor")//"#48B0E5"
+                ComHelper.closeSerialPort(1)
                 //loader.source= "main.qml"
 
             }
@@ -786,7 +777,7 @@ Item {
                 font.pixelSize: GStyle.getButtonPixelSize()
                 font.family: openSansRegular.name
                 font.weight: "DemiBold"
-                color: GStyle.blueColor()//"#48B0E5"
+                color: GStyle.gP("themeDefaultColor")//"#48B0E5"
                 height: disconnectButton.height
                 width: disconnectButton.width
             }

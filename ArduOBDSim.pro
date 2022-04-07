@@ -49,20 +49,20 @@ equals(QT_MINOR_VERSION, 12) {
 RESOURCES += qml.qrc
 
 SOURCES += \
+    ComHelper.cpp \
     commlinksettings.cpp \
     localstrings.cpp \
     main.cpp \
     mainwindowglobalcontext.cpp \
-    myserialport.cpp \
     pidencoderdecoder.cpp \
     serialportsettings.cpp \
     styleglobalsconsts.cpp
 
 HEADERS += \
+    ComHelper.h \
     commlinksettings.h \
     localstrings.h \
     mainwindowglobalcontext.h \
-    myserialport.h \
     pidencoderdecoder.h \
     serialportsettings.h \
     styleglobalsconsts.h

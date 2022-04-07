@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
-import SerialPortLib 1.0
+import ComHelperLib 1.0
 import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
@@ -58,7 +58,7 @@ ApplicationWindow {
             id: mainStackView
             initialItem: mainDashBoard//mainComHelperStackView
             anchors.fill: parent
-            property ComHelper mainComHelperStackView: ComHelper{
+            property ComLinkview mainComHelperStackView: ComLinkview{
                 onSendPushNewProject: {
                     mainStackView.push(mainStackView.mainDashBoard)
                 }

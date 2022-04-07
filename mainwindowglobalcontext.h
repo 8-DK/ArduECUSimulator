@@ -14,7 +14,7 @@
 #include <QQuickView>
 #include <QQmlContext>
 
-#include "myserialport.h"
+#include "ComHelper.h"
 #include "commlinksettings.h"
 #include "serialportsettings.h"
 #include "styleglobalsconsts.h"

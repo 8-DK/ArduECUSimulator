@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Window 2.12
-import SerialPortLib 1.0
+import ComHelperLib 1.0
 import QtGraphicalEffects 1.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
@@ -86,7 +86,7 @@ Rectangle {
         messageDetails: LocalStrings.getLocalTextValue("yes")
         messageDescription: LocalStrings.getLocalTextValue("disconnectConfirmation")
         onOkButtonClickSignal: {
-            MySerialPort.closeSerialPort(1)
+            ComHelper.closeSerialPort(1)
             disconnectConfirmationMessagebox.hide()
         }
         onCancelButtonClickSignal: {
@@ -287,15 +287,16 @@ Rectangle {
     function connectComm()
     {
         if(ComHelper.isSerialPortOpen() === true)
-            {
-                drawer.close()
-                disconnectConfirmationMessagebox.show()
-            }
-            else{
-                serialDisconnectedMessage.messageDetails = LocalStrings.getLocalTextValue("ok")
-                serialDisconnectedMessage.messageDescription = LocalStrings.getLocalTextValue("deviceNotConnected")
-                serialDisconnectedMessage.show()
-            }
+        {
+            drawer.close()
+            disconnectConfirmationMessagebox.show()
+        }
+        else{
+            mainStackView.push(mainStackView.mainComHelperStackView)
+//            serialDisconnectedMessage.messageDetails = LocalStrings.getLocalTextValue("ok")
+//            serialDisconnectedMessage.messageDescription = LocalStrings.getLocalTextValue("deviceNotConnected")
+//            serialDisconnectedMessage.show()
+        }
     }
 
 }

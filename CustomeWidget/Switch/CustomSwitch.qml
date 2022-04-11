@@ -8,8 +8,8 @@ Item {
     property var onTogle : m_onTogle
     property var m_text: ""
 
-    property var activeColor: GStyle.mainThemeActiveColor() //"#21be2b"
-    property var mainColor:  GStyle.mainThemeColor() //"#17a81a"
+    property var activeColor: GStyle.gP("themeDefaultColor") //"#21be2b"
+    property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
 
     SwitchDelegate {
         id: control
@@ -35,14 +35,14 @@ Item {
             y: parent.height / 2 - height / 2
             radius: parent.height/2
             color: control.checked ? mainColor : "transparent"
-            border.color: control.checked ? mainColor : "#cccccc"
+            border.color: control.checked ? mainColor : mainColor
 
             Rectangle {
                 x: control.checked ? parent.width - width : 0
                 width: 26
                 height: 26
                 radius: parent.height/2
-                color: control.down ? "#cccccc" : "#ffffff"
+                color: control.down ? mainColor : "#ffffff"
                 border.color: control.checked ? (control.down ? mainColor : activeColor) : "#999999"
             }
         }

@@ -17,24 +17,6 @@ Rectangle {
     property bool enabled: true
     //property alias radius: bgRect.radius
 
-    FontLoader {
-        id:openSansNormal
-        source:'qrc:/Fonts/Open_Sans_Regular.ttf'
-    }
-    FontLoader {
-        id:openSansRegular
-        source:'qrc:/Fonts/Open_Sans_Regular.ttf'
-    }
-    FontLoader{
-        id: montserratRegular
-        source: "qrc:/Fonts/Montserrat-Regular.ttf"
-    }
-    FontLoader{
-        id: robotoRegular
-        source: "qrc:/Fonts/Roboto-Regular.ttf"
-    }
-
-
     Rectangle{
         id : bgRect
         width: parent.width
@@ -65,7 +47,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignLeft
                 font.pixelSize: parent.width*0.05
-                font.family: robotoRegular.name
+                font.family: fontLdr.robotoRegular
                 readOnly: true
                 layer.enabled: true
                 layer.effect: Glow {

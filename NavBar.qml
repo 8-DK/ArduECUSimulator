@@ -101,7 +101,7 @@ Rectangle {
         visible: true
         width: mainWindowWithStackView.width
         height: mainWindowWithStackView.height * 0.065//0.09
-        color : GStyle.whiteColor()
+        color : GStyle.gP("widgetBGColor")
         anchors.top: mainWindowWithStackView.top
         Image {
             id: image

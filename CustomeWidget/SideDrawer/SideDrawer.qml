@@ -23,6 +23,10 @@ Drawer {
     property size iconSize: Qt.size (72, 72)
     property color iconBgColorLeft: "#9dce8c"
     property color iconBgColorRight: "#00d4ff"
+    property bool enableGradientBg: gradientBg
+    property var activeColor: GStyle.gP("themeDefaultColor") //"#21be2b"
+    property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
+
 
     //
     // List model that generates the page selector
@@ -99,7 +103,10 @@ Drawer {
             Rectangle {
                 anchors.fill: parent
 
+                color: activeColor
                 LinearGradient {
+                    id : gradientBg
+                    visible: false
                     anchors.fill: parent
                     start: Qt.point (0, 0)
                     end: Qt.point (parent.width, 0)

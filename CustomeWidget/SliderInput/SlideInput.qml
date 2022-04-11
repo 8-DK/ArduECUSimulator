@@ -24,6 +24,10 @@ Rectangle {
 
     property alias isRandomeOn: randomeCheckBox.isChecked
 
+
+    property var activeColor: GStyle.gP("themeDefaultColor") //activeColor
+    property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
+    property var textBoxBgColor: GStyle.gP("textBoxBgColor")
     FontLoader {
         id:sevenSegmentFont
         source:'qrc:/Fonts/Seven_Segment.ttf'
@@ -80,7 +84,9 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: parent.width*0.1
-                font.pixelSize: 12
+                font.weight: "DemiBold"
+                font.pixelSize: parent.width*0.03
+                font.family: fontLdr.robotoRegular
                 validator: RegExpValidator { regExp: /^[0-9]{1,}([,.][0-9]{1,2})?$/ }
 
                 onTextEdited: {
@@ -90,8 +96,9 @@ Rectangle {
                 background: Rectangle {
                     implicitWidth: textInput.width
                     implicitHeight: textInput.height
-                    color: textInput.enabled ? "#cad9c3" : "#afb5ac"
-                    border.color: textInput.enabled ? "#21be2b" : "transparent"
+                    color: textInput.enabled ? textBoxBgColor : "#afb5ac"
+                    border.color: textInput.enabled ? activeColor : "transparent"
+                    radius: parent.width*0.05
                 }
             }
         }
@@ -131,7 +138,7 @@ Rectangle {
                     Rectangle {
                         width: valSlider.visualPosition * parent.width
                         height: parent.height
-                        color: "#21be2b"
+                        color: activeColor
                         radius: 2
                     }
                 }

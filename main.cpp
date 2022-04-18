@@ -1,4 +1,4 @@
-#include "mainwindowglobalcontext.h"
+#include "appcontext.h"
 
 int main(int argc, char *argv[])
 {
@@ -6,9 +6,9 @@ int main(int argc, char *argv[])
     QCoreApplication::addLibraryPath(".");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    MainWindowGlobalContext *m_MainWindowGlobalContext;
+    AppContext *m_MainWindowGlobalContext;
 
-    m_MainWindowGlobalContext = MainWindowGlobalContext::getInstance();
+    m_MainWindowGlobalContext = AppContext::getInstance();
 
     qmlRegisterSingletonType<LocalStrings>("LocalStringsLib", 1, 0, "LocalStrings",&LocalStrings::getInstance);
     qmlRegisterSingletonType<GStyle>("GStyleLib", 1, 0, "GStyle",&GStyle::getInstance);

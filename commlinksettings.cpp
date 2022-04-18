@@ -41,17 +41,6 @@ CommLinkSettings::SerialParam CommLinkSettings::serialParam() const
 }
 
 
-//void CommLinkSettings::updateSettings()
-//{
-//    //m_serialSettings.readFromDatabase();
-//    selectSerialPort();
-//    selectBaudRate();
-//    selectDataBits();
-//    selectParity();
-//    selectStopBits();
-//    selectFlowControl();
-//}
-
 QStringList CommLinkSettings::getSerialPort()
 {
     QStringList lport;

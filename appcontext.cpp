@@ -1,9 +1,9 @@
-#include "mainwindowglobalcontext.h"
+#include "appcontext.h"
 #include <QMessageBox>
 
-MainWindowGlobalContext* MainWindowGlobalContext::m_MainWindowGlobalContext;
+AppContext* AppContext::m_MainWindowGlobalContext;
 
-MainWindowGlobalContext::MainWindowGlobalContext(QObject *parent) :
+AppContext::AppContext(QObject *parent) :
     QObject(parent)
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -14,25 +14,25 @@ MainWindowGlobalContext::MainWindowGlobalContext(QObject *parent) :
     timerUiUpdate->start();
 }
 
-void MainWindowGlobalContext::mainWindowRegisterQML()
+void AppContext::mainWindowRegisterQML()
 {
 
 }
-void MainWindowGlobalContext::uiUpdateLoop()
+void AppContext::uiUpdateLoop()
 {
     app->processEvents();
 }
-int MainWindowGlobalContext::appInit(QApplication *appPtr)
+int AppContext::appInit(QApplication *appPtr)
 {
     app = appPtr;
     return 1;
 }
-int MainWindowGlobalContext::appExec()
+int AppContext::appExec()
 {
     return app->exec();
 }
 
-int MainWindowGlobalContext::loadEngine(QUrl url)
+int AppContext::loadEngine(QUrl url)
 {
     qDebug()<< "----- load qml";
     //  app->quit();
@@ -47,7 +47,7 @@ int MainWindowGlobalContext::loadEngine(QUrl url)
 }
 
 
-int MainWindowGlobalContext::engineStart(QQmlApplicationEngine *m_engine)
+int AppContext::engineStart(QQmlApplicationEngine *m_engine)
 {
 //    m_engine->rootContext()->setContextProperty("Lists",&model);
 //    m_engine->rootContext()->setContextProperty("pathController", &controller);
@@ -58,7 +58,7 @@ int MainWindowGlobalContext::engineStart(QQmlApplicationEngine *m_engine)
     return 1;
 }
 
-void MainWindowGlobalContext::addMessageBox(QString Title,QString Text,ALERT_TYPE type)
+void AppContext::addMessageBox(QString Title,QString Text,ALERT_TYPE type)
 {
     QMessageBox msgBox;
     msgBox.setWindowTitle(Title);
@@ -69,21 +69,21 @@ void MainWindowGlobalContext::addMessageBox(QString Title,QString Text,ALERT_TYP
     /*int ret = */msgBox.exec();
 }
 
-MainWindowGlobalContext* MainWindowGlobalContext::getInstance()
+AppContext* AppContext::getInstance()
 {
     if(!m_MainWindowGlobalContext)
     {
-        m_MainWindowGlobalContext = new MainWindowGlobalContext();
+        m_MainWindowGlobalContext = new AppContext();
     }
 
     return m_MainWindowGlobalContext;
 }
-QObject* MainWindowGlobalContext::getRootObject()
+QObject* AppContext::getRootObject()
 {
     return rootObject;
 }
 
-void MainWindowGlobalContext::setRootObject(QObject* m_rootObject)
+void AppContext::setRootObject(QObject* m_rootObject)
 {
     rootObject = m_rootObject;
 }

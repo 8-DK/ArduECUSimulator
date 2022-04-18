@@ -34,12 +34,12 @@ typedef enum ALERT_TYPE{
     QUESTION
 }ALERT_TYPE;
 
-class MainWindowGlobalContext : public QObject
+class AppContext : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(MainWindowGlobalContext)
+    Q_DISABLE_COPY(AppContext)
 //      MainWindowGlobalContext();
-    explicit MainWindowGlobalContext(QObject *parent = nullptr);
+    explicit AppContext(QObject *parent = nullptr);
     QObject* rootObject;
 public:    
     QGuiApplication *app = nullptr;
@@ -55,8 +55,8 @@ public:
     QObject* getRootObject();
     void setRootObject(QObject*);
 
-    static MainWindowGlobalContext* m_MainWindowGlobalContext;
-    static MainWindowGlobalContext*  getInstance();
+    static AppContext* m_MainWindowGlobalContext;
+    static AppContext*  getInstance();
     static QObject* getInstance(QQmlEngine *engine, QJSEngine *scriptEngine){Q_UNUSED(engine);Q_UNUSED(scriptEngine);return getInstance();}
 
 public slots:

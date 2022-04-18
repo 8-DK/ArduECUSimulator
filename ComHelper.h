@@ -60,9 +60,6 @@ private:
     QTimer *m_timer = nullptr;
     bool isDeviceDisconnected = false;
 
-
-
-
 public:
     static QSerialPort *m_serial;
     static ComHelper* m_serialPort;
@@ -71,11 +68,9 @@ public:
     static QByteArray message;
     void autoConnect();
     void connectIfNotConnected();
-    void autoConnecTimerEvent(QTimerEvent *event);
-    Q_INVOKABLE QString getStatusSerialPort();
+    void autoConnecTimerEvent(QTimerEvent *event);    
 
-    QString  serialPortIsOpenFlag = "";
-    bool serialPortIsOpenFlag1 = false;
+    bool isSerialPortConnected = false;
     float m_ProgressBarvalue = 0.0001;
     QJsonObject m_pointData;
     QJsonObject rootJsonObj;

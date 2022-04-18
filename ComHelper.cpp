@@ -8,7 +8,7 @@
 #include <QMultiMap>
 #include <qfile.h>
 #include <QDateTime>
-#include "mainwindowglobalcontext.h"
+#include "appcontext.h"
 
 QSerialPort * ComHelper::m_serial;
 ComHelper* ComHelper::m_serialPort;
@@ -48,7 +48,7 @@ ComHelper::ComHelper(QObject *parent) :
 
 bool ComHelper::isSerialPortOpen()
 {
-    return serialPortIsOpenFlag1;
+    return isSerialPortConnected;
 }
 
 void ComHelper::openSerialPort()
@@ -71,8 +71,7 @@ void ComHelper::openSerialPort()
 
     if (m_serial->open(QIODevice::ReadWrite))
     {
-        serialPortIsOpenFlag = " Connected ";
-        serialPortIsOpenFlag1 = true;
+        isSerialPortConnected = true;
         m_ProgressBarvalue = 0;
         if(m_autoConnectTimer->isActive())
         {
@@ -102,21 +101,13 @@ void ComHelper::openSerialPort()
             //  MainWindowGlobalContext::getInstance()->addMessageBox("Serial Port","Unable to open Serial Port",CRITICAL);
             emit showMessageBoxUnableToConnectSeralPort();
             showStatusMessage(tr("Open error"));
-            serialPortIsOpenFlag = " Please Connect device ";
         }
     }
 }
 
-
-QString ComHelper::getStatusSerialPort()
-{
-    return serialPortIsOpenFlag;
-}
-
 void ComHelper::closeSerialPort(int showPopup)
 {
-    serialPortIsOpenFlag1 = false;
-
+    isSerialPortConnected = false;
     if (m_serial->isOpen())
     {
         m_serial->close();
@@ -127,13 +118,9 @@ void ComHelper::closeSerialPort(int showPopup)
             //MainWindowGlobalContext::getInstance()->addMessageBox("Serial Port","Serial Port Disconnected",INFO);
             showStatusMessage(tr("Disconnected"));
         }
-        serialPortIsOpenFlag=" Disconnected ";
-
     }
     else {
         showStatusMessage(tr("Serial Port not Connected"));
-        serialPortIsOpenFlag=" not connected ";
-
     }
 }
 
@@ -147,12 +134,6 @@ void ComHelper::readData()
 {
     m_message = m_serial->readAll();
     int count = m_message.size();
-
-//    QFile messagesJsonFile("logfile.json");
-//    if(!messagesJsonFile.isOpen())
-//    {
-//        messagesJsonFile.open(QFile::Append);
-//    }
 
     if(count == 0)
     {
@@ -189,7 +170,7 @@ void ComHelper::disconnectDevice()
         {
             emit showMessageBoxSerialPortDisconnected();
             isDeviceDisconnected = false;
-            serialPortIsOpenFlag1 = false;
+            isSerialPortConnected = false;
         }
     }
 }

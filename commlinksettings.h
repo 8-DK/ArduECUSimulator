@@ -68,14 +68,6 @@ private:
 
     Settings m_currentSettings;
 
-//    Settings m_currentSettings = {
-//        .name = "Custom",
-//        .baudRate = 57600,
-//        .dataBits = QSerialPort::Data8,
-//        .parity = QSerialPort::NoParity,
-//        .stopBits = QSerialPort::OneStop,
-//        .flowControl = QSerialPort::NoFlowControl
-//    };
     SerialPortSettings m_serialSettings;
 
 

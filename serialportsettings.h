@@ -5,7 +5,7 @@
 #include <QString>
 #include <QSerialPort>
 #include <QSqlDatabase>
-//#include <myserialport.h>
+//#include <ComHelper.h>
 
 class SerialPortSettings : public QObject
 {

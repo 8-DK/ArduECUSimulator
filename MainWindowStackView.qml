@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
-import SerialPortLib 1.0
+import ComHelperLib 1.0
 import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
@@ -20,6 +20,7 @@ ApplicationWindow {
     //flags: Qt.Window | Qt.FramelessWindowHint // | Qt.WindowCloseButtonHint | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.FramelessWindowHint
     //    visibility: Window.FullScreen
     property alias fontLdr: fontLdr
+//    property alias navbar: navBar
 
     MessageBox{
         id: subscriptionAlert
@@ -35,18 +36,29 @@ ApplicationWindow {
         id : fontLdr
     }
 
+
+    NavBar {
+        id:navBar
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.top: parent.top
+        header: ""
+        onClickedMenu: print('Button onClicked')
+    }
+
+
     Rectangle{
         id: stackViewRectangle
         width: mainWindowWithStackView.width
-        height: mainWindowWithStackView.height
-        anchors.top: mainWindowWithStackView.top
-        anchors.topMargin:mainWindowWithStackView.height
+        height: mainWindowWithStackView.height-navBar.height
+        anchors.top: navBar.bottom
+//        anchors.topMargin:mainWindowWithStackView.height
         border.color: "#333333"
         StackView {
             id: mainStackView
-            initialItem: mainDashBoard//mainMyserilPortStackView
+            initialItem: mainDashBoard//mainComHelperStackView
             anchors.fill: parent
-            property MyserilPort mainMyserilPortStackView: MyserilPort{
+            property ComLinkview mainComHelperStackView: ComLinkview{
                 onSendPushNewProject: {
                     mainStackView.push(mainStackView.mainDashBoard)
                 }

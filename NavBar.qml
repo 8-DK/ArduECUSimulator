@@ -1,12 +1,13 @@
 import QtQuick 2.4
 import QtQuick.Window 2.12
-import SerialPortLib 1.0
+import ComHelperLib 1.0
 import QtGraphicalEffects 1.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.2
 import LocalStringsLib 1.0
 import GStyleLib 1.0
+import "CustomeWidget/SideDrawer"
 
 Rectangle {
     id:root
@@ -17,9 +18,9 @@ Rectangle {
     signal clickedMenu();
     property string header: ''
 
-    FontLoader {
-        id:openSansRegular
-        source:'Fonts/Open_Sans_Regular.ttf'
+    function updateNavTitle(title)
+    {
+        root.header = title
     }
 
     MessageBox{
@@ -48,7 +49,7 @@ Rectangle {
         onOkButtonClickSignal: {
             drawer.close()
             serialPortNotConnectedMessage.hide()
-            //            mainStackView.push(mainStackView.mainMyserilPortStackView)
+            //            mainStackView.push(mainStackView.mainComHelperStackView)
             mainStackView.push(mainStackView.mainSensorStackView)
             //setNextScreen(1)
         }
@@ -57,13 +58,13 @@ Rectangle {
             serialPortNotConnectedMessage.hide()
         }
     }
-        MessageBox{
-            id: serialDisconnectedMessage
-            onOkButtonClickSignal: {
-                drawer.close()
-                serialDisconnectedMessage.hide()
-            }
+    MessageBox{
+        id: serialDisconnectedMessage
+        onOkButtonClickSignal: {
+            drawer.close()
+            serialDisconnectedMessage.hide()
         }
+    }
 
     MessageBox{
         id: appExitMessagebox
@@ -81,18 +82,18 @@ Rectangle {
         }
     }
     MessageBox{
-            id: disconnectConfirmationMessagebox
-            messageDetails: LocalStrings.getLocalTextValue("yes")
-            messageDescription: LocalStrings.getLocalTextValue("disconnectConfirmation")
-            onOkButtonClickSignal: {
-                 MySerialPort.closeSerialPort(1)
-                  disconnectConfirmationMessagebox.hide()
-            }
-            onCancelButtonClickSignal: {
-                disconnectConfirmationMessagebox.hide()
-                drawer.close()
-            }
+        id: disconnectConfirmationMessagebox
+        messageDetails: LocalStrings.getLocalTextValue("yes")
+        messageDescription: LocalStrings.getLocalTextValue("disconnectConfirmation")
+        onOkButtonClickSignal: {
+            ComHelper.closeSerialPort(1)
+            disconnectConfirmationMessagebox.hide()
         }
+        onCancelButtonClickSignal: {
+            disconnectConfirmationMessagebox.hide()
+            drawer.close()
+        }
+    }
 
 
     Rectangle {
@@ -100,7 +101,7 @@ Rectangle {
         visible: true
         width: mainWindowWithStackView.width
         height: mainWindowWithStackView.height * 0.065//0.09
-        color : GStyle.whiteColor()
+        color : GStyle.gP("widgetBGColor")
         anchors.top: mainWindowWithStackView.top
         Image {
             id: image
@@ -131,14 +132,14 @@ Rectangle {
             width: GStyle.windowWidth() * 0.0141 //navBar.width * 0.015
             height: GStyle.windowHeight() * 0.025 //navBar.height * 0.5
             anchors.right: navBar.right
-            anchors.rightMargin: GStyle.windowWidth() * 0.053//navBar.width * 0.03
+            anchors.rightMargin: navBar.width * 0.02
             anchors.verticalCenter: navBar.verticalCenter
             fillMode: Image.PreserveAspectFit
             source: "assets/menu.png"
         }
         ColorOverlay {
-            anchors.fill: bug
-            source: bug
+            anchors.fill: image1
+            source: image1
             color: "#80800000"
         }
         MouseArea {
@@ -197,256 +198,107 @@ Rectangle {
         source: navBar
     }
 
-    Drawer {
+
+    SideDrawer {
         id: drawer
         edge: Qt.RightEdge
         width: mainWindowWithStackView.width * 0.20
         height: mainWindowWithStackView.height
-        background: Rectangle{
-            id: drawerRect
-            border.width: 1
-            border.color: GStyle.borderColor()//"blue"
 
-            Button{
-                id: homeButton
-                anchors.top: parent.top
-                anchors.topMargin: drawer.height * 0.05
-                anchors.left: parent.left
-                anchors.leftMargin: drawer.width * 0.1
-                width: drawer.width * 0.6
-                height: drawer.height * 0.03
+        //
+        // Icon properties
+        //
+        iconTitle: "ArduOBD2 Sim"
+        iconSource: "/assets/Logo.png"
+        iconSubtitle: qsTr ("Version 1.0 Beta - Developed by 8-DK")
 
-                background: Rectangle{
-                    color: "transparent"
-                    //border.width: 1
-                }
-                Text{
-                    id: homeButtonText
-                    anchors.verticalCenter: homeButton.verticalCenter
-                    text: "Home"
-                    font.family: fontLdr.openSansRegular
-                    font.pixelSize: GStyle.getButtonPixelSize()
-                    font.weight: "Normal"
-                }
-                onClicked:
-                {
-                    drawer.close()
-                    mainStackView.pop(mainStackView.mainDashboardStackView)
-                }
-            }
-
-            Button
+        //
+        // Define the actions to take for each drawer item
+        // Drawers 5 and 6 are ignored, because they are used for
+        // displaying a spacer and a separator
+        //
+        actions: {
+            0: function() { console.log ("Item 1 clicked!") },
+            1: function() {
+                    connectComm()
+             },
+            2: function() { console.log ("Item 3 clicked!") },
+            3: function() { console.log ("Item 4 clicked!") },
+            4: function() { console.log ("Item 5 clicked!") },
+            7: function() { console.log ("Item 6 clicked!") },
+            8: function()
             {
-                id: configurationButton
-                anchors.top: homeButton.bottom
-                anchors.topMargin: drawer.height * 0.02
-                anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.1
-                width: drawer.width * 0.6
-                height: drawer.height * 0.03
-                background: Rectangle{
-                    color: "transparent"
-                    //border.width: 1
-                }
+                drawer.close()
+                appExitMessagebox.show()
+            }
+        }
 
-                Text{
-                    id: configurationButtonText
-                    anchors.verticalCenter: configurationButton.verticalCenter
-                    text: "RPA Configuration"
-                    font.family: fontLdr.openSansRegular
-                    font.pixelSize: GStyle.getButtonPixelSize()
-                    font.weight: "Normal"
-                }
-                onClicked:{
-                    if(MySerialPort.isSerialPortOpen() === true)
-                    {
-                        drawer.close()
-                        mainStackView.push(mainStackView.mainSensorStackView)
-                    }
-                    else{
+        //
+        // Define the drawer items
+        //
+        items: ListModel {
+            id: pagesModel
 
-                        serialPortNotConnectedMessage.show()
-                    }
-                }
+            ListElement {
+                pageTitle: qsTr ("Item 1")
+                pageIcon: "qrc:/assets/icons/dashboard.svg"
             }
 
-            Button{
-                id: logButton
-                anchors.top: configurationButton.bottom
-                anchors.topMargin: drawer.height * 0.02
-                anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.1
-                width: drawer.width * 0.6
-                height: drawer.height * 0.03
-                background: Rectangle{
-                    color: "transparent"
-                    //border.width: 1
-                }
-
-                Text{
-                    id: logButtonText
-                    anchors.verticalCenter: logButton.verticalCenter
-                    text: "RPA Logs"
-                    font.family: fontLdr.openSansRegular
-                    font.pixelSize: GStyle.getButtonPixelSize()
-                    font.weight: "Normal"
-                }
-                onClicked: {
-                    drawer.close()
-                    if(0 === fileOpenObject.openFileInTextEditor("logfile.txt"))
-                    {
-                        notLogFile.show()   //no log fileOpenObject
-                    }
-                }
+            ListElement {
+                pageTitle: qsTr ("Item 2")
+                pageIcon: "qrc:/assets/icons/automotive-gear-oil.svg"
             }
 
-            Button{
-                id: systemSettingsButton
-                anchors.top: logButton.bottom
-                anchors.topMargin: drawer.height * 0.02
-                anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.1
-                width: drawer.width * 0.6
-                height: drawer.height * 0.03
-                background: Rectangle{
-                    color: "transparent"
-                    //border.width: 1
-                }
-
-                Text{
-                    id: systemSettingsButtonText
-                    anchors.verticalCenter: systemSettingsButton.verticalCenter
-                    text: "User Setting"
-                    font.family: fontLdr.openSansRegular
-                    font.pixelSize: GStyle.getButtonPixelSize()
-                    font.weight: "Normal"
-                }
-                onClicked: {
-                    drawer.close()
-                    mainStackView.push(mainStackView.mainSystemSettingsStackView)
-                }
+            ListElement {
+                pageTitle: qsTr ("Item 3")
+                pageIcon: "qrc:/assets/icons/car-inspection.svg"
             }
 
-
-            Button{
-                            id: disconnectButton
-                            anchors.top: systemSettingsButton.bottom
-                            anchors.topMargin: drawer.height * 0.02
-                            anchors.left: parent.left
-                            anchors.leftMargin: parent.width * 0.1
-                            width: drawer.width * 0.6
-                            height: drawer.height * 0.03
-                            background: Rectangle{
-                                color: "transparent"
-                            }
-                            Text{
-                                id: disconnectButtonText
-                                anchors.verticalCenter: disconnectButton.verticalCenter
-                                text:  LocalStrings.getLocalTextValue("disconnect")
-                                font.family: fontLdr.openSansRegular
-                                font.pixelSize: GStyle.getButtonPixelSize()
-                                font.weight: "Normal"
-                            }
-                            onClicked: {
-                                if(MySerialPort.isSerialPortOpen() === true)
-                                                    {
-                                                        drawer.close()
-                                                        disconnectConfirmationMessagebox.show()
-                                                    }
-                                                    else{
-                                                        serialDisconnectedMessage.messageDetails = LocalStrings.getLocalTextValue("ok")
-                                                        serialDisconnectedMessage.messageDescription = LocalStrings.getLocalTextValue("deviceNotConnected")
-                                                        serialDisconnectedMessage.show()
-                                                    }
-                                                }
-                            }
-
-
-
-            Button{
-                id: syncButton
-                anchors.top: disconnectButton.bottom
-                anchors.topMargin: drawer.height * 0.02
-                anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.1
-                width: drawer.width * 0.6
-                height: drawer.height * 0.03
-                background: Rectangle{
-                    color: "transparent"
-                    //border.width: 1
-                }
-
-                Text{
-                    id: syncText
-                    anchors.verticalCenter: syncButton.verticalCenter
-                    text: "Cloud Sync"
-                    font.family: fontLdr.openSansRegular
-                    font.pixelSize: GStyle.getButtonPixelSize()
-                    font.weight: "Normal"
-                }
-                onClicked: {
-                    drawer.close()
-                    syncComponent.startSyncFlow()
-                }
+            ListElement {
+                pageTitle: qsTr ("Item 4")
+                pageIcon: "qrc:/assets/icons/car-tire-wheel.svg"
             }
 
-            Button{
-                id: aboutButton
-                anchors.top: syncButton.bottom
-                anchors.topMargin: drawer.height * 0.02
-                anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.1
-                width: drawer.width * 0.6
-                height: drawer.height * 0.03
-                background: Rectangle{
-                    color: "transparent"
-                    //border.width: 1
-                }
-
-                Text{
-                    id: aboutButtonText
-                    anchors.verticalCenter: aboutButton.verticalCenter
-                    text: LocalStrings.getLocalTextValue("about")
-                    font.family: fontLdr.openSansRegular
-                    font.pixelSize: GStyle.getButtonPixelSize()
-                    font.weight: "Normal"
-                }
-                onClicked: {
-                    drawer.close()
-
-                   // appExitMessagebox.show()
-                    // Qt.quit()
-                }
+            ListElement {
+                pageTitle: qsTr ("Item 5")
+                pageIcon: "qrc:/assets/icons/engine-motor.svg"
             }
 
-            Button{
-                id: exitButton
-                anchors.top: aboutButton.bottom
-                anchors.topMargin: drawer.height * 0.02
-                anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.1
-                width: drawer.width * 0.6
-                height: drawer.height * 0.03
-                background: Rectangle{
-                    color: "transparent"
-                    //border.width: 1
-                }
+            ListElement {
+                spacer: true
+            }
 
-                Text{
-                    id: exitButtonText
-                    anchors.verticalCenter: exitButton.verticalCenter
-                    text:  LocalStrings.getLocalTextValue("exit")
-                    font.family: fontLdr.openSansRegular
-                    font.pixelSize: GStyle.getButtonPixelSize()
-                    font.weight: "Normal"
-                }
-                onClicked: {
-                    drawer.close()
-                    appExitMessagebox.show()
-                }
+            ListElement {
+                separator: true
+            }
+
+            ListElement {
+                pageTitle: qsTr ("Item 6")
+                pageIcon: "qrc:/assets/icons/lubricant-oil.svg"
+            }
+
+            ListElement {
+                pageTitle: qsTr ("Exit")
+                pageIcon: "qrc:/assets/icons/open-door.svg"
             }
         }
     }
+
+    function connectComm()
+    {
+        if(ComHelper.isSerialPortOpen() === true)
+        {
+            drawer.close()
+            disconnectConfirmationMessagebox.show()
+        }
+        else{
+            mainStackView.push(mainStackView.mainComHelperStackView)
+//            serialDisconnectedMessage.messageDetails = LocalStrings.getLocalTextValue("ok")
+//            serialDisconnectedMessage.messageDescription = LocalStrings.getLocalTextValue("deviceNotConnected")
+//            serialDisconnectedMessage.show()
+        }
+    }
+
 }
 
 

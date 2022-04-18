@@ -28,11 +28,11 @@ unix:!symbian {
 
 win32 {
     RC_ICONS +=  assets\sim_icon.ico
-equals(QT_MINOR_VERSION, 12) {
-   MSVC_PATH  = "C:/Qt/Qt5.12.0/5.12.0/mingw73_64"
-} else {
-   MSVC_PATH  = "C:/Qt/Qt5.14/5.14.1/mingw73_64"
-}
+    equals(QT_MINOR_VERSION, 12){
+       MSVC_PATH  = "C:/Qt/Qt5.12.0/5.12.0/mingw73_64"
+    } else {
+       MSVC_PATH  = "C:/Qt/Qt5.14/5.14.1/mingw73_64"
+    }
 
     QTPLUGIN += /plugins
 
@@ -48,21 +48,23 @@ equals(QT_MINOR_VERSION, 12) {
 
 RESOURCES += qml.qrc
 
+INCLUDEPATH += $$PWD/moduls/mavlink \
+
 SOURCES += \
+    ComHelper.cpp \
     commlinksettings.cpp \
     localstrings.cpp \
     main.cpp \
-    mainwindowglobalcontext.cpp \
-    myserialport.cpp \
+    appcontext.cpp \
     pidencoderdecoder.cpp \
     serialportsettings.cpp \
     styleglobalsconsts.cpp
 
 HEADERS += \
+    ComHelper.h \
     commlinksettings.h \
     localstrings.h \
-    mainwindowglobalcontext.h \
-    myserialport.h \
+    appcontext.h \
     pidencoderdecoder.h \
     serialportsettings.h \
     styleglobalsconsts.h

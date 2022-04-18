@@ -12,11 +12,12 @@ import GStyleLib 1.0
 
 Item {
     id : fontLoader
-    property alias defaultFont: defaultGCSFont.name
+    property alias defaultFont: appDefaultFont.name
     property alias sevenSegment: sevenSegmentFont.name
     property alias openSansRegular: openSansRegular.name
+    property alias robotoRegular: robotoRegular.name
     FontLoader {
-        id:defaultGCSFont
+        id:appDefaultFont
         source: LocalStrings.getLocalTextValue("fontDefault")
     }
 

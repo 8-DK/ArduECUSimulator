@@ -1,42 +1,26 @@
 <RCC>
     <qresource prefix="/">
-        <file>MainWindowStackView.qml</file>
-        <file>MyserilPort.qml</file>
-        <file>NavBar.qml</file>
-        <file>assets/menu.png</file>
-        <file>assets/splash_Screen.png</file>
-        <file>MessageBox.qml</file>
-        <file>ProgressBarCustom.qml</file>
-        <file>localFiles/Theme.json</file>
-        <file>localFiles/LocalStrings.json</file>
-        <file>assets/Logo.png</file>
-        <file>Fonts/Montserrat-Regular.ttf</file>
-        <file>Fonts/Open_Sans_Bold.ttf</file>
-        <file>Fonts/Open_Sans_Bold_Italic.ttf</file>
-        <file>Fonts/Open_Sans_Italic.ttf</file>
-        <file>Fonts/Open_Sans_Regular.ttf</file>
-        <file>Fonts/RedHatDisplay-Regular.ttf</file>
-        <file>Fonts/Roboto-Regular.ttf</file>
-        <file>assets/bell.png</file>
-        <file>assets/Logo_Medium.svg</file>
-        <file>MainGridview.qml</file>
-        <file>CustomeWidget/Dial/background.png</file>
+        <file>CustomeWidget/BitMapView/BitMapView.qml</file>
+        <file>CustomeWidget/CardView/CardView.qml</file>
         <file>CustomeWidget/Dial/CustomeDial.qml</file>
+        <file>CustomeWidget/Dial/QuitButton.qml</file>
+        <file>CustomeWidget/Dial/background.png</file>
         <file>CustomeWidget/Dial/needle.png</file>
         <file>CustomeWidget/Dial/needle_shadow.png</file>
         <file>CustomeWidget/Dial/overlay.png</file>
         <file>CustomeWidget/Dial/quit.png</file>
-        <file>CustomeWidget/Dial/QuitButton.qml</file>
-        <file>Fonts/Seven_Segment.ttf</file>
+        <file>CustomeWidget/Dial2/CustomeDial2.qml</file>
+        <file>CustomeWidget/Header/CustomHeader.qml</file>
+        <file>CustomeWidget/Knob/Knob.qml</file>
+        <file>CustomeWidget/LargeToggle/LargeToggleSwitch.qml</file>
+        <file>CustomeWidget/QMLUtils/SvgImage.qml</file>
         <file>CustomeWidget/SegmentDisplay/SegementDisplay.qml</file>
+        <file>CustomeWidget/SideDrawer/DrawerItem.qml</file>
+        <file>CustomeWidget/SideDrawer/SideDrawer.qml</file>
         <file>CustomeWidget/SliderInput/SlideInput.qml</file>
         <file>CustomeWidget/Switch/CustomSwitch.qml</file>
-        <file>CustomeWidget/Header/CustomHeader.qml</file>
-        <file>CustomeWidget/LargeToggle/LargeToggleSwitch.qml</file>
-        <file>assets/sim_icon.ico</file>
-        <file>localFiles/PIDList.json</file>
-        <file>CustomeWidget/CardView/CardView.qml</file>
-        <file>CustomeWidget/BitMapView/BitMapView.qml</file>
+        <file>FontHelper.qml</file>
+        <file>Fonts/Montserrat-Regular.ttf</file>
         <file>Fonts/Nunito/Nunito-Black.ttf</file>
         <file>Fonts/Nunito/Nunito-BlackItalic.ttf</file>
         <file>Fonts/Nunito/Nunito-Bold.ttf</file>
@@ -51,6 +35,52 @@
         <file>Fonts/Nunito/Nunito-Regular.ttf</file>
         <file>Fonts/Nunito/Nunito-SemiBold.ttf</file>
         <file>Fonts/Nunito/Nunito-SemiBoldItalic.ttf</file>
-        <file>FontHelper.qml</file>
+        <file>Fonts/Open_Sans_Bold.ttf</file>
+        <file>Fonts/Open_Sans_Bold_Italic.ttf</file>
+        <file>Fonts/Open_Sans_Italic.ttf</file>
+        <file>Fonts/Open_Sans_Regular.ttf</file>
+        <file>Fonts/RedHatDisplay-Regular.ttf</file>
+        <file>Fonts/Roboto-Regular.ttf</file>
+        <file>Fonts/Seven_Segment.ttf</file>
+        <file>MainGridview.qml</file>
+        <file>MainWindowStackView.qml</file>
+        <file>MessageBox.qml</file>
+        <file>ComLinkview.qml</file>
+        <file>NavBar.qml</file>
+        <file>ProgressBarCustom.qml</file>
+        <file>assets/Logo.png</file>
+        <file>assets/Logo_Medium.svg</file>
+        <file>assets/bell.png</file>
+        <file>assets/icons/automobile.svg</file>
+        <file>assets/icons/automotive-gear-oil.svg</file>
+        <file>assets/icons/car-battery.svg</file>
+        <file>assets/icons/car-document.svg</file>
+        <file>assets/icons/car-inspection.svg</file>
+        <file>assets/icons/car-repair-mechanic.svg</file>
+        <file>assets/icons/car-tire-wheel.svg</file>
+        <file>assets/icons/chassis.svg</file>
+        <file>assets/icons/connected-plug.svg</file>
+        <file>assets/icons/dashboard.svg</file>
+        <file>assets/icons/driver.svg</file>
+        <file>assets/icons/electric-car-ev.svg</file>
+        <file>assets/icons/engine-motor.svg</file>
+        <file>assets/icons/gearbox-engine.svg</file>
+        <file>assets/icons/hyperlink-linked.svg</file>
+        <file>assets/icons/hyperlink-unlinked.svg</file>
+        <file>assets/icons/lubricant-oil.svg</file>
+        <file>assets/icons/open-door.svg</file>
+        <file>assets/icons/sports-car.svg</file>
+        <file>assets/icons/steering-wheel.svg</file>
+        <file>assets/icons/wheel.svg</file>
+        <file>assets/menu.png</file>
+        <file>assets/sim_icon.ico</file>
+        <file>assets/splash_Screen.png</file>
+        <file>localFiles/LocalStrings.json</file>
+        <file>localFiles/PIDList.json</file>
+        <file>localFiles/Theme.json</file>
+        <file>localFiles/pidList.csv</file>
+        <file>CustomeWidget/ButtonRound/ButtonRound.qml</file>
+        <file>CustomeWidget/ButtonRound/ShineButton.qml</file>
+        <file>CustomeWidget/ButtonRound/IconButton.qml</file>
     </qresource>
 </RCC>

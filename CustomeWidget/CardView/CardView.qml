@@ -12,6 +12,7 @@ import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
 import GStyleLib 1.0
 import "../Dial"
+import "../Dial2"
 import "../SegmentDisplay"
 import "../SliderInput"
 import "../Switch"
@@ -48,6 +49,42 @@ DelegateModel {
                 id:slider
                 maxVal: 120
                 minVal: 0
+                stepVal: 1
+                //randomeChk:false
+                height: parent.height*0.3
+            }
+        }
+    }
+
+    Component{
+        id:custDia2
+        Rectangle{
+            radius: GStyle.getCardRadius()
+            clip: true
+
+            Timer{
+                id : randModeValueGenerator
+                running: slider.isRandomeOn
+                repeat: true
+                interval: 1000
+                onTriggered: {
+                    slider.value = GStyle.getRandomeInt(slider.minVal,slider.maxVal)
+                }
+            }
+
+            CustomeDial2
+            {
+                id: dial
+                anchors.centerIn: parent
+                value :  slider.value
+                minVal: 0
+                maxVal : 120
+                height: parent.height*0.7
+            }
+            SlideInput{
+                id:slider
+                minVal: 0
+                maxVal: 120
                 stepVal: 1
                 //randomeChk:false
                 height: parent.height*0.3
@@ -168,6 +205,8 @@ DelegateModel {
                         return slidInp
                     else if(widgetType === 3)
                         return custBitMap
+                    else if(widgetType === 4)
+                        return custDia2
                     else
                         return slidInp
 

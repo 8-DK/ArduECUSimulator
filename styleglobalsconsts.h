@@ -167,10 +167,10 @@ private:
     int m_failsafeTriggerScrollViewHeight;
     int m_armingChecksScrollViewHeight;
 
-    int m_dropshadowHorizontalOffset = 3;
-    int m_dropshadowVerticalOffset = 3;
-    int m_dropshadowRadius = 10;
-    int m_dropshadowSamples = 10;
+    int m_dropshadowHorizontalOffset = 1;
+    int m_dropshadowVerticalOffset = 1;
+    int m_dropshadowRadius = 5;
+    int m_dropshadowSamples = 5;
     QString m_dropeShadowColor = "#758691";
     QString m_blueColor="#48B0E5";
     QString m_whiteColor="#FFFFFF";

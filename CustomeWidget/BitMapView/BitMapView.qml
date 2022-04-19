@@ -29,7 +29,7 @@ Item {
 
     Rectangle{
         id : bgRect
-        color: "#00000000"
+        color: GStyle.gP("trans")
         anchors.fill: parent
 
         Text {

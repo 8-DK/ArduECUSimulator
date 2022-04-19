@@ -166,11 +166,6 @@ DelegateModel {
         onEntered: visualModel.items.move(drag.source.visualIndex, icon.visualIndex)
         property int visualIndex: DelegateModel.itemsIndex
         Binding { target: icon; property: "visualIndex"; value: visualIndex }
-        //                                Rectangle{
-        //                                    width: parent.width
-        //                                    height: parent.height
-        //                                    color: "yellow"
-        //                                }
 
         Rectangle {
             id: icon

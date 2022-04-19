@@ -61,6 +61,25 @@ Item {
             height: parent.height
             cellHeight:300 //630x300
             snapMode : GridView.SnapToRow
+            ScrollBar.vertical :  ScrollBar {
+                id: scrollBar
+                hoverEnabled: true
+                active: hovered || pressed
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                width: parent.width * 0.015
+                orientation: Qt.Vertical
+                visible: true// rootGrid.moving?true:false
+                policy: ScrollBar.AsNeeded
+                contentItem: Rectangle {
+                    id:contentItem_rect2
+                    width:parent.width
+                    implicitHeight:4
+                    radius: implicitWidth/2
+                    color: GStyle.gP("themeDefaultColor")
+                }
+            }
             cellWidth: {
                 if( ( mainGridViewWndw.width/3) < rootGrid.cellHeight )
                     if( (mainGridViewWndw.width/2)<rootGrid.cellHeight)

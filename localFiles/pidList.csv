@@ -1,9 +1,9 @@
 Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendRanadome,AllowToChange,WidgetType,Value
 1,0,0,4,PIDs supported [01 - 20],,,,Bit encoded [A7..D0] == [PID $01..PID $20] See below,1,0,1,1,255
-1,1,1,4,Status since DTCs cleared,,,,Bit encoded. See below,1,0,1,1,0
-1,2,2,2,Freeze DTC,,,,,1,0,1,1,0
-1,3,3,2,Fuel system status,,,,Bit encoded. See below,1,0,1,1,0
-1,4,4,1,Calculated engine load,0,100,%,{\displaystyle {\tfrac {100}{255}}A} (or {\displaystyle {\tfrac {A}{2.55}}}),1,0,1,1,0
+1,1,1,4,Status since DTCs cleared,,,,Bit encoded. See below,1,0,1,2,0
+1,2,2,2,Freeze DTC,,,,,1,0,1,3,0
+1,3,3,2,Fuel system status,,,,Bit encoded. See below,1,0,1,4,0
+1,4,4,1,Calculated engine load,0,100,%,{\displaystyle {\tfrac {100}{255}}A} (or {\displaystyle {\tfrac {A}{2.55}}}),1,0,1,5,0
 1,5,5,1,Engine coolant temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1,0
 1,6,6,1,Short term fuel trim—Bank 1,-100,99.2,%,{\displaystyle {\frac {100}{128}}A-100},1,0,1,1,0
 1,7,7,1,Long term fuel trim—Bank 1,-100,99.2,%,,1,0,1,1,0

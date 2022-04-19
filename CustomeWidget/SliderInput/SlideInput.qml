@@ -10,7 +10,7 @@ Rectangle {
     id : slideInput
     width: parent.width
     height: parent.height
-    color: "#00000000"
+    color: GStyle.gP("trans")
     anchors.bottom: parent.bottom
     anchors.left:  parent.left
     anchors.right:  parent.right
@@ -55,12 +55,12 @@ Rectangle {
 
     Rectangle{
         id : bgRect
-        color: "#00000000"
+        color: GStyle.gP("trans")
         anchors.fill: parent
 
         Rectangle{
             id: rectangle
-            color: "#00000000"            
+            color: GStyle.gP("trans")
             height: parent.height*0.5
             anchors.bottom: rectangle1.top
             anchors.right: parent.right
@@ -107,7 +107,7 @@ Rectangle {
             id: rectangle1
             anchors.bottom: parent.bottom
             height: parent.height*0.5
-            color: "#00000000"
+            color: GStyle.gP("trans")
             anchors.right: parent.right
             anchors.left: parent.left
             Slider {

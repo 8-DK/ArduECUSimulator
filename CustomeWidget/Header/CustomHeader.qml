@@ -11,7 +11,7 @@ Rectangle {
     id : custHeaeder
     width: parent.width
     height: parent.height*0.15
-    color: "#00000000"
+    color: GStyle.gP("trans")
     property int digit: 6
     property string headerText: "Card Title"
     property bool enabled: true
@@ -33,7 +33,7 @@ Rectangle {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             width: parent.width*0.7
-             color: "#00000000"
+             color: GStyle.gP("trans")
 
             TextInput {
                 id: textInput
@@ -63,7 +63,7 @@ Rectangle {
         Rectangle{
             id: rectangle
             width: parent.width*0.3
-            color: "#00000000"
+            color: GStyle.gP("trans")
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             anchors.top: parent.top

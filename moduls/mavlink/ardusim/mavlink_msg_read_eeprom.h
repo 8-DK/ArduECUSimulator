@@ -8,7 +8,7 @@ typedef struct __mavlink_read_eeprom_t {
  uint16_t address; /*<  storage address.*/
  uint8_t target_system; /*<  System ID.*/
  uint8_t target_component; /*<  Component ID.*/
- uint8_t ; /*<  device specific state*/
+ uint8_t sendACK; /*<  operation response.*/
  uint8_t len; /*<  message len.*/
  uint8_t buffer[100]; /*<  data buffer.*/
  uint8_t status; /*<  status.*/
@@ -19,8 +19,8 @@ typedef struct __mavlink_read_eeprom_t {
 #define MAVLINK_MSG_ID_6_LEN 107
 #define MAVLINK_MSG_ID_6_MIN_LEN 107
 
-#define MAVLINK_MSG_ID_READ_EEPROM_CRC 49
-#define MAVLINK_MSG_ID_6_CRC 49
+#define MAVLINK_MSG_ID_READ_EEPROM_CRC 93
+#define MAVLINK_MSG_ID_6_CRC 93
 
 #define MAVLINK_MSG_READ_EEPROM_FIELD_BUFFER_LEN 100
 
@@ -31,7 +31,7 @@ typedef struct __mavlink_read_eeprom_t {
     7, \
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_read_eeprom_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_read_eeprom_t, target_component) }, \
-         { "", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_read_eeprom_t, ) }, \
+         { "sendACK", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_read_eeprom_t, sendACK) }, \
          { "address", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_read_eeprom_t, address) }, \
          { "len", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_read_eeprom_t, len) }, \
          { "buffer", NULL, MAVLINK_TYPE_UINT8_T, 100, 6, offsetof(mavlink_read_eeprom_t, buffer) }, \
@@ -44,7 +44,7 @@ typedef struct __mavlink_read_eeprom_t {
     7, \
     {  { "target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_read_eeprom_t, target_system) }, \
          { "target_component", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_read_eeprom_t, target_component) }, \
-         { "", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_read_eeprom_t, ) }, \
+         { "sendACK", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_read_eeprom_t, sendACK) }, \
          { "address", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_read_eeprom_t, address) }, \
          { "len", NULL, MAVLINK_TYPE_UINT8_T, 0, 5, offsetof(mavlink_read_eeprom_t, len) }, \
          { "buffer", NULL, MAVLINK_TYPE_UINT8_T, 100, 6, offsetof(mavlink_read_eeprom_t, buffer) }, \
@@ -61,7 +61,7 @@ typedef struct __mavlink_read_eeprom_t {
  *
  * @param target_system  System ID.
  * @param target_component  Component ID.
- * @param   device specific state
+ * @param sendACK  operation response.
  * @param address  storage address.
  * @param len  message len.
  * @param buffer  data buffer.
@@ -69,14 +69,14 @@ typedef struct __mavlink_read_eeprom_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_read_eeprom_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t target_system, uint8_t target_component, uint8_t , uint16_t address, uint8_t len, const uint8_t *buffer, uint8_t status)
+                               uint8_t target_system, uint8_t target_component, uint8_t sendACK, uint16_t address, uint8_t len, const uint8_t *buffer, uint8_t status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_READ_EEPROM_LEN];
     _mav_put_uint16_t(buf, 0, address);
     _mav_put_uint8_t(buf, 2, target_system);
     _mav_put_uint8_t(buf, 3, target_component);
-    _mav_put_uint8_t(buf, 4, );
+    _mav_put_uint8_t(buf, 4, sendACK);
     _mav_put_uint8_t(buf, 5, len);
     _mav_put_uint8_t(buf, 106, status);
     _mav_put_uint8_t_array(buf, 6, buffer, 100);
@@ -86,7 +86,7 @@ static inline uint16_t mavlink_msg_read_eeprom_pack(uint8_t system_id, uint8_t c
     packet.address = address;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    packet. = ;
+    packet.sendACK = sendACK;
     packet.len = len;
     packet.status = status;
     mav_array_memcpy(packet.buffer, buffer, sizeof(uint8_t)*100);
@@ -105,7 +105,7 @@ static inline uint16_t mavlink_msg_read_eeprom_pack(uint8_t system_id, uint8_t c
  * @param msg The MAVLink message to compress the data into
  * @param target_system  System ID.
  * @param target_component  Component ID.
- * @param   device specific state
+ * @param sendACK  operation response.
  * @param address  storage address.
  * @param len  message len.
  * @param buffer  data buffer.
@@ -114,14 +114,14 @@ static inline uint16_t mavlink_msg_read_eeprom_pack(uint8_t system_id, uint8_t c
  */
 static inline uint16_t mavlink_msg_read_eeprom_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t target_system,uint8_t target_component,uint8_t ,uint16_t address,uint8_t len,const uint8_t *buffer,uint8_t status)
+                                   uint8_t target_system,uint8_t target_component,uint8_t sendACK,uint16_t address,uint8_t len,const uint8_t *buffer,uint8_t status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_READ_EEPROM_LEN];
     _mav_put_uint16_t(buf, 0, address);
     _mav_put_uint8_t(buf, 2, target_system);
     _mav_put_uint8_t(buf, 3, target_component);
-    _mav_put_uint8_t(buf, 4, );
+    _mav_put_uint8_t(buf, 4, sendACK);
     _mav_put_uint8_t(buf, 5, len);
     _mav_put_uint8_t(buf, 106, status);
     _mav_put_uint8_t_array(buf, 6, buffer, 100);
@@ -131,7 +131,7 @@ static inline uint16_t mavlink_msg_read_eeprom_pack_chan(uint8_t system_id, uint
     packet.address = address;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    packet. = ;
+    packet.sendACK = sendACK;
     packet.len = len;
     packet.status = status;
     mav_array_memcpy(packet.buffer, buffer, sizeof(uint8_t)*100);
@@ -152,7 +152,7 @@ static inline uint16_t mavlink_msg_read_eeprom_pack_chan(uint8_t system_id, uint
  */
 static inline uint16_t mavlink_msg_read_eeprom_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_read_eeprom_t* read_eeprom)
 {
-    return mavlink_msg_read_eeprom_pack(system_id, component_id, msg, read_eeprom->target_system, read_eeprom->target_component, read_eeprom->, read_eeprom->address, read_eeprom->len, read_eeprom->buffer, read_eeprom->status);
+    return mavlink_msg_read_eeprom_pack(system_id, component_id, msg, read_eeprom->target_system, read_eeprom->target_component, read_eeprom->sendACK, read_eeprom->address, read_eeprom->len, read_eeprom->buffer, read_eeprom->status);
 }
 
 /**
@@ -166,7 +166,7 @@ static inline uint16_t mavlink_msg_read_eeprom_encode(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_read_eeprom_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_read_eeprom_t* read_eeprom)
 {
-    return mavlink_msg_read_eeprom_pack_chan(system_id, component_id, chan, msg, read_eeprom->target_system, read_eeprom->target_component, read_eeprom->, read_eeprom->address, read_eeprom->len, read_eeprom->buffer, read_eeprom->status);
+    return mavlink_msg_read_eeprom_pack_chan(system_id, component_id, chan, msg, read_eeprom->target_system, read_eeprom->target_component, read_eeprom->sendACK, read_eeprom->address, read_eeprom->len, read_eeprom->buffer, read_eeprom->status);
 }
 
 /**
@@ -175,7 +175,7 @@ static inline uint16_t mavlink_msg_read_eeprom_encode_chan(uint8_t system_id, ui
  *
  * @param target_system  System ID.
  * @param target_component  Component ID.
- * @param   device specific state
+ * @param sendACK  operation response.
  * @param address  storage address.
  * @param len  message len.
  * @param buffer  data buffer.
@@ -183,14 +183,14 @@ static inline uint16_t mavlink_msg_read_eeprom_encode_chan(uint8_t system_id, ui
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_read_eeprom_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint8_t , uint16_t address, uint8_t len, const uint8_t *buffer, uint8_t status)
+static inline void mavlink_msg_read_eeprom_send(mavlink_channel_t chan, uint8_t target_system, uint8_t target_component, uint8_t sendACK, uint16_t address, uint8_t len, const uint8_t *buffer, uint8_t status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_READ_EEPROM_LEN];
     _mav_put_uint16_t(buf, 0, address);
     _mav_put_uint8_t(buf, 2, target_system);
     _mav_put_uint8_t(buf, 3, target_component);
-    _mav_put_uint8_t(buf, 4, );
+    _mav_put_uint8_t(buf, 4, sendACK);
     _mav_put_uint8_t(buf, 5, len);
     _mav_put_uint8_t(buf, 106, status);
     _mav_put_uint8_t_array(buf, 6, buffer, 100);
@@ -200,7 +200,7 @@ static inline void mavlink_msg_read_eeprom_send(mavlink_channel_t chan, uint8_t 
     packet.address = address;
     packet.target_system = target_system;
     packet.target_component = target_component;
-    packet. = ;
+    packet.sendACK = sendACK;
     packet.len = len;
     packet.status = status;
     mav_array_memcpy(packet.buffer, buffer, sizeof(uint8_t)*100);
@@ -216,7 +216,7 @@ static inline void mavlink_msg_read_eeprom_send(mavlink_channel_t chan, uint8_t 
 static inline void mavlink_msg_read_eeprom_send_struct(mavlink_channel_t chan, const mavlink_read_eeprom_t* read_eeprom)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_read_eeprom_send(chan, read_eeprom->target_system, read_eeprom->target_component, read_eeprom->, read_eeprom->address, read_eeprom->len, read_eeprom->buffer, read_eeprom->status);
+    mavlink_msg_read_eeprom_send(chan, read_eeprom->target_system, read_eeprom->target_component, read_eeprom->sendACK, read_eeprom->address, read_eeprom->len, read_eeprom->buffer, read_eeprom->status);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_READ_EEPROM, (const char *)read_eeprom, MAVLINK_MSG_ID_READ_EEPROM_MIN_LEN, MAVLINK_MSG_ID_READ_EEPROM_LEN, MAVLINK_MSG_ID_READ_EEPROM_CRC);
 #endif
@@ -230,14 +230,14 @@ static inline void mavlink_msg_read_eeprom_send_struct(mavlink_channel_t chan, c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_read_eeprom_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint8_t , uint16_t address, uint8_t len, const uint8_t *buffer, uint8_t status)
+static inline void mavlink_msg_read_eeprom_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t target_system, uint8_t target_component, uint8_t sendACK, uint16_t address, uint8_t len, const uint8_t *buffer, uint8_t status)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint16_t(buf, 0, address);
     _mav_put_uint8_t(buf, 2, target_system);
     _mav_put_uint8_t(buf, 3, target_component);
-    _mav_put_uint8_t(buf, 4, );
+    _mav_put_uint8_t(buf, 4, sendACK);
     _mav_put_uint8_t(buf, 5, len);
     _mav_put_uint8_t(buf, 106, status);
     _mav_put_uint8_t_array(buf, 6, buffer, 100);
@@ -247,7 +247,7 @@ static inline void mavlink_msg_read_eeprom_send_buf(mavlink_message_t *msgbuf, m
     packet->address = address;
     packet->target_system = target_system;
     packet->target_component = target_component;
-    packet-> = ;
+    packet->sendACK = sendACK;
     packet->len = len;
     packet->status = status;
     mav_array_memcpy(packet->buffer, buffer, sizeof(uint8_t)*100);
@@ -282,11 +282,11 @@ static inline uint8_t mavlink_msg_read_eeprom_get_target_component(const mavlink
 }
 
 /**
- * @brief Get field  from read_eeprom message
+ * @brief Get field sendACK from read_eeprom message
  *
- * @return  device specific state
+ * @return  operation response.
  */
-static inline uint8_t mavlink_msg_read_eeprom_get_(const mavlink_message_t* msg)
+static inline uint8_t mavlink_msg_read_eeprom_get_sendACK(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  4);
 }
@@ -343,7 +343,7 @@ static inline void mavlink_msg_read_eeprom_decode(const mavlink_message_t* msg, 
     read_eeprom->address = mavlink_msg_read_eeprom_get_address(msg);
     read_eeprom->target_system = mavlink_msg_read_eeprom_get_target_system(msg);
     read_eeprom->target_component = mavlink_msg_read_eeprom_get_target_component(msg);
-    read_eeprom-> = mavlink_msg_read_eeprom_get_(msg);
+    read_eeprom->sendACK = mavlink_msg_read_eeprom_get_sendACK(msg);
     read_eeprom->len = mavlink_msg_read_eeprom_get_len(msg);
     mavlink_msg_read_eeprom_get_buffer(msg, read_eeprom->buffer);
     read_eeprom->status = mavlink_msg_read_eeprom_get_status(msg);

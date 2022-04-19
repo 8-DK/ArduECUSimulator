@@ -279,7 +279,7 @@ static void mavlink_test_store_eeprom(uint8_t system_id, uint8_t component_id, m
         packet1.address = packet_in.address;
         packet1.target_system = packet_in.target_system;
         packet1.target_component = packet_in.target_component;
-        packet1. = packet_in.;
+        packet1.sendACK = packet_in.sendACK;
         packet1.len = packet_in.len;
         
         mav_array_memcpy(packet1.buffer, packet_in.buffer, sizeof(uint8_t)*100);
@@ -296,12 +296,12 @@ static void mavlink_test_store_eeprom(uint8_t system_id, uint8_t component_id, m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_store_eeprom_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1. , packet1.address , packet1.len , packet1.buffer );
+    mavlink_msg_store_eeprom_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.sendACK , packet1.address , packet1.len , packet1.buffer );
     mavlink_msg_store_eeprom_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_store_eeprom_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1. , packet1.address , packet1.len , packet1.buffer );
+    mavlink_msg_store_eeprom_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.sendACK , packet1.address , packet1.len , packet1.buffer );
     mavlink_msg_store_eeprom_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -314,7 +314,7 @@ static void mavlink_test_store_eeprom(uint8_t system_id, uint8_t component_id, m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_store_eeprom_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1. , packet1.address , packet1.len , packet1.buffer );
+    mavlink_msg_store_eeprom_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.sendACK , packet1.address , packet1.len , packet1.buffer );
     mavlink_msg_store_eeprom_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -338,7 +338,7 @@ static void mavlink_test_read_eeprom(uint8_t system_id, uint8_t component_id, ma
         packet1.address = packet_in.address;
         packet1.target_system = packet_in.target_system;
         packet1.target_component = packet_in.target_component;
-        packet1. = packet_in.;
+        packet1.sendACK = packet_in.sendACK;
         packet1.len = packet_in.len;
         packet1.status = packet_in.status;
         
@@ -356,12 +356,12 @@ static void mavlink_test_read_eeprom(uint8_t system_id, uint8_t component_id, ma
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_read_eeprom_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1. , packet1.address , packet1.len , packet1.buffer , packet1.status );
+    mavlink_msg_read_eeprom_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.sendACK , packet1.address , packet1.len , packet1.buffer , packet1.status );
     mavlink_msg_read_eeprom_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_read_eeprom_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1. , packet1.address , packet1.len , packet1.buffer , packet1.status );
+    mavlink_msg_read_eeprom_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.sendACK , packet1.address , packet1.len , packet1.buffer , packet1.status );
     mavlink_msg_read_eeprom_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -374,7 +374,7 @@ static void mavlink_test_read_eeprom(uint8_t system_id, uint8_t component_id, ma
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_read_eeprom_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1. , packet1.address , packet1.len , packet1.buffer , packet1.status );
+    mavlink_msg_read_eeprom_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.sendACK , packet1.address , packet1.len , packet1.buffer , packet1.status );
     mavlink_msg_read_eeprom_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }

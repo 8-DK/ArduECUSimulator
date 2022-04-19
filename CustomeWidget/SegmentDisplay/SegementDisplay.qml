@@ -59,13 +59,9 @@ Item {
     property string unit: ""
     property double value: 0
 
-    FontLoader {
-        id:sevenSegmentFont
-        source:'qrc:/Fonts/Seven_Segment.ttf'
-    }
     Rectangle{
         id : bgRect
-        color: "#00000000"
+        color: GStyle.gP("trans")
         anchors.fill: parent
 
         Text {
@@ -77,7 +73,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: parent.width/digit
             font.bold: true
-            font.family: fontLdr.sevenSegment// sevenSegmentFont.name
+            font.family: fontLdr.sevenSegment
             color: GStyle.mainThemeActiveColor()
         }
 

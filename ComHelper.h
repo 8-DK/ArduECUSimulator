@@ -12,6 +12,8 @@
 #include <qjsondocument.h>
 #include <QTimer>
 #include <QTimer>
+#include "ardusim/mavlink.h"
+#include "mavlink_helpers.h"
 
 class ComHelper : public QObject
 {

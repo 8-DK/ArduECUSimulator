@@ -133,6 +133,8 @@ void ComHelper::writeData(const QByteArray &data)
 void ComHelper::readData()
 {
     m_message = m_serial->readAll();
+    mavlink_message_t msg;
+    mavlink_status_t status;
     int count = m_message.size();
 
     if(count == 0)
@@ -143,7 +145,10 @@ void ComHelper::readData()
     {
         for (int i = 0; i < m_message.size(); i++)          // read message byte by byte
         {
+            if(mavlink_parse_char(MAVLINK_COMM_0, m_message.at(i), &msg, &status))     // parse the message
+            {
 
+            }
         }
     }
 

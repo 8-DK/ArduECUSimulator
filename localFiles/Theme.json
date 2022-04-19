@@ -20,6 +20,7 @@
         "fontRoboto-Regular" : "qrc:/Fonts/Roboto-Regular.ttf",
         "fontOpen_Sans_Regular" : "qrc:/Fonts/Open Sans Regular.ttf",
         "fontSeven_Segment" : "qrc:/Fonts/Seven_Segment.ttf",
+        "trans" : "#00000000",
         "themeDefaultColor" : "#26A69A",
         "widgetBGColor" : "#00897B",
         "widgetActiveColor" : "#00897B",

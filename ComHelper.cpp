@@ -30,7 +30,8 @@ ComHelper* ComHelper::getInstance()
 
 ComHelper::ComHelper(QObject *parent) :
     QObject(parent),
-    m_timer(new QTimer)
+    m_heartBeatTimer(new QTimer),
+    m_autoConnectTimer(new QTimer)
 {    
     if(m_serial == NULL)
     {
@@ -41,8 +42,7 @@ ComHelper::ComHelper(QObject *parent) :
         }
     }
     qDebug() << "--------------------This is my Serial Port Constructor-----------------------------------";
-    ComHelper::m_serialPort = this;
-    m_autoConnectTimer = new QTimer(this);       
+    ComHelper::m_serialPort = this;    
 }
 
 
@@ -78,9 +78,9 @@ void ComHelper::openSerialPort()
             m_autoConnectTimer->stop();
         }
         m_serial->clearError();
-        m_timer->start();
-        m_timer->setInterval(3000);
-        connect(m_timer, SIGNAL(timeout()), this, SLOT(disconnectDevice()),Qt::UniqueConnection);
+        m_heartBeatTimer->start();
+        m_heartBeatTimer->setInterval(3000);
+        connect(m_heartBeatTimer, SIGNAL(timeout()), this, SLOT(disconnectDevice()),Qt::UniqueConnection);
 
         emit showMessageBoxToConnectSerialPort();
         emit serialPortConnected("");
@@ -147,7 +147,27 @@ void ComHelper::readData()
         {
             if(mavlink_parse_char(MAVLINK_COMM_0, m_message.at(i), &msg, &status))     // parse the message
             {
+                switch(msg.msgid)
+                {
+                    case MAVLINK_MSG_ID_HEART_BEAT :
+                {
+                   mavlink_heart_beat_t heart_beat;
+                   mavlink_msg_heart_beat_decode(&msg, &heart_beat);
+                   m_heartBeatTimer->start();
+                   qDebug() << "MAVLINK_MSG_ID_HEART_BEAT : heart_beat.target_system" << heart_beat.target_system;
+//                    qDebug() << "Result :" << m_commandAckMsg.result;
+//                    QJsonObject jObjectCommandAck;
+//                    jObjectCommandAck.insert("Message ID :", MAVLINK_MSG_ID_MISSION_REQUEST);
+//                    jObjectCommandAck.insert("Timestamp :", QDateTime::currentMSecsSinceEpoch());
+//                    jObjectCommandAck.insert("Command :", m_missionAck.mission_type);
+//                    jObjectCommandAck.insert( "Result :" ,  m_missionAck.type);
+//                    emit mavlinkCommandResult(m_commandAckMsg.command, m_commandAckMsg.result);
+                }
+                    break;
 
+                default:
+                    break;
+                }
             }
         }
     }

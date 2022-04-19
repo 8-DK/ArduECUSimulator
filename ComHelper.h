@@ -59,7 +59,7 @@ private:
     QByteArray m_message;
 
     QTimer *m_autoConnectTimer = nullptr;
-    QTimer *m_timer = nullptr;
+    QTimer *m_heartBeatTimer = nullptr;
     bool isDeviceDisconnected = false;
 
 public:

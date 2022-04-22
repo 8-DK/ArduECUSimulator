@@ -22,6 +22,11 @@ QJsonArray PIDEncoderDecoder::getPIDList()
     return jsonArray;
 }
 
+void PIDEncoderDecoder::parsePIDJsonLookUpFile(uint8_t msh)
+{
+
+}
+
 void PIDEncoderDecoder::parsePIDJsonLookUpFile()
 {
     if(!QFile::exists("PIDList.json"))

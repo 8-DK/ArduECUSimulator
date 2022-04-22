@@ -11,6 +11,7 @@ QT += texttospeech
 QT += multimedia
 CONFIG += c++11
 PKGCONFIG += openssl
+QT += bluetooth
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -52,6 +53,7 @@ INCLUDEPATH += $$PWD/moduls/mavlink \
 
 SOURCES += \
     ComHelper.cpp \
+    bluetoothlink.cpp \
     commlinksettings.cpp \
     localstrings.cpp \
     main.cpp \
@@ -62,6 +64,7 @@ SOURCES += \
 
 HEADERS += \
     ComHelper.h \
+    bluetoothlink.h \
     commlinksettings.h \
     localstrings.h \
     appcontext.h \

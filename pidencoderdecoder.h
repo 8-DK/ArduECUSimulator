@@ -178,6 +178,7 @@ public:
 public slots:
     Q_INVOKABLE QJsonArray getPIDList();
 
+    void parsePIDJsonLookUpFile(uint8_t msh);
 signals:
 
 };

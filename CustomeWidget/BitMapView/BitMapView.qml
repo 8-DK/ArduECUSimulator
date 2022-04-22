@@ -14,6 +14,10 @@ Item {
     property double dataFieldChecked: 4294967295
     property variant dataFieldArr : [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
+    property var activeColor: GStyle.gP("themeDefaultColor") //activeColor
+    property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
+    property var textBoxBgColor: GStyle.gP("textBoxBgColor")
+
      Component.onCompleted :{
          if(4294967295 < dataFieldChecked)
          {
@@ -113,7 +117,9 @@ Item {
             anchors.right: bitFiledRow.right
             anchors.top: bitFiledRow.bottom
             anchors.topMargin: bitFiledRow.height*2
-            font.pixelSize: 12
+            font.weight: "DemiBold"
+            font.pixelSize: parent.width*0.03
+            font.family: fontLdr.robotoRegular
             validator: RegExpValidator { regExp: /^0x[A-Fa-f0-9]{1,}([,.][0-9]{1,2})?$/ }
 
             onTextEdited: {
@@ -144,8 +150,9 @@ Item {
             background: Rectangle {
                 implicitWidth: textInput.width
                 implicitHeight: textInput.height
-                color: textInput.enabled ? "#cad9c3" : "#afb5ac"
-                border.color: textInput.enabled ? "#21be2b" : "transparent"
+                color: textInput.enabled ? textBoxBgColor : "#afb5ac"
+                border.color: textInput.enabled ? activeColor : "transparent"
+                radius: parent.width*0.05
             }
         }
     }

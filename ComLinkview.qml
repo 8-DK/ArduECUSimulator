@@ -12,6 +12,7 @@ import SerialPortSettingsLib 1.0
 import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
 import GStyleLib 1.0
+import "CustomeWidget/CustomeCombo"
 
 Item {
     id:mainWindowSerialPort
@@ -230,7 +231,7 @@ Item {
             }
         }
 
-        ComboBox {
+        CustomeCombo {
             id : serialPortSelector
             width: parent.width * 0.7
             height: parent.width * 0.05

@@ -28,10 +28,6 @@ Rectangle {
     property var activeColor: GStyle.gP("themeDefaultColor") //activeColor
     property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
     property var textBoxBgColor: GStyle.gP("textBoxBgColor")
-    FontLoader {
-        id:sevenSegmentFont
-        source:'qrc:/Fonts/Seven_Segment.ttf'
-    }
 
     function validateInputs()
     {

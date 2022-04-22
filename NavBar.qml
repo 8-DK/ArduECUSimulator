@@ -168,7 +168,7 @@ Rectangle {
         MouseArea {
             x:image2.x
             y:image2.y
-            height: image2.height
+            height: parent.height
             width: image2.width
             onClicked: {
                 drawer.close()
@@ -178,8 +178,11 @@ Rectangle {
 
         Text {
             id: element
-            anchors.horizontalCenter: parent.horizontalCenter
+//            anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
+            anchors.left: image.right
+            anchors.leftMargin : parent.width*0.04
+
             text: root.header
             font.weight: "DemiBold"
             font.pixelSize: GStyle.getNavbarHeadingPixelSize()

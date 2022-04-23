@@ -12,7 +12,7 @@
             "fontRedHatDisplay-Regular" : "qrc:/Fonts/RedHatDisplay-Regular.ttf",
             "fontRoboto-Regular" : "qrc:/Fonts/Roboto-Regular.ttf",
             "fontSeven_Segment" : "qrc:/Fonts/Seven_Segment.ttf",
-            "commlinkSettings" : "COMMUNICATION LINK SETTING",
+            "commlinkSettings" : "Data Link",
             "dashBoardTitle" : "OBD II Simulator",
             "navbarSerialPortTitle" : "Serial Port Setting",
             "exit" : "Exit",

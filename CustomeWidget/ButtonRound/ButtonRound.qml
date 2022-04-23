@@ -16,7 +16,7 @@ RoundButton{
     anchors.rightMargin: messageBoxRectangle.width * 0.05
     anchors.bottom: parent.bottom
     anchors.bottomMargin: messageBoxRectangle.height * 0.1
-    radius: GStyle.defaultButtonRadius()
+    radius: GStyle.defaultWdgtRadius()
     focus: true
     activeFocusOnTab: false
     property string text : ""

@@ -83,5 +83,7 @@
         <file>CustomeWidget/ButtonRound/ShineButton.qml</file>
         <file>CustomeWidget/ButtonRound/IconButton.qml</file>
         <file>CustomeWidget/CustomeCombo/CustomeCombo.qml</file>
+        <file>CustomeWidget/ButtonRound/PlainButton.qml</file>
+        <file>CustomeWidget/ButtonRound/WGroup.qml</file>
     </qresource>
 </RCC>

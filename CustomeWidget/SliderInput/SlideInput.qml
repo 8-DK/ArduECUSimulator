@@ -90,8 +90,8 @@ Rectangle {
                     validateInputs()
                 }
                 background: Rectangle {
-                    implicitWidth: textInput.width
-                    implicitHeight: textInput.height
+                    width : parent.width
+                    height : parent.height
                     color: textInput.enabled ? textBoxBgColor : "#afb5ac"
                     border.color: textInput.enabled ? activeColor : "transparent"
                     radius: parent.width*0.05

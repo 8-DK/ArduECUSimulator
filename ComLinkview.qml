@@ -13,6 +13,7 @@ import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
 import GStyleLib 1.0
 import "CustomeWidget/CustomeCombo"
+import "CustomeWidget/ButtonRound"
 
 Item {
     id:mainWindowSerialPort
@@ -188,23 +189,6 @@ Item {
         id: serialPortSettings
     }
 
-    FontLoader {
-        id:openSansNormal
-        source:'Fonts/Open_Sans_Regular.ttf'
-    }
-    FontLoader {
-        id:openSansRegular
-        source:'Fonts/Open_Sans_Regular.ttf'
-    }
-    FontLoader{
-        id: montserratRegular
-        source: "qrc:/Fonts/Montserrat-Regular.ttf"
-    }
-    FontLoader{
-        id: robotoRegular
-        source: "qrc:/Fonts/Roboto-Regular.ttf"
-    }
-
     /*-------------------------- Communication Link Settings ---------------------------*/
     Rectangle {
         id : mainCommsettingsRect
@@ -225,7 +209,7 @@ Item {
                 id: commLinkLabelText
                 text: LocalStrings.getLocalTextValue("commlinkSettings")
                 anchors.verticalCenter: parent.verticalCenter
-                font.family: montserratRegular.name
+                font.family: fontLdr.montserratRegular
                 font.pixelSize: getFontSize("H4")//16
                 font.letterSpacing: 2.77
             }
@@ -233,100 +217,31 @@ Item {
 
         CustomeCombo {
             id : serialPortSelector
-            width: parent.width * 0.7
-            height: parent.width * 0.05
             anchors.horizontalCenter: mainCommsettingsRect.horizontalCenter
             anchors.top: commLinkLabelRect.bottom
             anchors.topMargin: parent.height * 0.05
             font.pixelSize:  getFontSize("H4")//16
-            font.family: robotoRegular.name
+            font.family: fontLdr.robotoRegular
             opacity: 0.8
             model: CommLinkSettings.getSerialPort()
-            //            onFocusChanged:{
-            //                serialPortSelectorBgRect.border.color = GStyle.gP("themeDefaultColor")
-            //                serialPortText.color = GStyle.gP("themeDefaultColor")
-            //                baudRateSelectorBgRect.border.color = GStyle.borderColor()
-            //                flowControlSelectorBgRect.border.color = GStyle.borderColor()
-            //            }
-
-            background: Rectangle {
-                id: serialPortSelectorBgRect
-                radius: GStyle.rpaSettingsTextEditRadius()
-                color: GStyle.whiteColor()//"white"
-                border.color: GStyle.borderColor()
-                border.width: 0.7
-            }
+            title: "Serial Port"
         }
 
-        Label{
-            id: serialPortLabel
-            anchors.top: serialPortSelector.top
-            anchors.topMargin: -(height/2)//-10
-            anchors.left: serialPortSelector.left
-            anchors.leftMargin: serialPortSelector.width * 0.03
-            width: serialPortText.width * 1.5
-            height: serialPortText.height * 1.2
-            Text{
-                id: serialPortText
-                anchors.centerIn: serialPortLabel
-                text: "Serial Port"
-                font.family: openSansRegular.name
-                font.pixelSize: getFontSize("H5")//16
-                color: GStyle.borderColor()
-            }
-            background: Rectangle{
-                color: GStyle.whiteColor()//"white"
-                //border.width: 1
-            }
-        }
-
-        ComboBox {
+        CustomeCombo {
             id : baudRateSelector
-            width: parent.width * 0.7
-            height: parent.width * 0.05
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: serialPortSelector.bottom
             anchors.topMargin: parent.height * 0.05
             font.pixelSize:  getFontSize("H4")//16
-            font.family: robotoRegular.name
+            font.family: fontLdr.robotoRegular
             opacity: 0.8
             model: [ "9600",
                 "19200",
                 "38400",
                 "57600",
                 "115200" ]
-
-            background: Rectangle {
-                id: baudRateSelectorBgRect
-                radius: GStyle.rpaSettingsTextEditRadius()
-                color: GStyle.whiteColor()//"white"
-                border.color: GStyle.borderColor()//"#184BFF"
-                border.width: 0.7
-            }
+            title: "Baud Rate"
         }
-
-        Label{
-            id: baudRateSelectorLabel
-            anchors.top: baudRateSelector.top
-            anchors.topMargin: -(height/2)//-10
-            anchors.left: baudRateSelector.left
-            anchors.leftMargin: baudRateSelector.width * 0.03
-            width: baudRateSelectorText.width * 1.5
-            height: baudRateSelectorText.height * 1.2
-            Text{
-                id: baudRateSelectorText
-                anchors.centerIn: baudRateSelectorLabel
-                text: "Baud Rate"
-                font.family: openSansRegular.name
-                font.pixelSize: getFontSize("H5")//16
-                color: GStyle.borderColor()
-            }
-            background: Rectangle{
-                color: GStyle.whiteColor()//"white"
-                //border.width: 1
-            }
-        }
-
 
         Rectangle{
             id: dataBitRect
@@ -352,7 +267,7 @@ Item {
                     anchors.leftMargin: dataBitsText.width * 0.2
                     text: qsTr("Data Bits")
                     anchors.centerIn: parent
-                    font.family: robotoRegular.name
+                    font.family: fontLdr.robotoRegular
                     font.weight: "DemiBold"
                     font.pixelSize: getFontSize("H4")
                     color: GStyle.blackColor()
@@ -379,7 +294,7 @@ Item {
                     id: dataBitsOption1Text
                     anchors.centerIn: dataBitsOption1
                     text: "6"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
                     color: GStyle.darkGrayColor()
@@ -415,7 +330,7 @@ Item {
                     id: dataBitsOption2Text
                     anchors.centerIn: dataBitsOption2
                     text: "7"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
                     color: GStyle.darkGrayColor()
@@ -452,7 +367,7 @@ Item {
                     id: dataBitsOption3Text
                     anchors.centerIn: dataBitsOption3
                     text: "8"
-                    font.family: openSansNormal.name
+                    font.family: fontLdr.openSansRegular
                     font.weight: "Normal"
                     font.pixelSize: getFontSize("H4")
                     color: GStyle.whiteColor()
@@ -497,175 +412,81 @@ Item {
                     anchors.leftMargin: parityText.width * 0.2
                     text: qsTr("Parity")
                     font.weight: "DemiBold"
-                    font.family: robotoRegular.name
+                    font.family: fontLdr.robotoRegular
                     font.pixelSize: getFontSize("H4")
                     color: GStyle.blackColor()//"#000000"
                     opacity: 0.6
                 }
             }
 
-            Button{
+            WGroup{
+                id : btnGrp
+            }
+
+            PlainButton{
                 id : parityOption1
                 height: parityRect.height
                 width: parityRect.width * 0.2
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parityText.right
                 anchors.leftMargin: parityRect.width * 0.05
-                background: Rectangle {
-                    id: parityOption1BgRect
-                    color: GStyle.gP("themeDefaultColor")
-                    border.width: 0.5
-                    border.color: GStyle.gP("themeDefaultColor")
-                }
-                Text{
-                    id: parityOption1Text
-                    anchors.centerIn: parityOption1
-                    text: "None"
-                    font.family: openSansNormal.name
-                    font.weight: "Normal"
-                    font.pixelSize: getFontSize("H4")
-                    color: GStyle.whiteColor()
-                }
-                onClicked: {
+                group: btnGrp
+                state: "selected"
+                text: "None"
+                onButtonClicked: {
                     parity = 1
-                    parityOption1BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
-                    parityOption1BgRect.border.color = GStyle.gP("themeDefaultColor")
-                    parityOption1Text.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption2BgRect.border.color = GStyle.borderColor()
-                    parityOption2Text.color =  GStyle.darkGrayColor()//"#706E6B"
-                    parityOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption3BgRect.border.color = GStyle.borderColor()
-                    parityOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
                 }
             }
 
-            Button{
+            PlainButton{
                 id : parityOption2
                 height: parityRect.height
                 width: parityRect.width * 0.2
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parityOption1.right
                 anchors.leftMargin: parityRect.width * 0.05
-                background: Rectangle {
-                    id: parityOption2BgRect
-                    //color: "white"
-                    color :  GStyle.whiteColor()
-                    border.width: 0.5
-                    border.color: GStyle.borderColor()//"#B0ADAB"
-                }
-                Text{
-                    id: parityOption2Text
-                    anchors.centerIn: parityOption2
-                    text: "Even"
-                    font.family: openSansNormal.name
-                    font.weight: "Normal"
-                    font.pixelSize: getFontSize("H4")
-                    color: GStyle.darkGrayColor()
-                }
-                onClicked: {
+                group: btnGrp
+                text: "Even"
+                onButtonClicked: {
                     parity = 2
-                    parityOption2BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
-                    parityOption2BgRect.border.color = GStyle.gP("themeDefaultColor")
-                    parityOption2Text.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.border.color = GStyle.borderColor()
-                    parityOption1Text.color =  GStyle.darkGrayColor()//"#706E6B"
-                    parityOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption3BgRect.border.color = GStyle.borderColor()
-                    parityOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
                 }
-
             }
 
-            Button{
+            PlainButton{
                 id : parityOption3
                 height: parityRect.height
                 width: parityRect.width * 0.2
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parityOption2.right
                 anchors.leftMargin: parityRect.width * 0.05
-                background: Rectangle {
-                    id: parityOption3BgRect
-                    color: GStyle.whiteColor()//"white"
-                    border.width: 0.5
-                    border.color: GStyle.borderColor()//"#B0ADAB"
-                }
-                Text{
-                    id: parityOption3Text
-                    anchors.centerIn: parityOption3
-                    text: "Odd"
-                    font.family: openSansNormal.name
-                    font.weight: "Normal"
-                    font.pixelSize: getFontSize("H4")
-                    color: GStyle.darkGrayColor()
-                }
-                onClicked: {
-                    parity = 3
-                    parityOption3BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
-                    parityOption3BgRect.border.color = GStyle.gP("themeDefaultColor")
-                    parityOption3Text.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption1BgRect.border.color = GStyle.borderColor()
-                    parityOption1Text.color =  GStyle.darkGrayColor()//"#706E6B"
-                    parityOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    parityOption2BgRect.border.color = GStyle.borderColor()
-                    parityOption2Text.color = GStyle.darkGrayColor()//"#706E6B"
+                group: btnGrp
+                text: "Odd"
+                onButtonClicked: {
+                    parity = 2
                 }
             }
         }
 
 
 
-        ComboBox {
+       CustomeCombo {
             id : flowControlSelector
-            width: parent.width * 0.7
-            height: parent.width * 0.05
             anchors.horizontalCenterOffset: 1
             anchors.top: parityRect.bottom
             anchors.horizontalCenter: mainCommsettingsRect.horizontalCenter
             anchors.topMargin: parent.height * 0.05
             font.pixelSize:  getFontSize("H4")//16
-            font.family: robotoRegular.name
+            font.family: fontLdr.robotoRegular
             opacity: 0.8
-
-            background: Rectangle {
-                id: flowControlSelectorBgRect
-                radius: GStyle.rpaSettingsTextEditRadius()
-                color: GStyle.whiteColor()//"white"
-                border.color: GStyle.borderColor()//"#184BFF"
-                border.width: 0.7
-            }
+            title: "Flow Control"
             model: ["None", "RTS/CTS", "XON/XOFF"]
         }
-
-        Label{
-            id: flowControlSelectorLabel
-            anchors.top: flowControlSelector.top
-            anchors.topMargin: -(height/2)//-10
-            anchors.left: flowControlSelector.left
-            anchors.leftMargin: flowControlSelector.width * 0.03
-            width: flowControlSelectorText.width * 1.5
-            height: flowControlSelectorText.height * 1.2
-            Text{
-                id: flowControlSelectorText
-                anchors.centerIn: flowControlSelectorLabel
-                text: "Flow Control"
-                font.family: openSansRegular.name
-                font.pixelSize: getFontSize("H5")//16
-                color: GStyle.borderColor()
-            }
-            background: Rectangle{
-                color: GStyle.whiteColor()//"white"
-            }
-        }
-
 
         RoundButton{
             id : connectButton
             width: getStdButtonWidth()
             height: getStdButtonHeight()
-            radius: GStyle.defaultButtonRadius()
+            radius: GStyle.defaultWdgtRadius()
             anchors.right: mainCommsettingsRect.right
             anchors.rightMargin: mainCommsettingsRect.width * 0.1
             anchors.bottom: mainCommsettingsRect.bottom
@@ -730,7 +551,7 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: GStyle.getButtonPixelSize()
-                font.family: openSansRegular.name
+                font.family: fontLdr.openSansRegular
 
                 font.weight: "DemiBold"
                 color: GStyle.whiteColor()//"white"
@@ -746,7 +567,7 @@ Item {
             id : disconnectButton
             width: getStdButtonWidth()
             height: getStdButtonHeight()
-            radius: GStyle.defaultButtonRadius()
+            radius: GStyle.defaultWdgtRadius()
             anchors.left: mainCommsettingsRect.left
             anchors.leftMargin: mainCommsettingsRect.width * 0.1
             anchors.bottom: mainCommsettingsRect.bottom
@@ -776,7 +597,7 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: GStyle.getButtonPixelSize()
-                font.family: openSansRegular.name
+                font.family: fontLdr.openSansRegular
                 font.weight: "DemiBold"
                 color: GStyle.gP("themeDefaultColor")//"#48B0E5"
                 height: disconnectButton.height

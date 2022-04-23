@@ -87,10 +87,10 @@ double GStyle::defaultButtonHeight()
     return m_defaultButtonHeight;
 }
 
-double GStyle::defaultButtonRadius()
+double GStyle::defaultWdgtRadius()
 {
-    m_defaultButtonRadius = m_windowHeight * 0.05;;
-    return m_defaultButtonRadius;
+    m_defaultWdgtRadius = defaultButtonHeight() * 0.15;
+    return m_defaultWdgtRadius;
 }
 
 double GStyle::updateButtonWidth()

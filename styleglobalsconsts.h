@@ -62,7 +62,7 @@ public slots:
 
     Q_INVOKABLE double defaultButtonWidth();
     Q_INVOKABLE double defaultButtonHeight();
-    Q_INVOKABLE double defaultButtonRadius();
+    Q_INVOKABLE double defaultWdgtRadius();
     Q_INVOKABLE double updateButtonWidth();
     Q_INVOKABLE double updateButtonHeight();
     Q_INVOKABLE double rpaSettingsTextEditRadius();
@@ -140,7 +140,7 @@ private:
 
     double m_defaultButtonWidth;
     double m_defaultButtonHeight;
-    double m_defaultButtonRadius;
+    double m_defaultWdgtRadius;
     double m_updateButtonWidth;
     double m_updateButtonHeight;
 

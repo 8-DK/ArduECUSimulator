@@ -39,20 +39,6 @@ Dialog{
     property int updateInterval: 1000
     property var primaryButtonTextValue: "Cancel"
 
-
-    FontLoader {
-        id:openSansRegular
-        source:'qrc:/Fonts/Open_Sans_Regular.ttf'
-    }
-    FontLoader {
-        id: montserratRegular
-        source:'qrc:/Fonts/Montserrat-Regular.ttf'
-    }
-    FontLoader {
-        id: robotoRegular
-        source:'qrc:/Fonts/Roboto-Regular.ttf'
-    }
-
     Timer{
         id: timerUPdateProgress
         interval: updateInterval
@@ -157,7 +143,7 @@ Dialog{
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
 
-                font.family: robotoRegular.name
+                font.family:fontLdr.robotoRegular
                 font.pixelSize: GStyle.getTextEditLabelPixelSize()//14
                 font.letterSpacing: 1
 
@@ -172,7 +158,7 @@ Dialog{
         text: description
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.family: robotoRegular.name
+        font.family: fontLdr.robotoRegular
         font.pixelSize: GStyle.getMessageBoxTextPixelSize()
         font.letterSpacing: 1
         anchors.top: progerssRect.top
@@ -191,7 +177,7 @@ Dialog{
         anchors.rightMargin: progressbar.width * 0.05
         anchors.bottom: parent.bottom
         anchors.bottomMargin: progressbar.height * 0.05
-        radius: GStyle.defaultButtonRadius()
+        radius: GStyle.defaultWdgtRadius()
         palette {
             button: GStyle.gP("themeDefaultColor")
         }
@@ -199,7 +185,7 @@ Dialog{
             id: primaryButtonText
             anchors.centerIn: primaryButton
             text:  primaryButtonTextValue
-            font.family: openSansRegular.name
+            font.family: fontLdr.openSansRegular
             font.pixelSize: GStyle.getTextEditLabelPixelSize()//14
             font.weight: "Bold"
             color: GStyle.whiteColor()//"#FFFFFF"

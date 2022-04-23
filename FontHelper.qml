@@ -15,7 +15,9 @@ Item {
     property alias defaultFont: appDefaultFont.name
     property alias sevenSegment: sevenSegmentFont.name
     property alias openSansRegular: openSansRegular.name
+    property alias openSansNormal: openSansRegular.name
     property alias robotoRegular: robotoRegular.name
+    property alias montserratRegular: montserratRegular.name
     FontLoader {
         id:appDefaultFont
         source: LocalStrings.getLocalTextValue("fontDefault")
@@ -28,6 +30,11 @@ Item {
 
     FontLoader {
         id:openSansRegular
+        source:LocalStrings.getLocalTextValue("fontOpen_Sans_Regular")
+    }
+
+    FontLoader {
+        id:openSansNormal
         source:LocalStrings.getLocalTextValue("fontOpen_Sans_Regular")
     }
 

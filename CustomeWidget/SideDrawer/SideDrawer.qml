@@ -58,6 +58,7 @@ Drawer {
             if (!isSpacer && !isSeparator)
                 actions [index]()
         }
+        index = -1
     }
 
     //

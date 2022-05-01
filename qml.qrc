@@ -85,5 +85,6 @@
         <file>CustomeWidget/CustomeCombo/CustomeCombo.qml</file>
         <file>CustomeWidget/ButtonRound/PlainButton.qml</file>
         <file>CustomeWidget/ButtonRound/WGroup.qml</file>
+        <file>CustomeWidget/CutomeTextField/CustomeTextField.qml</file>
     </qresource>
 </RCC>

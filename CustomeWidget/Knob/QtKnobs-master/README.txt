@@ -1,0 +1,1 @@
+Copy imports directory from debug folder to C:\Qt\Qt5.14\5.14.1\mingw73_64\qml folder

@@ -1,0 +1,15 @@
+tmp/piestyle.o
+tmp/needlestyle.o
+tmp/arcstyle.o
+tmp/meter.o
+tmp/knob.o
+tmp/qtknobsplugin.o
+tmp/dial.o
+tmp/qrc_qml.o
+tmp/moc_piestyle.o
+tmp/moc_needlestyle.o
+tmp/moc_arcstyle.o
+tmp/moc_meter.o
+tmp/moc_knob.o
+tmp/moc_qtknobsplugin.o
+tmp/moc_dial.o

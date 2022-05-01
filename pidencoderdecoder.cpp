@@ -2,8 +2,10 @@
 
 PIDEncoderDecoder::PIDEncoderDecoder(QObject *parent) : QObject(parent)
 {
-//    parsePIDJsonLookUpFile();
-    parsePIDCSVLookUpFile();
+//    parsePIDJsonLookUpFile(); //use json file to PID lookup
+    parsePIDCSVLookUpFile(); //use CSV file to PID lookup
+    connect(SIM::comm(),SIGNAL(readRawCanData(mavlink_read_can_raw_t)),this,SLOT(parsePIDJsonLookUpFile(mavlink_read_can_raw_t)));
+
 }
 PIDEncoderDecoder* PIDEncoderDecoder::m_instance;
 
@@ -22,9 +24,99 @@ QJsonArray PIDEncoderDecoder::getPIDList()
     return jsonArray;
 }
 
-void PIDEncoderDecoder::parsePIDJsonLookUpFile(uint8_t msh)
+void PIDEncoderDecoder::printFrame(uint64_t msgId, uint8_t *buff,uint8_t len)
 {
+    QString data = "Message ID : " + QString::number(msgId, 16)+" ";
+    for(int i = 0; i <len ; i++)
+    {
+        data += "0x"+QString::number(buff[i], 16)+"("+QChar(buff[i]) +"), ";
+    }
 
+    qDebug() <<data;
+}
+
+void PIDEncoderDecoder::printOBD(uint64_t msgId, uint8_t *buff)
+{
+    QString data = "Message ID : " + QString::number(msgId, 16)+" ";
+    data += "Data Bytes : 0x"+QString::number(buff[0], 16)+" ";
+    data += "Service : 0x"+QString::number(buff[1], 16)+" ";
+    if((int)buff[0] > 2)
+    {
+         data += "PID : 0x"+QString::number(buff[2]<<8 | buff[3], 16)+" ";
+         data += "B4 : 0x"+QString::number(buff[4], 16)+" ";
+         data += "B5 : 0x"+QString::number(buff[5], 16)+" ";
+         data += "B6 : 0x"+QString::number(buff[6], 16)+" ";
+         data += "B7 : 0x"+QString::number(buff[7], 16)+" ";
+    }
+    else
+    {
+        data += "PID : 0x"+QString::number(buff[2], 16)+" ";
+        data += "B3 : 0x"+QString::number(buff[3], 16)+" ";
+        data += "B4 : 0x"+QString::number(buff[4], 16)+" ";
+        data += "B5 : 0x"+QString::number(buff[5], 16)+" ";
+        data += "B6 : 0x"+QString::number(buff[6], 16)+" ";
+        data += "B7 : 0x"+QString::number(buff[7], 16)+" ";
+    }
+
+    qDebug() << data;
+}
+
+void PIDEncoderDecoder::parsePIDJsonLookUpFile(mavlink_read_can_raw_t msg)
+{
+    uint64_t  canMessageId = msg.msgId;
+    uint8_t dataLen  = msg.len;
+    uint8_t databuffer[100];
+    OBD2Request obdReq;
+    OBD2Response obdResp;
+    memset(databuffer,0,sizeof(databuffer));
+    memcpy(databuffer,msg.buffer,100);
+
+    printFrame(canMessageId,databuffer,dataLen);
+    if(canMessageId == 0x7df) //standard obd can identifier
+    {
+        printOBD(canMessageId,databuffer);
+        memcpy(&obdReq,&databuffer,OBD_DATA_LEN);
+        for(int i = 0 ; i < pIDInfoModel.rowCount();i++)
+        {
+            if((uint8_t)pIDInfoModel.getByindex(i,PIDInfoModel::PID_DecRole).toInt() == obdReq.pidCode)
+            {
+                double value = (double)pIDInfoModel.getByindex(i,PIDInfoModel::ValueRole).toDouble();
+                uint8_t *valPtr = (uint8_t *)&value;
+                qDebug() << "PID found in DB";
+                obdResp.service = obdReq.service+0x40;
+                obdResp.pidCode = obdReq.pidCode;
+                obdResp.byte0 = valPtr[0];
+                obdResp.byte1 = valPtr[3];
+                obdResp.byte2 = valPtr[2];
+                obdResp.byte3 = valPtr[1];
+                obdResp.byte4 = valPtr[0];
+                memset(databuffer,0,sizeof(databuffer));
+                memcpy(databuffer,&obdResp,OBD_DATA_LEN);
+                break;
+            }
+        }
+    }
+}
+
+void PIDEncoderDecoder::sendCanBuffer(uint16_t canMsgId, uint8_t* dataBuffer,uint16_t len)
+{
+    mavlink_send_can_raw_t msg;
+    mavlink_message_t mavMsg;
+    uint16_t messageLength;
+
+    memset(&msg, 0, sizeof(msg));
+    msg.target_system =     0;
+    msg.target_component =  0;
+    msg.extByte = 0;
+    msg.len = len;
+    msg.msgId = canMsgId;
+    memcpy(&msg.buffer,dataBuffer,len);
+    mavlink_msg_send_can_raw_encode_chan(0,
+                                         0,
+                                         1 ,
+                                         &mavMsg,
+                                         &msg);
+    ComHelper::getInstance()->sendData(mavMsg);
 }
 
 void PIDEncoderDecoder::parsePIDJsonLookUpFile()

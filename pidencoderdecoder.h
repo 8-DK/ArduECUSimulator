@@ -13,6 +13,31 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QAbstractListModel>
+#include "ComHelper.h"
+
+#define OBD_DATA_LEN 8
+
+typedef struct OBD2Request{
+   uint8_t numAddnDataBytes;
+   uint8_t service;
+   uint8_t pidCode;
+   uint8_t un3;
+   uint8_t un4;
+   uint8_t un5;
+   uint8_t un6;
+   uint8_t un7;
+}OBD2Request;
+
+typedef struct OBD2Response{
+   uint8_t numAddnDataBytes;
+   uint8_t service;
+   uint8_t pidCode;
+   uint8_t byte0;
+   uint8_t byte1;
+   uint8_t byte2;
+   uint8_t byte3;
+   uint8_t byte4;
+}OBD2Response;
 
 typedef struct PIDInfo_St{
     int Service;
@@ -94,7 +119,7 @@ public:
         QHash<int, QByteArray> roles;
         roles[ServiceRole] = "service"; roles[PID_DecRole] = "pidDec";
         roles[DataCountRole] = "dataCount"; roles[PIDNameRole] = "pidName" ;roles[DescriptionRole] = "description"; roles[UnitRole] = "unit";roles[MinRole] = "min"; roles[MinRole] = "max";
-        roles[isEnabledRole] = "isEnabled"; roles[sendRandomeRole] = "sendRandome";roles[AllowToChangeRole] = "allowToChange";roles[WidgetTypeRole] ="widgetType";roles[ValueRole] ="value";
+        roles[isEnabledRole] = "isEnabled"; roles[sendRandomeRole] = "sendRandome";roles[AllowToChangeRole] = "allowToChange";roles[WidgetTypeRole] ="widgetType";roles[ValueRole] ="mvalue";
         return roles;
     }
     QVariant data(const QModelIndex &index, int role) const override
@@ -102,6 +127,26 @@ public:
         if (!hasIndex(index.row(), index.column(), index.parent()))
             return {};
         const PIDInfo &item = pidinfoList.at(index.row());
+        if (role == ServiceRole) return item.pidInfoSt.Service;
+        if (role == PID_DecRole) return item.pidInfoSt.PID_Dec;
+        if (role == DataCountRole) return item.pidInfoSt.DataCount;
+        if (role == PIDNameRole) return item.pidInfoSt.PIDName;
+        if (role == DescriptionRole) return item.pidInfoSt.Description;
+        if (role == UnitRole) return item.pidInfoSt.Unit;
+        if (role == MinRole)return item.pidInfoSt.Min;
+        if (role == MaxRole) return item.pidInfoSt.Max;
+        if (role == isEnabledRole) return item.pidInfoSt.isEnabled;
+        if (role == sendRandomeRole) return item.pidInfoSt.sendRandome;
+        if (role == AllowToChangeRole) return item.pidInfoSt.AllowToChange;
+        if (role == WidgetTypeRole) return item.pidInfoSt.WidgetType;
+        if (role == ValueRole) return item.pidInfoSt.Value;
+        return {};
+    }
+    QVariant getByindex(const int index, int role)
+    {
+        if (pidinfoList.count() >= index)
+            return {};
+        const PIDInfo &item = pidinfoList.at(index);
         if (role == ServiceRole) return item.pidInfoSt.Service;
         if (role == PID_DecRole) return item.pidInfoSt.PID_Dec;
         if (role == DataCountRole) return item.pidInfoSt.DataCount;
@@ -167,6 +212,7 @@ class PIDEncoderDecoder : public QObject
 private:
     QJsonArray jsonArray;    
     static PIDEncoderDecoder *m_instance;public:
+
 public:
     PIDInfoModel pIDInfoModel;
     explicit PIDEncoderDecoder(QObject *parent = nullptr);
@@ -175,10 +221,13 @@ public:
 
     void parsePIDJsonLookUpFile();
     void parsePIDCSVLookUpFile();
+    void printFrame(uint64_t msgId, uint8_t *buff, uint8_t len);    
+    void printOBD(uint64_t msgId, uint8_t *buff);
+    void sendCanBuffer(uint16_t canMsgId, uint8_t* dataBuffer,uint16_t len);
 public slots:
     Q_INVOKABLE QJsonArray getPIDList();
 
-    void parsePIDJsonLookUpFile(uint8_t msh);
+    void parsePIDJsonLookUpFile(mavlink_read_can_raw_t msg);
 signals:
 
 };

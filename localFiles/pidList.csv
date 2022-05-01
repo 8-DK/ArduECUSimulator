@@ -1,5 +1,5 @@
 Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendRanadome,AllowToChange,WidgetType,Value
-1,0,0,4,PIDs supported [01 - 20],,,,Bit encoded [A7..D0] == [PID $01..PID $20] See below,1,0,1,1,255
+1,0,0,4,PIDs supported [01 - 20],,,,Bit encoded [A7..D0] == [PID $01..PID $20] See below,1,0,1,3,255
 1,1,1,4,Status since DTCs cleared,,,,Bit encoded. See below,1,0,1,2,0
 1,2,2,2,Freeze DTC,,,,,1,0,1,3,0
 1,3,3,2,Fuel system status,,,,Bit encoded. See below,1,0,1,4,0
@@ -28,7 +28,7 @@ Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendR
 1,1D,29,1,Oxygen sensors present (in 4 banks),,,,"Similar to PID 13, but [A0..A7] == [B1S1, B1S2, B2S1, B2S2, B3S1, B3S2, B4S1, B4S2]",1,0,1,1,0
 1,1E,30,1,Auxiliary input status,,,,A0 == Power Take Off (PTO) status (1 == active),1,0,1,1,0
 1,1F,31,2,Run time since engine start,0,"65,535",seconds,{\displaystyle 256A+B},1,0,1,1,0
-1,20,32,4,PIDs supported [21 - 40],,,,Bit encoded [A7..D0] == [PID $21..PID $40] See below,1,0,1,1,255
+1,20,32,4,PIDs supported [21 - 40],,,,Bit encoded [A7..D0] == [PID $21..PID $40] See below,1,0,1,3,255
 1,21,33,2,Dist with MIL on,0,"65,535",km,{\displaystyle 256A+B},1,0,1,1,0
 1,22,34,2,Fuel Rail Pressure,0,5177.265,kPa,{\displaystyle 0.079(256A+B)},1,0,1,1,0
 1,23,35,2,Fuel Rail Gauge Pressure,0,"6,55,350",kPa,{\displaystyle 10(256A+B)},1,0,1,1,0
@@ -57,7 +57,7 @@ Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendR
 1,3D,61,2,"Catalyst Temp B 2, S 1",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
 1,3E,62,2,"Catalyst Temp B 1, S 2",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
 1,3F,63,2,"Catalyst Temp B 2, S 2",-40,"6,513.50",°C,{\displaystyle {\frac {256A+B}{10}}-40},1,0,1,1,0
-1,40,64,4,PIDs supported [41 - 60],,,,Bit encoded [A7..D0] == [PID $41..PID $60] See below,1,0,1,1,255
+1,40,64,4,PIDs supported [41 - 60],,,,Bit encoded [A7..D0] == [PID $41..PID $60] See below,1,0,1,3,255
 1,41,65,4,Monitor status this drive cycle,,,,Bit encoded. See below,1,0,1,1,0
 1,42,66,2,Control module voltage,0,65.535,V,{\displaystyle {\frac {256A+B}{1000}}},1,0,1,1,0
 1,43,67,2,Absolute load value,0,"25,700",%,{\displaystyle {\tfrac {100}{255}}(256A+B)},1,0,1,1,0
@@ -89,7 +89,7 @@ Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendR
 1,5D,93,2,Fuel injection timing,-210,301.992,°,{\displaystyle {\frac {256A+B}{128}}-210},1,0,1,1,0
 1,5E,94,2,Engine fuel rate,0,3212.75,L/h,{\displaystyle {\frac {256A+B}{20}}},1,0,1,1,0
 1,5F,95,1,Emission req,,,,Bit Encoded,1,0,1,1,0
-1,60,96,4,PIDs supported [61 - 80],,,,Bit encoded [A7..D0] == [PID $61..PID $80] See below,1,0,1,1,255
+1,60,96,4,PIDs supported [61 - 80],,,,Bit encoded [A7..D0] == [PID $61..PID $80] See below,1,0,1,3,255
 1,61,97,1,Demand engine percent torque,-125,130,%,{\displaystyle A-125},1,0,1,1,0
 1,62,98,1,Actual engine - percent torque,-125,130,%,{\displaystyle A-125},1,0,1,1,0
 1,63,99,2,Engine reference torque,0,"65,535",Nm,{\displaystyle 256A+B},1,0,1,1,0
@@ -121,7 +121,7 @@ Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendR
 1,7D,125,1,NOx NTE,,,,,1,0,1,1,0
 1,7E,126,1,PM NTE,,,,,1,0,1,1,0
 1,7F,127,13,Engine run time [b],,,seconds,,1,0,1,1,0
-1,80,128,4,PIDs supported [81 - A0],,,,Bit encoded [A7..D0] == [PID $81..PID $A0] See below,1,0,1,1,255
+1,80,128,4,PIDs supported [81 - A0],,,,Bit encoded [A7..D0] == [PID $81..PID $A0] See below,1,0,1,3,255
 1,81,129,41,Engine run time,,,,,1,0,1,1,0
 1,82,130,41,Engine run time,,,,,1,0,1,1,0
 1,83,131,9,NOx sensor,,,,,1,0,1,1,0
@@ -150,7 +150,7 @@ Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendR
 1,9D,157,4,Engine Fuel Rate,,,g/s,,1,0,1,1,0
 1,9E,158,2,Engine Exhaust Flow Rate,,,kg/h,,1,0,1,1,0
 1,9F,159,9,Fuel System Percentage Use,,,,,1,0,1,1,0
-1,A0,160,4,PIDs supported [A1 - C0],,,,Bit encoded [A7..D0] == [PID $A1..PID $C0] See below,1,0,1,1,255
+1,A0,160,4,PIDs supported [A1 - C0],,,,Bit encoded [A7..D0] == [PID $A1..PID $C0] See below,1,0,1,3,255
 1,A1,161,9,NOx Sensor Corrected Data,,,ppm,,1,0,1,1,0
 1,A2,162,2,Cylinder Fuel Rate,0,2047.96875,mg/stroke,{\displaystyle {\frac {256A+B}{32}}},1,0,1,1,0
 1,A3,163,9,Evap System Vapor Pressure,,,Pa,,1,0,1,1,0

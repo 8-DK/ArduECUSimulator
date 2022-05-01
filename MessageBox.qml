@@ -10,6 +10,7 @@ import CommLinkSettingsLib 1.0
 import LocalStringsLib 1.0
 import GStyleLib 1.0
 import "CustomeWidget/ButtonRound"
+import "CustomeWidget/CutomeTextField"
 
 Dialog{
     id: root
@@ -31,8 +32,6 @@ Dialog{
     onFocusChanged: {
         if(focus)
         {            
-            okButton.color = GStyle.whiteColor()
-            cancelButton.color = GStyle.gP("themeDefaultColor")
             okButton.focus = true
         }
     }
@@ -111,6 +110,10 @@ Dialog{
             }
         }
 
+        WGroup{
+            id : btnGrp
+        }
+
         ShineButton{
             id: okButton
             width: messageBoxRectangle.width * 0.25
@@ -121,15 +124,13 @@ Dialog{
             anchors.bottomMargin: messageBoxRectangle.height * 0.1
             text: LocalStrings.getLocalTextValue("ok")
             color:GStyle.gP("themeDefaultColor")
+            group:btnGrp
             onClicked: {
                 root.okButtonClickSignal()                
-                okButton.color = GStyle.whiteColor()
-                cancelButton.color = GStyle.gP("themeDefaultColor")
             }
             Keys.onReleased: {
                 if(event.key === Qt.Key_Return ||event.key === Qt.Key_Enter )
                 {
-                    console.log("Enter Key pressed from messagebox")
                     root.okButtonClickSignal()
                 }
             }
@@ -146,10 +147,9 @@ Dialog{
             anchors.bottomMargin: messageBoxRectangle.height * 0.1
             text : LocalStrings.getLocalTextValue("cancel")
             color:GStyle.gP("themeDefaultColor")
+            group:btnGrp
             onClicked: {
-                root.cancelButtonClickSignal()                
-                cancelButton.color = GStyle.whiteColor()
-                okButton.color = GStyle.gP("themeDefaultColor")
+                root.cancelButtonClickSignal()
             }
         }
     }
@@ -175,5 +175,11 @@ Dialog{
         }
 
         root.visible = true
+    }
+
+    function showMsg(msg)
+    {
+        messageDescription = msg
+        show()
     }
 }

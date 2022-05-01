@@ -52,11 +52,11 @@ public:
 
 private:
     QString stringComPort;
-    QString stringBaudRate;
-    QString stringDataBits;
-    QString stringParity;
-    QString stringStopBits;
-    QString stringFlowControl;
+    QString stringBaudRate = "9600";
+    QString stringDataBits = "8";
+    QString stringParity = "None";
+    QString stringStopBits = "1";
+    QString stringFlowControl = "None";
     static CommLinkSettings *m_instance;
 
     void selectSerialPort();

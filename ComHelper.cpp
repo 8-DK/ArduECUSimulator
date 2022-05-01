@@ -14,6 +14,9 @@ QSerialPort * ComHelper::m_serial;
 ComHelper* ComHelper::instance;
 QByteArray ComHelper::message;
 
+namespace SIM {
+    const ComHelper *comm(){ return ComHelper::getInstance();}
+}
 
 ComHelper* ComHelper::getInstance()
 {
@@ -82,9 +85,7 @@ void ComHelper::openSerialPort()
         m_heartBeatTimer->setInterval(3000);
         connect(m_heartBeatTimer, SIGNAL(timeout()), this, SLOT(disconnectDevice()),Qt::UniqueConnection);
 
-        emit showMessageBoxToConnectSerialPort();
-        emit serialPortConnected("");
-        showStatusMessage("Connected");
+        emit commStatusChanged(COMM_CONNECTED);        
         connect(m_serial, &QSerialPort::readyRead, this, &ComHelper::readData);
     } else
     {
@@ -93,34 +94,30 @@ void ComHelper::openSerialPort()
             closeSerialPort(0);
         }
         else if(isSerialPortOpen())
-        {
-            emit showMessageBoxSerialPortAlreadyConnected();
-            //   MainWindowGlobalContext::getInstance()->addMessageBox("Serial Port","Serial Port is already Opened",INFO);
+        {            
+            emit commStatusChanged(COMM_ALREADYCONNECTED);
         }
-        else{
-            //  MainWindowGlobalContext::getInstance()->addMessageBox("Serial Port","Unable to open Serial Port",CRITICAL);
-            emit showMessageBoxUnableToConnectSeralPort();
-            showStatusMessage(tr("Open error"));
+        else{                        
+            emit commStatusChanged(COMM_FAILED_TO_CONNECT);            
         }
     }
 }
 
 void ComHelper::closeSerialPort(int showPopup)
 {
+    m_heartBeatTimer->stop();
     isSerialPortConnected = false;
     if (m_serial->isOpen())
     {
         m_serial->close();
         if(!m_autoConnectTimer->isActive())
         {
-            if(showPopup)
-            emit showMessageBoxSerialPortDisconnected();
-            //MainWindowGlobalContext::getInstance()->addMessageBox("Serial Port","Serial Port Disconnected",INFO);
-            showStatusMessage(tr("Disconnected"));
+            if(showPopup)           
+             emit commStatusChanged(COMM_DISCONNECTED);            
         }
     }
     else {
-        showStatusMessage(tr("Serial Port not Connected"));
+        emit commStatusChanged(COMM_ALREADYDISCONNECTED);
     }
 }
 
@@ -143,33 +140,33 @@ void ComHelper::readData()
             {
                 switch(msg.msgid)
                 {
+                    case MAVLINK_MSG_ID_HEART_BEAT :
+                    {
+                       mavlink_heart_beat_t heart_beat;
+                       mavlink_msg_heart_beat_decode(&msg, &heart_beat);
+                       m_heartBeatTimer->start();
+//                       qDebug() << "MAVLINK_MSG_ID_HEART_BEAT : heart_beat.target_system" << heart_beat.target_system;
+                       emit heartBeatSign(heart_beat);
+                    }
+                        break;
 
-                case MAVLINK_MSG_ID_HEART_BEAT :
-                {
-                   mavlink_heart_beat_t heart_beat;
-                   mavlink_msg_heart_beat_decode(&msg, &heart_beat);
-                   m_heartBeatTimer->start();
-                   qDebug() << "MAVLINK_MSG_ID_HEART_BEAT : heart_beat.target_system" << heart_beat.target_system;
-                   emit heartBeatSign(heart_beat);
-                }
-                    break;
+                    case MAVLINK_MSG_ID_READ_CAN_RAW :
+                    {
+                        mavlink_read_can_raw_t raw_can_data;
+                        mavlink_msg_read_can_raw_decode(&msg, &raw_can_data);
+                        emit readRawCanData(raw_can_data);
+                    }
+                        break;
+                    case MAVLINK_MSG_ID_SEND_CAN_RAW:
+                    {
+                        mavlink_send_can_raw_t raw_can_data;
+                        mavlink_msg_send_can_raw_decode(&msg, &raw_can_data);
+                        emit sendRawCanData(raw_can_data);
+                    }
+                        break;
 
-                case MAVLINK_MSG_ID_READ_CAN_RAW :
-                {
-                    mavlink_read_can_raw_t raw_can_data;
-                    mavlink_msg_read_can_raw_decode(&msg, &raw_can_data);
-                    emit readRawCanData(raw_can_data);
-                }
-                    break;
-                case MAVLINK_MSG_ID_SEND_CAN_RAW:
-                {
-                    mavlink_send_can_raw_t raw_can_data;
-                    mavlink_msg_send_can_raw_decode(&msg, &raw_can_data);
-                    emit sendRawCanData(raw_can_data);
-                }
-
-                default:
-                    break;
+                    default:
+                        break;
                 }
             }
         }
@@ -189,7 +186,7 @@ void ComHelper::handleError(QSerialPort::SerialPortError error)
 {
     if (error == QSerialPort::ResourceError) {
         closeSerialPort(1);
-        emit showMessageBoxSerialPortDisconnected();
+        emit commStatusChanged(COMM_DISCONNECTED);
         //MainWindowGlobalContext::getInstance()->addMessageBox("Serial Port","Serial Port Disconnected",INFO);
     }
 }
@@ -198,13 +195,12 @@ void ComHelper::disconnectDevice()
 {    
     if(m_serial->error() > 0)
     {
-        m_serial->clearError();
-        showStatusMessage("Device is Disconnected");
+        m_serial->clearError();        
         if(m_serial->isOpen())
             m_serial->close();
        // if(isDeviceDisconnected == true)
         {
-            emit showMessageBoxSerialPortDisconnected();
+            emit commStatusChanged(COMM_DISCONNECTED);
             isDeviceDisconnected = false;
             isSerialPortConnected = false;
         }
@@ -399,6 +395,7 @@ QByteArray ComHelper::readAll()
     {
         return m_message;
     }
+    return QByteArray("");
 }
 
 /// @brief This function is responsible to read data over UDP protocol

@@ -6,9 +6,9 @@ int main(int argc, char *argv[])
     QCoreApplication::addLibraryPath(".");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    AppContext *m_MainWindowGlobalContext;
+    AppContext *m_AppContext;
 
-    m_MainWindowGlobalContext = AppContext::getInstance();
+    m_AppContext = AppContext::getInstance();
 
     qmlRegisterSingletonType<LocalStrings>("LocalStringsLib", 1, 0, "LocalStrings",&LocalStrings::getInstance);
     qmlRegisterSingletonType<GStyle>("GStyleLib", 1, 0, "GStyle",&GStyle::getInstance);
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonType<PIDEncoderDecoder>("PIDEncoderDecoderLib", 1, 0, "PIDEncoderDecoder",&PIDEncoderDecoder::getInstance);    
 
     QApplication app(argc,argv);
-    m_MainWindowGlobalContext->appInit(&app);
+    m_AppContext->appInit(&app);
 
     app.processEvents(QEventLoop::AllEvents);
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     //QTimer::singleShot(5000 , &splash, &QWidget::close); // keep displayed for 5 seconds
     // app.processEvents();
     QQmlApplicationEngine engine;
-    m_MainWindowGlobalContext->engineStart(&engine);
+    m_AppContext->engineStart(&engine);
 
     engine.rootContext()->setContextProperty("PIDList", &PIDEncoderDecoder::getInstance()->pIDInfoModel);
 

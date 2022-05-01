@@ -1,6 +1,5 @@
 QT += quick
 QT += widgets serialport sql positioning location
-QT += mqtt
 QT += qml quick
 QT += gui
 QT += core
@@ -30,16 +29,16 @@ unix:!symbian {
 win32 {
     RC_ICONS +=  assets\sim_icon.ico
     equals(QT_MINOR_VERSION, 12){
-       MSVC_PATH  = "C:/Qt/Qt5.12.0/5.12.0/mingw73_64"
+       MSVC_PATH  = "C:/Qt/5.12.0/mingw73_64"
     } else {
-       MSVC_PATH  = "C:/Qt/Qt5.14/5.14.1/mingw73_64"
+       MSVC_PATH  = "C:/Qt/5.14.1/mingw73_64"
     }
 
     QTPLUGIN += /plugins
 
     QMAKE_LFLAGS += -Wl,--rpath=\$$ORIGIN/lib
 
-    LIBS += -L$$MSVC_PATH/lib -lquazipd #-lssleay32 -llibeay32 -lcrypto -lssl
+    LIBS += -L$$MSVC_PATH/lib -lquazip #-lssleay32 -llibeay32 -lcrypto -lssl
 
     INCLUDEPATH+=$$MSVC_PATH/include \
                  $$MSVC_PATH/../../Tools/OpenSSL/Win_x64/include \

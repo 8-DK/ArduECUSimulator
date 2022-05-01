@@ -34,7 +34,7 @@ DelegateModel {
                 repeat: true
                 interval: 1000
                 onTriggered: {
-                    slider.value = GStyle.getRandomeInt(slider.minVal,slider.maxVal)
+                   slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
                 }
             }
 
@@ -52,6 +52,10 @@ DelegateModel {
                 stepVal: 1
                 //randomeChk:false
                 height: parent.height*0.3
+                onMvalueChanged: {
+                    modelValue = slider.value
+                    console.log("modelIndex ",modelIndex)
+                }
             }
         }
     }
@@ -68,7 +72,7 @@ DelegateModel {
                 repeat: true
                 interval: 1000
                 onTriggered: {
-                    slider.value = GStyle.getRandomeInt(slider.minVal,slider.maxVal)
+                    slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
                 }
             }
 
@@ -88,6 +92,9 @@ DelegateModel {
                 stepVal: 1
                 //randomeChk:false
                 height: parent.height*0.3
+                onValueChanged: {
+                    modelValue = slider.value
+                }
             }
         }
     }
@@ -120,6 +127,9 @@ DelegateModel {
                 stepVal: 1
                 //randomeChk:false
                 height: parent.height*0.3
+                onValueChanged: {
+                    modelValue = slider.value
+                }
             }
         }
     }
@@ -136,6 +146,9 @@ DelegateModel {
                 stepVal: 1
                 //randomeChk:false
                 height: parent.height*0.5
+                onValueChanged: {
+                    modelValue = slider.value
+                }
             }
         }
     }
@@ -189,9 +202,10 @@ DelegateModel {
                 }
             }            
             Loader {
+                property string modelValue
+                property int modelIndex: index
                 anchors.fill: parent
-                sourceComponent: {
-                    console.log(pidName)
+                sourceComponent: {                    
                     if(widgetType === 0)
                         return custDia
                     else if(widgetType === 1)

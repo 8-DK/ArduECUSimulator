@@ -1,6 +1,5 @@
 import QtQuick 2.4
 import QtQuick.Window 2.12
-import ComHelperLib 1.0
 import QtGraphicalEffects 1.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
@@ -31,9 +30,12 @@ Rectangle{
 
     layer.enabled: rootButton.hovered
     layer.effect: DropShadow {
-        transparentBorder: true
-        color: "#F3F4F5"
-        samples: 10
+//        transparentBorder: true
+        radius: 4
+        verticalOffset: 0
+        spread: 0
+        color: "#cccccc"
+        samples: 17
     }
 
     states: [
@@ -56,7 +58,6 @@ Rectangle{
         }
         if(rootButton.state === "selected")
         {
-            console.log("State selected")
             rootButton.color = GStyle.gP("themeDefaultColor")
             rootButton.textColor  = GStyle.whiteColor()
         }

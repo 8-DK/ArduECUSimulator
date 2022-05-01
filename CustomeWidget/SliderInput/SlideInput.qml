@@ -29,6 +29,8 @@ Rectangle {
     property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
     property var textBoxBgColor: GStyle.gP("textBoxBgColor")
 
+    signal mvalueChanged(double mvalue);
+
     function validateInputs()
     {
         if(minVal  > textInput.text)
@@ -41,12 +43,14 @@ Rectangle {
             valSlider.value = maxVal
             textInput.text = maxVal
         }
+        mvalueChanged(valSlider.value)
     }
 
     function setValue(val)
     {
         valSlider.value = val
         textInput.text = valSlider.value
+        mvalueChanged(valSlider.value)
     }
 
     Rectangle{
@@ -119,6 +123,7 @@ Rectangle {
                 anchors.bottomMargin: 0                                
                 onMoved: {
                      textInput.text = valSlider.value
+                     mvalueChanged(valSlider.value)
                 }
 
                 background: Rectangle {

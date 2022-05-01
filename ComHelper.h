@@ -25,11 +25,19 @@ typedef enum COMM_INTERFACE{
     INTERFACE_BLUETOOTH         /// 3
 }COMM_INTERFACE;
 
+typedef enum COMM_STATUS{
+    COMM_CONNECTED,
+    COMM_DISCONNECTED,
+    COMM_ALREADYCONNECTED,
+    COMM_ALREADYDISCONNECTED,
+    COMM_FAILED_TO_CONNECT
+}COMM_STATUS;
 
 class ComHelper : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(ComHelper)
+    Q_ENUM(COMM_STATUS)
     explicit ComHelper(QObject *parent = nullptr);
 
     SerialPortSettings m_serialSetting;
@@ -93,14 +101,7 @@ public:
     QByteArray readAllUDPBytes();
 
 signals:
-    void comHelperSendsMessage(QString msg,QString receiver);
-    void setupCompleteChanged(bool setupComplete);
-    void serialPortConnected(QString);
-    void showStatusMessage(const QString &message);
-    void showMessageBoxToConnectSerialPort();
-    void showMessageBoxUnableToConnectSeralPort();
-    void showMessageBoxSerialPortAlreadyConnected();
-    void showMessageBoxSerialPortDisconnected();
+    void commStatusChanged(COMM_STATUS status);               
 
     void heartBeatSign(mavlink_heart_beat_t);
     void readRawCanData(mavlink_read_can_raw_t);
@@ -118,5 +119,14 @@ public slots:
     void setInterFace(int interfaceNum);
     int getInterFace();
 };
+
+#ifndef __COMM_NP__
+#define __COMM_NP__
+
+namespace SIM {
+    const ComHelper *comm();
+}
+#endif
+
 
 #endif // ComHelper_H

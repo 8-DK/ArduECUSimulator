@@ -24,7 +24,7 @@ Item {
     signal sendPushNewProject()
     property var connectionTargetMessage: null
     property int  dataBit : 8;
-    property int   parity;
+    property int  parity : 1;
     property var nextScreen;
     property int screen;
 
@@ -123,46 +123,24 @@ Item {
     }
 
     function comp()
-    {
-        //        console.log("Progress completed--------------++++++++")
+    {        
         ComHelper.callAfterParameterDownload()
         mainStackView.pop()
         progressBar.end()
     }
 
     function update()
-    {
-        //        console.log("Progress Update--------------++++++++")
+    {        
         var progCount = ComHelper.updateProgressBarValue()
         if(progCount>100)
             serialUpdateTimer.stop()
         return (progCount*100)
     }
     MessageBox{
-        id: serialPortMessage
-        messageDescription: " Serial port is connected."
-        onOkButtonClickSignal: {
-            mainWindowSerialPort.connectionTargetMessage = null
-            serialPortMessage.hide()
-            mainStackView.pop()
-        }
-    }
-
-    MessageBox{
-        id: serialPortNotConnectedMessage
-        messageDescription: " Unable to connect serial port."//Serial Port is already Opened"//
-        onOkButtonClickSignal: {
-            serialPortNotConnectedMessage.hide()
-        }
-    }
-
-    MessageBox{
-        id: serialPortAlreadyConnectedMessage
-        messageDescription: " Serial Port is already connected"
-        onOkButtonClickSignal: {
-            mainWindowSerialPort.connectionTargetMessage = null
-            serialPortAlreadyConnectedMessage.hide()
-            mainStackView.pop()
+        id: commlinkmsg
+        messageDescription: ""
+        onOkButtonClickSignal: {            
+            commlinkmsg.hide()
         }
     }
 
@@ -275,114 +253,50 @@ Item {
                 }
             }
 
+            WGroup{
+                id : btnGrpDaataBit
+            }
 
-
-            Button{
+            PlainButton{
                 id : dataBitsOption1
                 height: dataBitRect.height
                 width: dataBitRect.width * 0.2
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: dataBitsText.right
                 anchors.leftMargin: dataBitRect.width * 0.05
-                background: Rectangle {
-                    id: dataBitsOption1BgRect
-                    color: GStyle.whiteColor()//"white"
-                    border.width: 0.5
-                    border.color: GStyle.borderColor()//"#B0ADAB"
-                }
-                Text{
-                    id: dataBitsOption1Text
-                    anchors.centerIn: dataBitsOption1
-                    text: "6"
-                    font.family: fontLdr.openSansRegular
-                    font.weight: "Normal"
-                    font.pixelSize: getFontSize("H4")
-                    color: GStyle.darkGrayColor()
-                }
-                onClicked: {
+                text: "6"
+                group: btnGrpDaataBit
+                onButtonClicked: {
                     dataBit = 6;
-                    dataBitsOption1BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
-                    dataBitsOption1BgRect.border.color = GStyle.gP("themeDefaultColor")
-                    dataBitsOption1Text.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.border.color = GStyle.borderColor()
-                    dataBitsOption2Text.color =  GStyle.darkGrayColor()//"#706E6B"
-                    dataBitsOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption3BgRect.border.color = GStyle.borderColor()
-                    dataBitsOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
                 }
             }
 
-            Button{
+            PlainButton{
                 id : dataBitsOption2
                 height: dataBitRect.height
                 width: dataBitRect.width * 0.2
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: dataBitsOption1.right
-                anchors.leftMargin: dataBitRect.width * 0.05
-                background: Rectangle {
-                    id: dataBitsOption2BgRect
-                    color: GStyle.whiteColor()//"white"
-                    border.width: 0.5
-                    border.color: GStyle.borderColor()//"#B0ADAB"
-                }
-                Text{
-                    id: dataBitsOption2Text
-                    anchors.centerIn: dataBitsOption2
-                    text: "7"
-                    font.family: fontLdr.openSansRegular
-                    font.weight: "Normal"
-                    font.pixelSize: getFontSize("H4")
-                    color: GStyle.darkGrayColor()
-                }
-                onClicked: {
+                anchors.leftMargin: dataBitRect.width * 0.05                
+                text: "7"
+                group: btnGrpDaataBit
+                onButtonClicked: {
                     dataBit = 7;
-                    dataBitsOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption1BgRect.border.color = GStyle.borderColor()
-                    dataBitsOption1Text.color = GStyle.darkGrayColor()//"#706E6B"
-                    dataBitsOption2BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
-                    dataBitsOption2BgRect.border.color = GStyle.gP("themeDefaultColor")
-                    dataBitsOption2Text.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption3BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption3Text.color = GStyle.darkGrayColor()//"#706E6B"
-                    dataBitsOption3BgRect.border.color = GStyle.borderColor()
                 }
             }
 
-            Button{
+            PlainButton{
                 id : dataBitsOption3
                 height: dataBitRect.height
                 width: dataBitRect.width * 0.2
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: dataBitsOption2.right
                 anchors.leftMargin: dataBitRect.width * 0.05
-                background: Rectangle {
-                    id: dataBitsOption3BgRect
-                    //color: "white"
-                    border.width: 0.5
-                    border.color: GStyle.gP("themeDefaultColor")
-                    color :  GStyle.gP("themeDefaultColor")//"#48B0E5"
-                }
-                Text{
-                    id: dataBitsOption3Text
-                    anchors.centerIn: dataBitsOption3
-                    text: "8"
-                    font.family: fontLdr.openSansRegular
-                    font.weight: "Normal"
-                    font.pixelSize: getFontSize("H4")
-                    color: GStyle.whiteColor()
-                }
-                onClicked: {
+                text: "8"
+                state: "selected"
+                group: btnGrpDaataBit
+                onButtonClicked: {
                     dataBit = 8;
-                    dataBitsOption1BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption1BgRect.border.color = GStyle.borderColor()
-                    dataBitsOption1Text.color = GStyle.darkGrayColor()//"#706E6B"
-                    dataBitsOption3BgRect.color =  GStyle.gP("themeDefaultColor")//"#48B0E5"
-                    dataBitsOption3BgRect.border.color = GStyle.gP("themeDefaultColor")
-                    dataBitsOption3Text.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.color = GStyle.whiteColor()//"#FFFFFF"
-                    dataBitsOption2BgRect.border.color = GStyle.borderColor()
-                    dataBitsOption2Text.color =  GStyle.darkGrayColor()//"#706E6B"
                 }
             }
         }
@@ -420,7 +334,7 @@ Item {
             }
 
             WGroup{
-                id : btnGrp
+                id : btnGrpParity
             }
 
             PlainButton{
@@ -430,7 +344,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parityText.right
                 anchors.leftMargin: parityRect.width * 0.05
-                group: btnGrp
+                group: btnGrpParity
                 state: "selected"
                 text: "None"
                 onButtonClicked: {
@@ -445,7 +359,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parityOption1.right
                 anchors.leftMargin: parityRect.width * 0.05
-                group: btnGrp
+                group: btnGrpParity
                 text: "Even"
                 onButtonClicked: {
                     parity = 2
@@ -459,14 +373,13 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parityOption2.right
                 anchors.leftMargin: parityRect.width * 0.05
-                group: btnGrp
+                group: btnGrpParity
                 text: "Odd"
                 onButtonClicked: {
                     parity = 2
                 }
             }
         }
-
 
 
        CustomeCombo {
@@ -620,30 +533,27 @@ Item {
 
     Connections{
         target: mainWindowSerialPort.connectionTargetMessage
-        onShowMessageBoxToConnectSerialPort :
-        {
-            //            serialPortMessage.show()
-            //progressBar.start()
-            sendPushNewProject()
-        }
-        onShowMessageBoxUnableToConnectSeralPort :
-        {
-            serialPortNotConnectedMessage.show()
-        }
-        onShowMessageBoxSerialPortAlreadyConnected :
-        {
-            serialPortAlreadyConnectedMessage.show()
-        }
-        onShowMessageBoxSerialPortDisconnected :
-        {
-            progressBar.end()
-            serialPortDisconnectedMessage.show()
+        onCommStatusChanged:{
+            console.log("status : ",status)
+            if(status === ComHelper.COMM_CONNECTED)
+            {
+                commlinkmsg.showMsg("Commlink connected.")
+                 mainStackView.pop()
+            }
+            else if(status === ComHelper.COMM_DISCONNECTED)
+            {
+                commlinkmsg.showMsg("Commlink disconnected.")
+                 mainStackView.pop()
+            }
+            else if(status === ComHelper.COMM_ALREADYCONNECTED)
+            {
+                commlinkmsg.showMsg("Commlink already connected.")
+                 mainStackView.pop()
+            }
+            else if(status === ComHelper.COMM_FAILED_TO_CONNECT)
+            {
+               commlinkmsg.showMsg("Failed to connect Commlink.")
+            }
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:12;anchors_height:0;anchors_width:0}D{i:13;anchors_width:252}
-}
-##^##*/

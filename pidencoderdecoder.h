@@ -28,7 +28,7 @@ typedef struct OBD2Request{
    uint8_t un7;
 }OBD2Request;
 
-typedef struct OBD2Response{
+typedef struct __attribute__ ((packed))  OBD2Response {
    uint8_t numAddnDataBytes;
    uint8_t service;
    uint8_t pidCode;
@@ -144,7 +144,7 @@ public:
     }
     QVariant getByindex(const int index, int role)
     {
-        if (pidinfoList.count() >= index)
+        if (pidinfoList.count() <= index)
             return {};
         const PIDInfo &item = pidinfoList.at(index);
         if (role == ServiceRole) return item.pidInfoSt.Service;
@@ -162,6 +162,28 @@ public:
         if (role == ValueRole) return item.pidInfoSt.Value;
         return {};
     }
+
+    bool setByindex(const int index, const QVariant &value, int role)
+    {
+        PIDInfo item = pidinfoList.at(index);
+        if (role == ServiceRole)  item.pidInfoSt.Service = value.toInt();
+        if (role == PID_DecRole)  item.pidInfoSt.PID_Dec = value.toInt();
+        if (role == DataCountRole)  item.pidInfoSt.DataCount= value.toInt();
+        if (role == PIDNameRole)  item.pidInfoSt.PIDName= value.toString();
+        if (role == DescriptionRole)  item.pidInfoSt.Description= value.toString();
+        if (role == UnitRole)  item.pidInfoSt.Unit= value.toString();
+        if (role == MinRole) item.pidInfoSt.Min = value.toInt();
+        if (role == MaxRole)  item.pidInfoSt.Max = value.toInt();
+        if (role == isEnabledRole)  item.pidInfoSt.isEnabled = value.toBool();
+        if (role == sendRandomeRole)  item.pidInfoSt.sendRandome = value.toBool();
+        if (role == AllowToChangeRole)  item.pidInfoSt.AllowToChange = value.toBool();
+        if (role == WidgetTypeRole) item.pidInfoSt.WidgetType= value.toInt();
+        if (role == ValueRole) item.pidInfoSt.Value = value.toDouble();        
+        else{ return false;}
+        pidinfoList.replace(index,item);
+        return true ;
+    }
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const override {if (parent.isValid())return 0;return pidinfoList.size();}
     bool setData(const QModelIndex &index, const QVariant &value, int role)  override
     {
@@ -222,10 +244,12 @@ public:
     void parsePIDJsonLookUpFile();
     void parsePIDCSVLookUpFile();
     void printFrame(uint64_t msgId, uint8_t *buff, uint8_t len);    
-    void printOBD(uint64_t msgId, uint8_t *buff);
+    void printOBDRequest(uint64_t msgId, uint8_t *buff,QString tag = "");
+    void printOBDResponse(uint64_t msgId, uint8_t *buff,QString tag = "");
     void sendCanBuffer(uint16_t canMsgId, uint8_t* dataBuffer,uint16_t len);
 public slots:
     Q_INVOKABLE QJsonArray getPIDList();
+    Q_INVOKABLE void setValueOfPIDtIndex(int indx,double val);
 
     void parsePIDJsonLookUpFile(mavlink_read_can_raw_t msg);
 signals:

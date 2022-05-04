@@ -84,6 +84,7 @@ void ComHelper::openSerialPort()
         m_heartBeatTimer->start();
         m_heartBeatTimer->setInterval(3000);
         connect(m_heartBeatTimer, SIGNAL(timeout()), this, SLOT(disconnectDevice()),Qt::UniqueConnection);
+        connect(this, SIGNAL(heartBeatSign(mavlink_heart_beat_t)), this, SLOT(sendHeartBeat(mavlink_heart_beat_t)),Qt::UniqueConnection);
 
         emit commStatusChanged(COMM_CONNECTED);        
         connect(m_serial, &QSerialPort::readyRead, this, &ComHelper::readData);
@@ -142,7 +143,6 @@ void ComHelper::readData()
                 {
                     case MAVLINK_MSG_ID_HEART_BEAT :
                     {
-                       mavlink_heart_beat_t heart_beat;
                        mavlink_msg_heart_beat_decode(&msg, &heart_beat);
                        m_heartBeatTimer->start();
 //                       qDebug() << "MAVLINK_MSG_ID_HEART_BEAT : heart_beat.target_system" << heart_beat.target_system;
@@ -205,6 +205,23 @@ void ComHelper::disconnectDevice()
             isSerialPortConnected = false;
         }
     }
+}
+
+void ComHelper::sendHeartBeat(mavlink_heart_beat_t hbeat)
+{
+    mavlink_message_t mavMsg;
+
+    hbeat.target_system =     0;
+    hbeat.target_component =  0;
+    hbeat.counter++;
+    hbeat.mode = 1;
+    hbeat.state = 1;
+    mavlink_msg_heart_beat_encode_chan(0,
+                                         0,
+                                         1 ,
+                                         &mavMsg,
+                                         &hbeat);
+    ComHelper::getInstance()->sendData(mavMsg);
 }
 
 float ComHelper::updateProgressBarValue()

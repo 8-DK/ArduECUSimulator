@@ -1,5 +1,5 @@
 Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendRanadome,AllowToChange,WidgetType,Value
-1,0,0,4,PIDs supported [01 - 20],,,,Bit encoded [A7..D0] == [PID $01..PID $20] See below,1,0,1,3,255
+1,0,0,4,PIDs supported [01 - 20],,,,Bit encoded [A7..D0] == [PID $01..PID $20] See below,1,0,1,3,65535
 1,1,1,4,Status since DTCs cleared,,,,Bit encoded. See below,1,0,1,2,0
 1,2,2,2,Freeze DTC,,,,,1,0,1,3,0
 1,3,3,2,Fuel system status,,,,Bit encoded. See below,1,0,1,4,0

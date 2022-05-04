@@ -18,6 +18,8 @@ Item {
     property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
     property var textBoxBgColor: GStyle.gP("textBoxBgColor")
 
+    signal valueUpdate(double mvalue)
+
      Component.onCompleted :{
          if(4294967295 < dataFieldChecked)
          {
@@ -139,7 +141,7 @@ Item {
                     if(dataFieldChecked !== num)
                         dataFieldChecked = num
                     checkRepeater.model = dataFieldArr
-
+                    valueUpdate(dataFieldChecked)
                 }
                 else
                 {
@@ -170,5 +172,6 @@ Item {
         }
         textInput.text = GStyle.numToHexStr(dataFieldChecked)
         checkRepeater.model = dataFieldArr
+        valueUpdate(dataFieldChecked)
     }
 }

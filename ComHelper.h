@@ -63,6 +63,8 @@ class ComHelper : public QObject
     bool isOpendUdp = false;
     QMutex udpReadLockMutex;
 
+    mavlink_heart_beat_t heart_beat;
+
 public:
 
     Q_ENUM(COMM_INTERFACE)
@@ -100,6 +102,7 @@ public:
     /// @brief This function is responsible to read data over UDP protocol
     QByteArray readAllUDPBytes();
 
+
 signals:
     void commStatusChanged(COMM_STATUS status);               
 
@@ -115,6 +118,7 @@ public slots:
     void handleError(QSerialPort::SerialPortError error);
     void disconnectDevice();
     void bytesWritten(qint64 bytes);
+    void sendHeartBeat(mavlink_heart_beat_t hbeat);
 
     void setInterFace(int interfaceNum);
     int getInterFace();

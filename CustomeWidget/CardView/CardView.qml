@@ -18,6 +18,7 @@ import "../SliderInput"
 import "../Switch"
 import "../Header"
 import "../BitMapView"
+import PIDEncoderDecoderLib 1.0
 
 DelegateModel {
     //! [0]
@@ -52,8 +53,8 @@ DelegateModel {
                 stepVal: 1
                 //randomeChk:false
                 height: parent.height*0.3
-                onMvalueChanged: {
-                    modelValue = slider.value
+                onMvalueChanged: {                    
+                    PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
                     console.log("modelIndex ",modelIndex)
                 }
             }
@@ -93,7 +94,7 @@ DelegateModel {
                 //randomeChk:false
                 height: parent.height*0.3
                 onValueChanged: {
-                    modelValue = slider.value
+                    PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
                 }
             }
         }
@@ -128,7 +129,7 @@ DelegateModel {
                 //randomeChk:false
                 height: parent.height*0.3
                 onValueChanged: {
-                    modelValue = slider.value
+                   PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
                 }
             }
         }
@@ -147,7 +148,7 @@ DelegateModel {
                 //randomeChk:false
                 height: parent.height*0.5
                 onValueChanged: {
-                    modelValue = slider.value
+                    PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
                 }
             }
         }
@@ -165,6 +166,9 @@ DelegateModel {
                 anchors.centerIn: parent
                 height: parent.height*0.7
                 dataFieldChecked: 255
+                onValueUpdate: {
+                    PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,mvalue)
+                }
             }
         }
     }
@@ -201,8 +205,7 @@ DelegateModel {
                     color: "#ffffff"
                 }
             }            
-            Loader {
-                property string modelValue
+            Loader {                
                 property int modelIndex: index
                 anchors.fill: parent
                 sourceComponent: {                    

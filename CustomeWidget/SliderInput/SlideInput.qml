@@ -30,6 +30,7 @@ Rectangle {
     property var textBoxBgColor: GStyle.gP("textBoxBgColor")
 
     signal mvalueChanged(double mvalue);
+    signal randomeUpdated();
 
     function validateInputs()
     {
@@ -73,6 +74,9 @@ Rectangle {
                 anchors.left: parent.left
                 //anchors.leftMargin: parent.width*0.1
                 anchors.verticalCenter: parent.verticalCenter
+                onUpdate: {
+                    randomeUpdated()
+                }
             }
 
             TextField {

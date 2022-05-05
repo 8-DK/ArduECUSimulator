@@ -11,6 +11,8 @@ Item {
     property var activeColor: GStyle.gP("themeDefaultColor") //"#21be2b"
     property var mainColor:  GStyle.gP("widgetActiveColor") //"#17a81a"
 
+    signal update(bool value);
+
     SwitchDelegate {
         id: control
         text: m_text
@@ -53,7 +55,10 @@ Item {
             visible: false//control.down || control.highlighted
             //color: control.down ? "#bdbebf" : "#eeeeee"
         }
-        onToggled: onTogle()
+        onToggled: {
+            switchCust.update(control.checked)
+            onTogle()
+        }
     }
 
     function m_onTogle(){

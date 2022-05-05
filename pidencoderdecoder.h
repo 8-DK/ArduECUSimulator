@@ -251,7 +251,16 @@ public slots:
     Q_INVOKABLE QJsonArray getPIDList();
     Q_INVOKABLE void setValueOfPIDtIndex(int indx,double val);
 
-    void parsePIDJsonLookUpFile(mavlink_read_can_raw_t msg);
+    Q_INVOKABLE void parsePIDJsonLookUpFile(mavlink_read_can_raw_t msg);
+    Q_INVOKABLE double getValueOfPIDtIndex(int indx);
+    Q_INVOKABLE void setIsrandome(int indx, bool val);
+    Q_INVOKABLE bool getIsrandome(int indx);
+    Q_INVOKABLE void setIsEnabled(int indx, bool val);
+    Q_INVOKABLE bool getIsEnabled(int indx);
+    Q_INVOKABLE void setMaxLimit(int indx, double val);
+    Q_INVOKABLE double getMaxLimit(int indx);
+    Q_INVOKABLE void setMinLimit(int indx, double val);
+    Q_INVOKABLE double getMinLimit(int indx);
 signals:
 
 };

@@ -23,10 +23,58 @@ QJsonArray PIDEncoderDecoder::getPIDList()
 {
     return jsonArray;
 }
- void PIDEncoderDecoder::setValueOfPIDtIndex(int indx,double val)
- {
+
+void PIDEncoderDecoder::setValueOfPIDtIndex(int indx,double val)
+{
     pIDInfoModel.setByindex(indx,val,PIDInfoModel::ValueRole);
- }
+}
+
+double PIDEncoderDecoder::getValueOfPIDtIndex(int indx)
+{
+    return pIDInfoModel.getByindex(indx,PIDInfoModel::ValueRole).toDouble();
+}
+
+void PIDEncoderDecoder::setIsrandome(int indx,bool val)
+{
+    pIDInfoModel.setByindex(indx,val,PIDInfoModel::sendRandomeRole);
+}
+
+bool PIDEncoderDecoder::getIsrandome(int indx)
+{
+    return pIDInfoModel.getByindex(indx,PIDInfoModel::sendRandomeRole).toBool();
+}
+
+void PIDEncoderDecoder::setIsEnabled(int indx,bool val)
+{
+    pIDInfoModel.setByindex(indx,val,PIDInfoModel::isEnabledRole);
+}
+
+bool PIDEncoderDecoder::getIsEnabled(int indx)
+{
+    return pIDInfoModel.getByindex(indx,PIDInfoModel::isEnabledRole).toDouble();
+}
+
+void PIDEncoderDecoder::setMaxLimit(int indx,double val)
+{
+    pIDInfoModel.setByindex(indx,val,PIDInfoModel::MaxRole);
+}
+
+double PIDEncoderDecoder::getMaxLimit(int indx)
+{
+    return pIDInfoModel.getByindex(indx,PIDInfoModel::MaxRole).toDouble();
+}
+
+void PIDEncoderDecoder::setMinLimit(int indx,double val)
+{
+    pIDInfoModel.setByindex(indx,val,PIDInfoModel::MinRole);
+}
+
+double PIDEncoderDecoder::getMinLimit(int indx)
+{
+    return pIDInfoModel.getByindex(indx,PIDInfoModel::MinRole).toDouble();
+}
+
+
 
 void PIDEncoderDecoder::printFrame(uint64_t msgId, uint8_t *buff,uint8_t len)
 {

@@ -25,6 +25,7 @@ DelegateModel {
     id: visualModel
     Component{
         id:custDia
+
         Rectangle{
             radius: GStyle.getCardRadius()
             clip: true
@@ -51,11 +52,18 @@ DelegateModel {
                 maxVal: 120
                 minVal: 0
                 stepVal: 1
-                //randomeChk:false
+//                randomeChk:enableRandome
                 height: parent.height*0.3
+                Component.onCompleted:{
+                   slider.isRandomeOn =  PIDEncoderDecoder.getIsrandome(modelIndex)
+                   slider.setValue(PIDEncoderDecoder.getValueOfPIDtIndex(modelIndex))
+                }
                 onMvalueChanged: {                    
                     PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
                     console.log("modelIndex ",modelIndex)
+                }
+                onRandomeUpdated: {
+                    PIDEncoderDecoder.setIsrandome(modelIndex,slider.isRandomeOn)
                 }
             }
         }
@@ -91,10 +99,17 @@ DelegateModel {
                 minVal: 0
                 maxVal: 120
                 stepVal: 1
-                //randomeChk:false
+//                 randomeChk:enableRandome
                 height: parent.height*0.3
+                Component.onCompleted:{
+                   slider.isRandomeOn =  PIDEncoderDecoder.getIsrandome(modelIndex)
+                   slider.setValue(PIDEncoderDecoder.getValueOfPIDtIndex(modelIndex))
+                }
                 onValueChanged: {
                     PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
+                }
+                onRandomeUpdated: {
+                    PIDEncoderDecoder.setIsrandome(modelIndex,slider.isRandomeOn)
                 }
             }
         }
@@ -126,10 +141,17 @@ DelegateModel {
                 maxVal: 120
                 minVal: 0
                 stepVal: 1
-                //randomeChk:false
+//                randomeChk:enableRandome
                 height: parent.height*0.3
+                Component.onCompleted:{
+                   slider.isRandomeOn =  PIDEncoderDecoder.getIsrandome(modelIndex)
+                    slider.setValue(PIDEncoderDecoder.getValueOfPIDtIndex(modelIndex))
+                }
                 onValueChanged: {
                    PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
+                }
+                onRandomeUpdated: {
+                    PIDEncoderDecoder.setIsrandome(modelIndex,slider.isRandomeOn)
                 }
             }
         }
@@ -145,8 +167,12 @@ DelegateModel {
                 maxVal: 120
                 minVal: 0
                 stepVal: 1
-                //randomeChk:false
+//                randomeChk:enableRandome
                 height: parent.height*0.5
+                Component.onCompleted:{
+                   slider.isRandomeOn =  PIDEncoderDecoder.getIsrandome(modelIndex)
+                   slider.setValue(PIDEncoderDecoder.getValueOfPIDtIndex(modelIndex))
+                }
                 onValueChanged: {
                     PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,slider.value)
                 }
@@ -166,6 +192,9 @@ DelegateModel {
                 anchors.centerIn: parent
                 height: parent.height*0.7
                 dataFieldChecked: 255
+                Component.onCompleted:{
+                  dial.val(PIDEncoderDecoder.getValueOfPIDtIndex(modelIndex))
+                }
                 onValueUpdate: {
                     PIDEncoderDecoder.setValueOfPIDtIndex(modelIndex,mvalue)
                 }

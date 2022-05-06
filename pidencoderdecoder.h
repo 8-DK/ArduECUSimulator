@@ -14,6 +14,7 @@
 #include <QJsonObject>
 #include <QAbstractListModel>
 #include "ComHelper.h"
+#include <QTimer>
 
 #define OBD_DATA_LEN 8
 
@@ -165,7 +166,8 @@ public:
 
     bool setByindex(const int index, const QVariant &value, int role)
     {
-        PIDInfo item = pidinfoList.at(index);
+        QModelIndex idx = QAbstractListModel::index(index,0);
+        PIDInfo &item = pidinfoList[idx.row()];
         if (role == ServiceRole)  item.pidInfoSt.Service = value.toInt();
         if (role == PID_DecRole)  item.pidInfoSt.PID_Dec = value.toInt();
         if (role == DataCountRole)  item.pidInfoSt.DataCount= value.toInt();
@@ -179,8 +181,11 @@ public:
         if (role == AllowToChangeRole)  item.pidInfoSt.AllowToChange = value.toBool();
         if (role == WidgetTypeRole) item.pidInfoSt.WidgetType= value.toInt();
         if (role == ValueRole) item.pidInfoSt.Value = value.toDouble();        
-        else{ return false;}
         pidinfoList.replace(index,item);
+        if (role == ValueRole)
+        {
+            emit dataChanged(idx, idx);
+        }
         return true ;
     }
 
@@ -204,8 +209,6 @@ public:
         if (role == AllowToChangeRole)  item.pidInfoSt.AllowToChange = value.toBool();
         if (role == WidgetTypeRole) item.pidInfoSt.WidgetType= value.toInt();
         if (role == ValueRole) item.pidInfoSt.Value = value.toDouble();
-        else{ return false;}
-
         emit dataChanged(index, index, { role } );
         return true ;
     }
@@ -222,8 +225,7 @@ public:
         endInsertRows();
         return true;
     }
-signals:
-    void fenceModelDataChanged();
+
 };
 
 class PIDEncoderDecoder : public QObject
@@ -240,6 +242,8 @@ public:
     explicit PIDEncoderDecoder(QObject *parent = nullptr);
     static PIDEncoderDecoder *getInstance();
     static QObject* getInstance(QQmlEngine *engine, QJSEngine *scriptEngine){Q_UNUSED(engine);Q_UNUSED(scriptEngine);return getInstance();}
+
+    QTimer *randUpdatetimer;
 
     void parsePIDJsonLookUpFile();
     void parsePIDCSVLookUpFile();
@@ -261,6 +265,8 @@ public slots:
     Q_INVOKABLE double getMaxLimit(int indx);
     Q_INVOKABLE void setMinLimit(int indx, double val);
     Q_INVOKABLE double getMinLimit(int indx);
+
+    void randPIDValUpdate();
 signals:
 
 };

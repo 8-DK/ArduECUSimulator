@@ -1,11 +1,15 @@
 #include "pidencoderdecoder.h"
+#include "styleglobalsconsts.h""
 
 PIDEncoderDecoder::PIDEncoderDecoder(QObject *parent) : QObject(parent)
 {
 //    parsePIDJsonLookUpFile(); //use json file to PID lookup
     parsePIDCSVLookUpFile(); //use CSV file to PID lookup
     connect(SIM::comm(),SIGNAL(readRawCanData(mavlink_read_can_raw_t)),this,SLOT(parsePIDJsonLookUpFile(mavlink_read_can_raw_t)));
-
+    randUpdatetimer = new QTimer(this);
+    randUpdatetimer->setInterval(100);
+    randUpdatetimer->start();
+    connect(randUpdatetimer,SIGNAL(timeout()),this,SLOT(randPIDValUpdate()));
 }
 PIDEncoderDecoder* PIDEncoderDecoder::m_instance;
 
@@ -126,6 +130,19 @@ void PIDEncoderDecoder::printOBDResponse(uint64_t msgId, uint8_t *buff, QString 
     data += "B7 : 0x"+QString::number(buff[7], 16)+QString("\t");
 
     qDebug().noquote() << data;
+}
+
+void PIDEncoderDecoder::randPIDValUpdate()
+{
+    for(int i = 0 ; i < pIDInfoModel.rowCount();i++)
+    {
+        if(getIsrandome(i) == true)
+        {
+            double randVal = SIM::GS()->getRandomeFloat(getMinLimit(i),getMaxLimit(i));
+            qDebug() << "Rand val : " << randVal;
+            setValueOfPIDtIndex(i,randVal);
+        }
+    }
 }
 
 void PIDEncoderDecoder::parsePIDJsonLookUpFile(mavlink_read_can_raw_t msg)

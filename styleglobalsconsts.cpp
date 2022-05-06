@@ -5,6 +5,11 @@
 #include <random>
 #include "QDateTime"
 
+namespace SIM {
+    GStyle *GS(){ return GStyle::getInstance();}
+}
+
+
 GStyle::GStyle(QObject *parent) : QObject(parent)
 {
     readThemeFile("default");
@@ -799,6 +804,8 @@ int GStyle::getRandomeInt(int min,int max){
 }
 
 double GStyle::getRandomeFloat(double min,double max){
+    min = !min?min+1:min;
+    max = !max?max+1:max;
     float random = ((float) rand()) / (float) max;
     float diff = max - min;
     float r = random * diff;

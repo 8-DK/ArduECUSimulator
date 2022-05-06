@@ -30,15 +30,15 @@ DelegateModel {
             radius: GStyle.getCardRadius()
             clip: true
 
-            Timer{
-                id : randModeValueGenerator
-                running: slider.isRandomeOn
-                repeat: true
-                interval: 1000
-                onTriggered: {
-                   slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
-                }
-            }
+//            Timer{
+//                id : randModeValueGenerator
+//                running: slider.isRandomeOn
+//                repeat: true
+//                interval: 1000
+//                onTriggered: {
+//                   slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
+//                }
+//            }
 
             CustomeDial
             {
@@ -75,15 +75,15 @@ DelegateModel {
             radius: GStyle.getCardRadius()
             clip: true
 
-            Timer{
-                id : randModeValueGenerator
-                running: slider.isRandomeOn
-                repeat: true
-                interval: 1000
-                onTriggered: {
-                    slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
-                }
-            }
+//            Timer{
+//                id : randModeValueGenerator
+//                running: slider.isRandomeOn
+//                repeat: true
+//                interval: 1000
+//                onTriggered: {
+//                    slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
+//                }
+//            }
 
             CustomeDial2
             {
@@ -121,16 +121,16 @@ DelegateModel {
             radius: GStyle.getCardRadius()
             clip: true
 
-            Timer{
-                id : randModeValueGenerator
-                running: slider.isRandomeOn
-                repeat: true
-                interval: 1000
-                onTriggered: {
-                    //                        slider.value = GStyle.getRandomeInt(slider.minVal,slider.maxVal)
-                    slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
-                }
-            }
+//            Timer{
+//                id : randModeValueGenerator
+//                running: slider.isRandomeOn
+//                repeat: true
+//                interval: 1000
+//                onTriggered: {
+//                    //                        slider.value = GStyle.getRandomeInt(slider.minVal,slider.maxVal)
+//                    slider.setValue(GStyle.getRandomeInt(slider.minVal,slider.maxVal))
+//                }
+//            }
             SegementDisplay
             {
                 id : segmentVal
@@ -237,6 +237,10 @@ DelegateModel {
             Loader {                
                 property int modelIndex: index
                 anchors.fill: parent
+                onLoaded:{
+                    mvalue = 0
+                }
+
                 sourceComponent: {                    
                     if(widgetType === 0)
                         return custDia

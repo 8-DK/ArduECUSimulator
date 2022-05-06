@@ -191,4 +191,8 @@ private:
     QString themePrimaryColor = "#E9ECF3";
 };
 
+namespace SIM {
+    GStyle *GS();
+}
+
 #endif // STYLE_H

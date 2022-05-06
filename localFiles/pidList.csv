@@ -5,10 +5,10 @@ Service,PIDs,PID_Dec,DataCount,PIDName,Min,Max,Units,Description,isEnabled,sendR
 1,3,3,2,Fuel system status,,,,Bit encoded. See below,1,0,1,4,0
 1,4,4,1,Calculated engine load,0,100,%,{\displaystyle {\tfrac {100}{255}}A} (or {\displaystyle {\tfrac {A}{2.55}}}),1,0,1,5,0
 1,5,5,1,Engine coolant temperature,-40,215,°C,{\displaystyle A-40},1,0,1,1,0
-1,6,6,1,Short term fuel trim—Bank 1,-100,99.2,%,{\displaystyle {\frac {100}{128}}A-100},1,0,1,1,0
-1,7,7,1,Long term fuel trim—Bank 1,-100,99.2,%,,1,0,1,1,0
-1,8,8,1,Short term fuel trim—Bank 2,-100,99.2,%,(or {\displaystyle {\tfrac {A}{1.28}}-100},1,0,1,1,0
-1,9,9,1,Long term fuel trim—Bank 2,-100,99.2,%, ),1,0,1,1,0
+1,6,6,1,Short term fuel trim Bank 1,-100,99.2,%,{\displaystyle {\frac {100}{128}}A-100},1,0,1,1,0
+1,7,7,1,Long term fuel trim Bank 1,-100,99.2,%,,1,0,1,1,0
+1,8,8,1,Short term fuel trim Bank 2,-100,99.2,%,(or {\displaystyle {\tfrac {A}{1.28}}-100},1,0,1,1,0
+1,9,9,1,Long term fuel trim Bank 2,-100,99.2,%, ),1,0,1,1,0
 1,0A,10,1,Fuel pressure,0,765,kPa,{\displaystyle 3A},1,0,1,1,0
 1,0B,11,1,IMAP,0,255,kPa,{\displaystyle A},1,0,1,1,0
 1,0C,12,2,Engine speed,0,"16,383.75",rpm,{\displaystyle {\frac {256A+B}{4}}},1,0,1,1,0
